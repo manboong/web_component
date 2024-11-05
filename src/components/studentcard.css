@@ -1,4 +1,4 @@
-.card-container {
+.student-card-container {
     width: 600px;
     height: 200px;
     border: 1px solid #eaeaea;
@@ -11,69 +11,50 @@
     background-color: #f9f9f9;
   }
   
-  .card-bookmark {
+  .student-card-bookmark {
     position: absolute;
     top: 16px;
     right: 16px;
     cursor: pointer;
   }
   
-  .card-bookmark img {
+  .student-card-bookmark img {
     width: 24px;
     height: 24px;
   }
   
-  .card-image {
+  .student-card-image {
     flex-shrink: 0;
-    width: 150px;
+    width: 120px;
     height: auto;
     margin-right: 24px;
     border-radius: 8px;
     overflow: hidden;
   }
   
-  .card-image img {
+  .student-card-image img {
     width: 100%;
     height: auto;
   }
   
-  .card-content {
+  .student-card-content {
     display: flex;
     flex-direction: column;
     flex: 1;
   }
   
-  .card-title-date {
-    display: flex;
-    align-items: center;
-  }
-  
-  .card-title {
+  .student-card-name {
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0;
   }
   
-  .card-date {
+  .student-card-nationality,
+  .student-card-school,
+  .student-card-major,
+  .student-card-languages {
     font-size: 1rem;
-    color: #888;
-    margin-left: 8px;
-  }
-  
-  .card-subtitle {
-    font-size: 1.125rem;
-    color: #666;
+    color: #555;
     margin: 8px 0;
   }
   
-  .card-salary {
-    font-size: 1.125rem;
-    color: #333;
-    margin: 8px 0;
-  }
-  
-  .card-location {
-    font-size: 1rem;
-    color: #999;
-    margin: 8px 0;
-  }

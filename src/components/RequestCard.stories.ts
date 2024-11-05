@@ -15,6 +15,7 @@ const meta = {
     subtitle: '관리요원',
     salary: '22000엔',
     location: '사이타마현',
+    date: '2024-10-25',
     imageUrl: 'image1',
     onBookmarkClick: fn(),
   },
@@ -31,6 +32,7 @@ export const WithBookmark: Story = {
     subtitle: '副監督官',
     salary: '150000ウォン',
     location: 'ソウル',
+    date: '2024-10-25',
     imageUrl: 'image2',
   },
 };
