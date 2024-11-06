@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import { Card } from './RequestCard';
+import { RequestCard } from './RequestCard';
 
 const meta = {
   title: 'RequestCard',
-  component: Card,
+  component: RequestCard,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -19,7 +19,7 @@ const meta = {
     imageUrl: 'image1',
     onBookmarkClick: fn(),
   },
-} satisfies Meta<typeof Card>;
+} satisfies Meta<typeof RequestCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
