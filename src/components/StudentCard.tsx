@@ -1,18 +1,38 @@
 import React from 'react';
-import { Theme, Box, Card, Flex, Avatar, Text, Button } from '@radix-ui/themes';
+import { Theme, Box, Card, Flex, Avatar, Text, Button, Separator } from '@radix-ui/themes';
 import styled from 'styled-components';
 import "@radix-ui/themes/styles.css";
 
+interface langWithLevelProps {
+  language: string
+  level: number
+}
 export interface StudentCardProps {
   name: string;
   nationality: string;
   school: string;
   major: string;
-  languages: string[];
+  languageWithLevel: langWithLevelProps[];
   imageUrl: string;
   onBookmarkClick?: () => void;
 }
 
+
+const renderLanguages = (langWithProps: langWithLevelProps[]) => {
+  const levelToColor = ['purple', 'cyan', 'crimson'];
+  return (
+    langWithProps.map((val)=>{
+      return(
+        <>
+          <Text as="span" color={levelToColor[val.level] ?? 'purple'}>
+            {val.language}
+          </Text>
+          <Separator orientation="vertical" />
+        </>
+      )
+    })
+  )
+  }
 
 const ResponsiveBox = styled(Box)`
   width: 600px;
@@ -74,7 +94,7 @@ export const StudentCard = ({
   nationality,
   school,
   major,
-  languages,
+  languageWithLevel,
   imageUrl,
   onBookmarkClick,
 }: StudentCardProps) => (
@@ -99,9 +119,9 @@ export const StudentCard = ({
             <MajorText>
               <strong>Major:</strong> {major}
             </MajorText>
-            <ResponsiveText>
-              <strong>Languages:</strong> {languages.join(', ')}
-            </ResponsiveText>
+            <Flex gap="3" align="center">
+              {renderLanguages(languageWithLevel)}
+            </Flex>
           </Box>
 
           {/* Bookmark Button with Icon */}

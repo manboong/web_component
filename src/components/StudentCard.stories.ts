@@ -15,7 +15,7 @@ const meta = {
     nationality: 'American',
     school: 'Harvard University',
     major: 'Computer Science',
-    languages: ['English', 'Spanish'],
+    languageWithLevel: [{language: 'English', level: 1}, {language: 'Spanish', level: 2}],
     imageUrl: 'https://via.placeholder.com/120',
     onBookmarkClick: fn(),
   },
@@ -32,7 +32,7 @@ export const MultiLanguage: Story = {
     nationality: 'Canadian',
     school: 'University of Toronto',
     major: 'Physics',
-    languages: ['English', 'French', 'Japanese'],
+    languageWithLevel: [{language: 'French', level: 1}, {language: 'Japaneses', level: 2}],
     imageUrl: 'https://via.placeholder.com/120',
   },
 };
@@ -43,7 +43,7 @@ export const DifferentMajor: Story = {
     nationality: 'South Korean',
     school: 'Korea University',
     major: 'International Relations',
-    languages: ['Korean', 'English'],
+    languageWithLevel: [{language: 'Korean', level: 1}, {language: 'English', level: 2}],
     imageUrl: 'https://via.placeholder.com/120',
   },
 };
