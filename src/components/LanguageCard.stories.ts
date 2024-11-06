@@ -24,3 +24,11 @@ export const Default: Story = {
   },
 };
 
+export const Toeic: Story = {
+    args: {
+        level: 2,
+        exam_name: "토익",
+        exam_result: "890",
+        language: "영어"
+    },
+};

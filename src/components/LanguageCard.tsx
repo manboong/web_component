@@ -58,7 +58,11 @@ const LanguageCard: React.FC<LanguageCardProps> = ({
   <Theme>
     <ResponsiveBox>
       <ResponsiveCard>
-        <Avatar fallback={exam_result} size="7" variant="solid" color={level_to_color(level) ?? 'purple'} highContrast/>
+        <Avatar size="7" variant="solid" color={level_to_color(level) ?? 'purple'} highContrast fallback={
+          <Text size="6" weight="bold">
+            {exam_result}
+          </Text>
+        } />
         <Flex direction="column" gap="4" align="center" justify="center" width="100%">
           <Text as="div" size="4" weight="bold" style={{ marginBottom: '8px', textAlign: 'center' }}>
             {language}
