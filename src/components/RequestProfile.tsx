@@ -1,7 +1,6 @@
 import React from 'react';
 import { Theme, Box, Card, Flex, Text, Checkbox } from '@radix-ui/themes';
 
-// 타입 정의
 interface RequestProfileProps {
   title: string;
   subtitle: string;
@@ -21,7 +20,6 @@ interface RequestProfileProps {
   created_at: Date;
 }
 
-// RequestProfile 컴포넌트
 const RequestProfile: React.FC<RequestProfileProps> = ({
     title,
     subtitle,
@@ -42,7 +40,7 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
   }) => {
     return (
         <Theme>
-            <Box style={{ width: '1200px', padding: '24px', margin: '16px 0', gap: '16px' }}>
+            <Box style={{ width: '800px', padding: '24px', margin: '16px 0', gap: '16px' }}>
               {/* 타이틀과 서브타이틀 카드 */}
               <Card style={{ padding: '16px' }}>
                 <Text as="div" size="6" weight="bold">{title}</Text>
