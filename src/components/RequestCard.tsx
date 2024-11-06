@@ -9,7 +9,7 @@ export interface RequestCardProps {
   salary: string;
   location: string;
   date: string;
-  imageUrl: string;
+  imageURL: string;
   onBookmarkClick?: () => void;
 }
 
@@ -68,14 +68,13 @@ const SalaryText = styled(Text).attrs({
     display: none;
   }
 `;
-
-export const RequestCard = ({
+const RequestCard = ({
   title,
   subtitle,
   salary,
   location,
   date,
-  imageUrl,
+  imageURL,
   onBookmarkClick,
 }: RequestCardProps) => (
   <Theme>
@@ -83,7 +82,7 @@ export const RequestCard = ({
       <Card style={{ width: '100%', height: '100%', padding: '20px' }}>
         <Flex direction="row" gap="7" align="center" justify="center" style={{ width: '100%', height: '100%' }}>
           {/* Avatar Section */}
-          <ResponsiveAvatar size="7" src={imageUrl} radius="medium" fallback={title.charAt(0)} />
+          <ResponsiveAvatar size="7" src={imageURL} radius="medium" fallback={title.charAt(0)} />
 
           {/* Content Section */}
           <Box style={{ flex: 1 }}>
@@ -113,3 +112,6 @@ export const RequestCard = ({
     </ResponsiveBox>
   </Theme>
 );
+
+
+export default RequestCard;
