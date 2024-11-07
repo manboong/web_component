@@ -89,7 +89,7 @@ const SchoolText = styled(Text).attrs({
   }
 `;
 
-export const StudentCard = ({
+const StudentCard = ({
   name,
   nationality,
   school,
@@ -98,7 +98,6 @@ export const StudentCard = ({
   imageUrl,
   onBookmarkClick,
 }: StudentCardProps) => (
-  <Theme>
     <ResponsiveBox>
       <Card style={{ width: '100%', height: '100%', padding: '20px' }}>
         <Flex direction="row" gap="7" align="center" justify="center" style={{ width: '100%', height: '100%' }}>
@@ -144,5 +143,6 @@ export const StudentCard = ({
         </Flex>
       </Card>
     </ResponsiveBox>
-  </Theme>
 );
+
+export default StudentCard
