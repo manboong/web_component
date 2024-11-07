@@ -1,7 +1,6 @@
 import React from 'react';
-import { Theme, Box, Card, Flex, Text } from '@radix-ui/themes';
+import { Theme, Card, Text, Inset, Box } from '@radix-ui/themes';
 import styled from 'styled-components';
-import "@radix-ui/themes/styles.css";
 
 export interface AcademicHistoryCardProps {
   degree: string;
@@ -10,38 +9,18 @@ export interface AcademicHistoryCardProps {
   start_date: string;
   end_date: string;
   status: 'Graduated' | 'In Progress' | 'Withdrawn';
+  logo?: string;
 }
 
-const ResponsiveBox = styled(Box)`
-  width: 600px;
+const StyledCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  width: 300px;
   padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: width 0.3s ease, height 0.3s ease;
-
-  @media (max-width: 600px) {
-    width: 100%;
-  }
-`;
-
-const ResponsiveCard = styled(Card)`
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
-
-const RowFlex = styled(Flex)`
-  flex-direction: row;
-  gap: 16px;
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 8px;
-  }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
@@ -51,38 +30,49 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
   start_date,
   end_date,
   status,
+  logo,
 }) => (
   <Theme>
-    <ResponsiveBox>
-      <ResponsiveCard>
-        <Flex direction="column" gap="4" style={{ width: '100%', alignItems: 'center' }}>
-          <Text as="div" size="4" weight="bold" style={{ marginBottom: '8px', textAlign: 'center' }}>
-            {school_name}
-          </Text>
-
-          <RowFlex>
-            <Text as="p" color="gray">
-              <strong>Degree:</strong> {degree}
-            </Text>
-            <Text as="p" color="gray">
-              <strong>Faculty:</strong> {faculty}
-            </Text>
-          </RowFlex>
-
-          <RowFlex>
-            <Text as="p" color="gray">
-              <strong>Start Date:</strong> {new Date(start_date).toLocaleDateString()}
-            </Text>
-            <Text as="p" color="gray">
-              <strong>End Date:</strong> {new Date(end_date).toLocaleDateString()}
-            </Text>
-            <Text as="p" color="gray">
-              <strong>Status:</strong> {status}
-            </Text>
-          </RowFlex>
-        </Flex>
-      </ResponsiveCard>
-    </ResponsiveBox>
+    <StyledCard>
+      <Inset clip="padding-box" side="top" pb="current" style={{ width: '100%', height: '150px', overflow: 'hidden' }}>
+        {logo && (
+          <Box style={{ width: '100%', height: '100%' }}>
+            <img
+              src={logo}
+              alt={`${school_name} logo`}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+          </Box>
+        )}
+      </Inset>
+      
+      <Text size="5" weight="bold" style={{ color: '#2c3e50', fontSize: '1.5em' }}>
+        {school_name}
+      </Text>
+      <Text size="4" style={{ color: '#34495e', fontStyle: 'italic', fontSize: '1.1em' }}>
+        {degree} in {faculty}
+      </Text>
+      <Text size="3" style={{ color: '#7f8c8d', fontSize: '0.9em' }}>
+        {new Date(start_date).toLocaleDateString()} - {end_date ? new Date(end_date).toLocaleDateString() : 'Present'}
+      </Text>
+      <Text
+        size="3"
+        weight="bold"
+        style={{
+          color: status === 'Graduated' ? 'indigo' : status === 'In Progress' ? 'jade' : 'tomato',
+          backgroundColor: '#ecf0f1',
+          padding: '4px 8px',
+          borderRadius: '4px',
+          fontSize: '0.95em'
+        }}
+      >
+        {status}
+      </Text>
+    </StyledCard>
   </Theme>
 );
 

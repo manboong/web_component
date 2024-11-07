@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, Box, Card, Flex, Text, Avatar, Separator } from '@radix-ui/themes';
+import { Theme, Box, Card, Text, Inset } from '@radix-ui/themes';
 import styled from 'styled-components';
 import "@radix-ui/themes/styles.css";
 
@@ -10,73 +10,58 @@ export interface LanguageCardProps {
   language: string;
 }
 
-type LevelColorProps = 'purple' | 'cyan' | 'crimson'
+type LevelColorProps = 'purple' | 'cyan' | 'crimson';
 
 const level_to_color = (level: number): LevelColorProps =>  {
   switch (level) {
     case 1:
-      return 'purple'
+      return 'purple';
     case 2:
-      return 'cyan'
+      return 'cyan';
     case 3:
-      return 'crimson'
+      return 'crimson';
     default:
-      return 'purple'
+      return 'purple';
   }
-}
+};
 
-const ResponsiveBox = styled(Box)`
-  width: 300px;
-  padding: 16px;
+const StyledCard = styled(Card)<{ borderColor: LevelColorProps }>`
+  width: fit-content;
+  padding: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  transition: width 0.3s ease, height 0.3s ease;
-
-  @media (max-width: 600px) {
-    width: 100%;
-  }
+  gap: 8px;
+  border: 2px solid ${({ borderColor }) => borderColor};
+  color: ${({ borderColor }) => borderColor};
 `;
-
-const ResponsiveCard = styled(Card)`
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 100%;
-`;
-
 
 const LanguageCard: React.FC<LanguageCardProps> = ({
   level,
   exam_result,
   exam_name,
   language
-}) => (
-  <Theme>
-    <ResponsiveBox>
-      <ResponsiveCard>
-        <Avatar size="7" variant="solid" color={level_to_color(level) ?? 'purple'} highContrast fallback={
-          <Text size="6" weight="bold">
-            {exam_result}
-          </Text>
-        } />
-        <Flex direction="column" gap="4" align="center" justify="center" width="100%">
-          <Text as="div" size="4" weight="bold" style={{ marginBottom: '8px', textAlign: 'center' }}>
-            {language}
-          </Text>
-          <Separator orientation="horizontal" size="4"/>
-          <Flex direction={{initial: "column", md: "row"}} gap={{initial: "8px", md: "16px"}} >
-            <Text as="p">
-              <strong>{exam_name}</strong>: {exam_result}
+}) => {
+  const color = level_to_color(level);
+
+  return (
+    <Theme>
+      <StyledCard borderColor={color}>
+        <Inset>
+          <Box style={{ display: 'inline-flex', textAlign: 'center' }}>
+            <Text as="div" size="4" weight="bold" style={{ color: color, fontSize: '0.6em' }}>
+              {language}
             </Text>
-          </Flex>
-        </Flex>
-      </ResponsiveCard>
-    </ResponsiveBox>
-  </Theme>
-);
+          </Box>
+        </Inset>
+        <Box style={{ display: 'inline-flex', textAlign: 'center' }}>
+          <Text as="p" style={{ color: color, fontSize: '1.4em', transform: 'scale(1.0, 1.2)'}}>
+            <strong>{exam_name}: {exam_result}</strong>
+          </Text>
+        </Box>
+      </StyledCard>
+    </Theme>
+  );
+};
 
 export default LanguageCard;

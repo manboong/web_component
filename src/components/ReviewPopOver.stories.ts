@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import ReviewPopOver, { ReviewPopOverProps } from './ReviewPopOver';
 import { LightningBoltIcon } from "@radix-ui/react-icons";
-import {Theme} from "@radix-ui/themes"
 
 const meta: Meta<typeof ReviewPopOver> = {
   title: 'Components/ReviewPopOver',
