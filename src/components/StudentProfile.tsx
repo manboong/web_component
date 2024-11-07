@@ -41,7 +41,7 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
                 </Flex>
               </Card>
               <Card style={{ padding: '16px' }}>
-                <Grid columns="3" gap="3" rows="repeat(2, 64px)" width="auto">
+                <Grid columns="2" gap="3" rows="repeat(2, 64px)" width="auto">
                     {academicHistory.map((history, index) => (
                         <AcademicHistoryCard 
                             key={index}
@@ -56,7 +56,7 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
                 </Grid>
               </Card>
               <Card style={{ padding: '16px' }}>
-                <Grid columns="3" gap="3" rows="repeat(2, 64px)" width="auto">
+                <Grid columns="2" gap="3" rows="repeat(2, 64px)" width="auto">
                     {languageHistory.map((history, index) => (
                         <LanguageCard
                             key={index}
