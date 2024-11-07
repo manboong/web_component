@@ -8,12 +8,11 @@ const meta: Meta<typeof CorpProfile> = {
   argTypes: {
     name: { control: 'text' },
     nationality: { control: 'text' },
-    ceo_name: { control: 'text' },
     corp_address: { control: 'text' },
-    corp_num: { control: 'text' },
-    biz_started_at: { control: 'date' },
     biz_type: { control: 'text' },
     logo_image: { control: 'text' },
+    review_count: {control: 'number'},
+    homepage_url: { control: 'text'}
   },
 };
 
@@ -25,10 +24,9 @@ export const Default = Template.bind({});
 Default.args = {
   name: 'Tech Innovations Inc.',
   nationality: 'USA',
-  ceo_name: 'John Doe',
-  corp_address: '1234 Silicon Valley Blvd, CA',
-  corp_num: '123-45-6789',
-  biz_started_at: new Date('2010-05-20'),
+  corp_address: '서울시',
   biz_type: 'Software Development',
+  review_count: 5,
   logo_image: 'https://via.placeholder.com/150',
+  homepage_url: '#',
 };
