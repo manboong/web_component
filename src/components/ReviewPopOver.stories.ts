@@ -17,6 +17,6 @@ type Story = StoryObj<ReviewPopOverProps>;
 export const Default: Story = {
   args: {
     triggerIcon: LightningBoltIcon,
-    popOverString: "성실함을 나타냄",
+    popOverString: "The quick brown fox jumps over the lazy dog",
   },
 };
