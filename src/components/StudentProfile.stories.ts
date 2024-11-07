@@ -10,8 +10,7 @@ const meta: Meta<typeof StudentProfile> = {
     nationality: { control: 'text' },
     age: { control: 'text' },
     gender: { control: 'text' },
-    phone_number: { control: 'text' },
-    emergency_contact: { control: 'text' },
+    past_activity: { control: 'text' },
   },
 };
 
@@ -24,10 +23,9 @@ export const Default: Story = {
     name: 'Jane Doe',
     imageUrl: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e', 
     nationality: 'Canadian',
-    age: '21',
+    age: '28',
     gender: 'Female',
-    phone_number: '123-456-7890',
-    emergency_contact: 'Emergency Contact: 098-765-4321',
+    past_activity: 'https://upload.wikimedia.org/wikipedia/commons/5/54/Infobox_collage_for_WWII.PNG',
     academicHistory: [
       {
         degree: 'Bachelor of Science',
@@ -36,14 +34,16 @@ export const Default: Story = {
         start_date: '2018-09-01',
         end_date: '2022-06-01',
         status: 'Graduated',
+        logo: 'https://upload.wikimedia.org/wikipedia/en/0/04/Utoronto_coa.svg'
       },
       {
         degree: 'Master of Science',
         faculty: 'Artificial Intelligence',
-        school_name: 'University of Toronto',
+        school_name: 'ETHZ',
         start_date: '2023-09-01',
         end_date: '2025-06-01',
         status: 'In Progress',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/6/63/ETH_Z%C3%BCrich_wordmark.svg'
       },
     ],
     languageHistory: [

@@ -14,6 +14,7 @@ const meta: Meta<typeof AcademicHistoryCard> = {
       control: 'radio',
       options: ['Graduated', 'In Progress', 'Withdrawn'],
     },
+    logo: { control: 'text' },
   },
 };
 
@@ -28,6 +29,6 @@ export const Default: Story = {
     start_date: '2018-09-01',
     end_date: '2022-06-15',
     status: 'Graduated',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg',
   },
 };
-
