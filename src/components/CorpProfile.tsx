@@ -24,7 +24,7 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
   return (
     <Theme>
       <Flex>
-        <Box style={{ width: '800px', padding: '24px', margin: '16px 0' }}>
+        <Box style={{ width: '100%', boxSizing: 'border-box' }}>
           <Card>
             <Inset>
               <img
