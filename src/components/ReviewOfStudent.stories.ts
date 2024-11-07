@@ -23,7 +23,8 @@ export const Default: Story = {
     request_card: {
       title: 'Translation',
       subtitle: 'Looking for ',
-      salary: '1500 USD',
+      reward_price: '1500',
+      currency: 'USD',
       location: 'Remote',
       date: '2023-11-01',
       imageURL: 'https://via.placeholder.com/150',
@@ -43,7 +44,8 @@ export const HighEvaluation: Story = {
     request_card: {
       title: 'Technical Writing Assistance',
       subtitle: 'Experienced technical writer required for documentation.',
-      salary: '2000 USD',
+      reward_price: '2000',
+      currency: 'USD',
       location: 'On-Site',
       date: '2023-12-15',
       imageURL: 'https://via.placeholder.com/150',
@@ -63,7 +65,8 @@ export const LowEvaluation: Story = {
     request_card: {
       title: 'Data Entry for Survey Results',
       subtitle: 'Looking for data entry specialists.',
-      salary: '500 USD',
+      reward_price: '500',
+      currency: 'USD',
       location: 'Office',
       date: '2023-11-20',
       imageURL: 'https://via.placeholder.com/150',

@@ -20,6 +20,7 @@ const ResponsiveBox = styled(Box)`
   padding: 16px;
   position: relative;
   transition: width 0.3s ease, height 0.3s ease;
+  min-width: 300px;
 
   @media (max-width: 600px) {
     width: 100%;

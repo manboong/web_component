@@ -31,7 +31,7 @@ export const WithBookmark: Story = {
   args: {
     title: 'JLPT 監督官',
     subtitle: '副監督官',
-    reward_price: '150000ウォン',
+    reward_price: '150000',
     location: 'ソウル',
     date: '2024-10-25',
     imageURL: 'image2',
