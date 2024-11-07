@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-
-import { StudentCard } from './StudentCard';
+import { Theme } from "@radix-ui/themes"
+import StudentCard from './StudentCard';
 
 const meta = {
   title: 'StudentCard',
@@ -10,6 +10,13 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  decorators: [
+    (Story) => (
+      <Theme>
+        <Story />
+      </Theme>
+    )
+  ],
   args: {
     name: 'John Doe',
     nationality: 'American',
