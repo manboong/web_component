@@ -13,7 +13,8 @@ const meta = {
   args: {
     title: 'TOPIK 감독관',
     subtitle: '관리요원',
-    salary: '22000엔',
+    reward_price: '22000',
+    currency: 'JPY',
     location: '사이타마현',
     date: '2024-10-25',
     imageURL: 'image1',
@@ -30,7 +31,7 @@ export const WithBookmark: Story = {
   args: {
     title: 'JLPT 監督官',
     subtitle: '副監督官',
-    salary: '150000ウォン',
+    reward_price: '150000ウォン',
     location: 'ソウル',
     date: '2024-10-25',
     imageURL: 'image2',

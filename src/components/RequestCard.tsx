@@ -1,23 +1,24 @@
 import React from 'react';
-import { Theme, Box, Card, Flex, Avatar, Text, Button } from '@radix-ui/themes';
+import { Theme, Box, Card, Flex, Avatar, Text } from '@radix-ui/themes';
 import styled from 'styled-components';
 import "@radix-ui/themes/styles.css";
 
 export interface RequestCardProps {
   title: string;
   subtitle: string;
-  salary: string;
+  reward_price: string;
+  currency: 'USD' | 'JPY' | 'KRW';
   location: string;
   date: string;
   imageURL: string;
   onBookmarkClick?: () => void;
 }
 
-
 const ResponsiveBox = styled(Box)`
   width: 600px;
   height: 200px;
   padding: 16px;
+  position: relative;
   transition: width 0.3s ease, height 0.3s ease;
 
   @media (max-width: 600px) {
@@ -25,7 +26,6 @@ const ResponsiveBox = styled(Box)`
     height: 200px;
   }
 `;
-
 
 const ResponsiveAvatar = styled(Avatar)`
   display: block;
@@ -35,43 +35,47 @@ const ResponsiveAvatar = styled(Avatar)`
   }
 `;
 
-const ResponsiveText = styled(Text).attrs({
-  as: 'p',     
-  color: 'gray' 
-})`
-  font-size: 1rem;     
-  margin: 2px 0;       
+const TitleText = styled(Text)`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 4px;
 `;
 
-const LocationText = styled(Text).attrs({
-  as: 'p',
-  color: 'gray'
-})`
-  display: block;
-  margin: 2px 0;
+const SubtitleText = styled(Text)`
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 6px;
+`;
+
+const RewardText = styled(Text)`
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e67e22;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+`;
+
+const LocationText = styled(Text)`
   font-size: 1rem;
-
-  @media (max-width: 400px) {
-    display: none;
-  }
+  color: #34495e;
+  margin: 0 4px;
 `;
 
-const SalaryText = styled(Text).attrs({
-  as: 'p',
-  color: 'gray'
-})`
-  display: block;
-  margin: 2px 0;
-  font-size: 1rem;
-
-  @media (max-width: 400px) {
-    display: none;
-  }
+const DateText = styled(Text)`
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 `;
+
 const RequestCard = ({
   title,
   subtitle,
-  salary,
+  reward_price,
+  currency,
   location,
   date,
   imageURL,
@@ -79,39 +83,24 @@ const RequestCard = ({
 }: RequestCardProps) => (
   <Theme>
     <ResponsiveBox>
-      <Card style={{ width: '100%', height: '100%', padding: '20px' }}>
+      <Card style={{ width: '100%', height: '100%', padding: '20px', position: 'relative' }}>
+        <DateText>{date}</DateText>
         <Flex direction="row" gap="7" align="center" justify="center" style={{ width: '100%', height: '100%' }}>
-          {/* Avatar Section */}
           <ResponsiveAvatar size="7" src={imageURL} radius="medium" fallback={title.charAt(0)} />
-
-          {/* Content Section */}
           <Box style={{ flex: 1 }}>
-            <Text as="div" size="4" weight="bold">
-              {title}
-            </Text>
-            <ResponsiveText>
-              <strong>subtitle:</strong> {subtitle}
-            </ResponsiveText>
-            <SalaryText>
-              <strong>salary:</strong> {salary}
-            </SalaryText>
-            <LocationText>
-              <strong>location:</strong> {location}
-            </LocationText>
-            <ResponsiveText>
-              <strong>date:</strong> {date}
-            </ResponsiveText>
+            <Flex direction="column">
+              <TitleText>{title}</TitleText>
+              <SubtitleText>{subtitle}</SubtitleText>
+              <LocationText>{location}</LocationText>
+            </Flex>
           </Box>
-
-          {/* Bookmark Button with Icon */}
-          <Button onClick={onBookmarkClick} variant="ghost" color="gray" size="2">
-          <svg width="30" height="30" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 2.5C3 2.22386 3.22386 2 3.5 2H11.5C11.7761 2 12 2.22386 12 2.5V13.5C12 13.6818 11.9014 13.8492 11.7424 13.9373C11.5834 14.0254 11.3891 14.0203 11.235 13.924L7.5 11.5896L3.765 13.924C3.61087 14.0203 3.41659 14.0254 3.25762 13.9373C3.09864 13.8492 3 13.6818 3 13.5V2.5ZM4 3V12.5979L6.97 10.7416C7.29427 10.539 7.70573 10.539 8.03 10.7416L11 12.5979V3H4Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-          </Button>
         </Flex>
+        <RewardText>
+          {reward_price} {currency}
+        </RewardText>
       </Card>
     </ResponsiveBox>
   </Theme>
 );
-
 
 export default RequestCard;
