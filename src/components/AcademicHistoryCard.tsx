@@ -17,8 +17,7 @@ const StyledCard = styled(Card)`
   flex-direction: row;
   align-items: center;
   gap: 16px;
-  border: 1px solid #ccc;
-  width: 500px;
+  width: 0px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -67,8 +66,6 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
           </Box>
         )}
       </Inset>
-
-      {/* Status Text in Top-Right Corner */}
       <StatusText status={status}>
         {status}
       </StatusText>

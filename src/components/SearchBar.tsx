@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, TextField } from '@radix-ui/themes';
+import { Theme, TextField, Box } from '@radix-ui/themes';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
 export interface SearchBarProps {
@@ -9,11 +9,13 @@ export interface SearchBarProps {
 
 const SearchBar = ({ placeholder = "Search...", onSearch }: SearchBarProps) => (
     <Theme>
-        <TextField.Root placeholder="Search the docs…">
+      <Box width="896px">
+        <TextField.Root size="3" placeholder="요청 검색하기">
         	<TextField.Slot>
-        		<MagnifyingGlassIcon height="16" width="16" />
+        		<MagnifyingGlassIcon height="20" width="20" />
         	</TextField.Slot>
         </TextField.Root>
+        </Box>
     </Theme>
 );
 

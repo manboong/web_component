@@ -47,7 +47,7 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
 }) => {
   return (
     <Theme>
-      <Box style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <Box style={{ width: '1024px'}}>
         <CorpProfile 
           name="Company Name"
           nationality="Country"
@@ -58,13 +58,14 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
           logo_image="logo.png"
           homepage_url="https://companyhomepage.com"
         />
-        <Card style={{ width: '100%', padding: '20px 24px', boxSizing: 'border-box' }}>
+        <Separator my="3" size="4" />
+        <Box style={{ width: '100%', boxSizing: 'border-box' }}>
           <Flex direction="column" gap="4">
             <Text as="div" size="6" weight="bold">{title}</Text>
             <Text size="4" color="gray">{subtitle}</Text>
             <Separator my="3" size="4" />
             <Flex direction="column" justify="center" align="center" gap="5" style={{ marginTop: '10px', marginBottom: '10px' }}>
-              <Grid columns="3" rows="2" width="auto">
+              <Grid columns="3" rows="2" width="auto" gapX="9">
                 <Box width="200px" height="40px">
                   <Flex direction="row" gap="5">
                     <CIcon icon={cilPeople} style={{ width: '20px', height: '20px' }} />
@@ -118,7 +119,7 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
             <Separator my="3" size="4" />
             <Text size="3" color="gray">Posted on: {new Date(created_at).toLocaleDateString()}</Text>
           </Flex>
-        </Card>
+        </Box>
       </Box>
     </Theme>
   );

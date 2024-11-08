@@ -101,10 +101,7 @@ const StudentCard = ({
     <ResponsiveBox>
       <Card style={{ width: '100%', height: '100%', padding: '20px' }}>
         <Flex direction="row" gap="7" align="center" justify="center" style={{ width: '100%', height: '100%' }}>
-          {/* Avatar Section */}
           <ResponsiveAvatar size="7" src={imageUrl} radius="full" fallback={name.charAt(0)} />
-
-          {/* Content Section */}
           <Box style={{ flex: 1 }}>
             <Text as="div" size="4" weight="bold">
               {name}
@@ -122,8 +119,6 @@ const StudentCard = ({
               {renderLanguages(languageWithLevel)}
             </Flex>
           </Box>
-
-          {/* Bookmark Button with Icon */}
           <Button onClick={onBookmarkClick} variant="ghost" color="gray" size="2">
             <svg
               width="30"

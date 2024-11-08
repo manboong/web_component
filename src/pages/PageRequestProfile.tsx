@@ -1,7 +1,7 @@
 import React from "react";
 import RequestProfile, { RequestProfileProps } from "../components/RequestProfile";
 import StickyButton, { StickyButtonProps } from "../components/StickyButton";
-import { Theme, Grid, Avatar, Box, Card, Flex, Text, Inset } from '@radix-ui/themes';
+import { Theme, Grid, Avatar, Box, Card, Flex, Text, Inset, Separator } from '@radix-ui/themes';
 
 export interface PageRequestProfileProps {
     request_profile: RequestProfileProps;
@@ -35,10 +35,13 @@ const PageRequestProfile: React.FC<PageRequestProfileProps> = ({
                         prep_material={request_profile.prep_material}
                         created_at={request_profile.created_at}
                     />
+                    <Box width="1024px">
+                    <Separator my="3" size="4" />
                     <StickyButton
                         viewerType={1}
                         innerText={"신청하기"}
                     />
+                    </Box>
                 </Flex>
             </Box>
         </Theme>
