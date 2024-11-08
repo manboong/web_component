@@ -11,7 +11,7 @@ export interface ReviewOfStudentProps {
     commu_ability: number;
     lang_fluent: number;
     goal_fulfillment: number;
-    want_cowork: number
+    want_cowork: number;
   }
 
 const lateness = (was_late: number): JSX.Element => {

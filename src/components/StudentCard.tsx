@@ -23,12 +23,12 @@ const renderLanguages = (langWithProps: langWithLevelProps[]) => {
   return (
     langWithProps.map((val)=>{
       return(
-        <>
+        <Theme>
           <Text as="span" color={levelToColor[val.level] ?? 'purple'}>
             {val.language}
           </Text>
           <Separator orientation="vertical" />
-        </>
+        </Theme>
       )
     })
   )

@@ -4,7 +4,7 @@ import CorpProfile from './CorpProfile';
 import { CIcon } from '@coreui/icons-react';
 import { cilPeople, cilMoney, cilCalendar, cilAvTimer, cilDinner, cilBusAlt } from '@coreui/icons';
 
-interface RequestProfileProps {
+export interface RequestProfileProps {
   title: string;
   subtitle: string;
   head_count: number;

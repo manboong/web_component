@@ -11,7 +11,6 @@ export interface RequestCardProps {
   location: string;
   date: string;
   imageURL: string;
-  onBookmarkClick?: () => void;
 }
 
 const ResponsiveBox = styled(Box)`
@@ -80,7 +79,6 @@ const RequestCard = ({
   location,
   date,
   imageURL,
-  onBookmarkClick,
 }: RequestCardProps) => (
   <Theme>
     <ResponsiveBox>

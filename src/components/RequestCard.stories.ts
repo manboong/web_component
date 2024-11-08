@@ -18,7 +18,6 @@ const meta = {
     location: '사이타마현',
     date: '2024-10-25',
     imageURL: 'image1',
-    onBookmarkClick: fn(),
   },
 } satisfies Meta<typeof RequestCard>;
 
