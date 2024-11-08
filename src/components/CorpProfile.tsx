@@ -1,6 +1,7 @@
 import React from 'react';
 import { Theme, Avatar, Box, Card, Inset, Flex, Text, Link } from '@radix-ui/themes';
 import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import styled from 'styled-components';
 export interface CorpProfileProps {
   name: string;
   nationality: string;
@@ -11,6 +12,11 @@ export interface CorpProfileProps {
   logo_image: string;
   homepage_url: string;
 }
+
+const StyledBox = styled(Box)`
+  position: relative;
+  left: 40px;
+`
 
 const CorpProfile: React.FC<CorpProfileProps> = ({
   name,
@@ -24,8 +30,8 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
   return (
     <Theme>
       <Flex>
-        <Box style={{ width: '100%', boxSizing: 'border-box' }}>
-          <Card>
+        <Box style={{ width: '1024px', boxSizing: 'border-box' }}>
+          <Box>
             <Inset>
               <img
                   src="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
@@ -41,8 +47,8 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
             </Inset>
               <Flex direction="column" gap="4" align="start">
                 <Flex direction="row" align="center" gap="4">
-                  <Avatar src={logo_image} size="7" alt={`${name} logo`} radius="full" fallback={name.charAt(0)}/>
-                  <Box>
+                  <Avatar src={logo_image} size="7" alt={`${name} logo`} radius="full" fallback={name.charAt(0)} style={{ position: 'relative', bottom: '40px', left: '40px'}}/>
+                  <StyledBox>
                     <Text as="div" size="5" weight="bold">
                       {name}
                     </Text>
@@ -52,25 +58,25 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
                     <Text as="p" color="gray" size="2">
                       {nationality}
                     </Text>
-                  </Box>
+                  </StyledBox>
                 </Flex>
                 <Flex direction="row" gap="1" style={{ marginTop: '16px' }}>
-                  <Box>
+                  <StyledBox>
                     <Text as="p" size="3" weight="bold" color="gray">{corp_address}</Text>
-                  </Box>
+                  </StyledBox>
                   {'\u00b7'}
-                  <Box>
+                  <StyledBox>
                     <Text as="p" size="3" weight="bold" color="gray">리뷰 {review_count}건</Text>
-                  </Box>
-                  <Box pl="3">
+                  </StyledBox>
+                  <StyledBox pl="3">
                     <Link href={homepage_url} weight="bold">
                       홈페이지
                       <ExternalLinkIcon/>
                     </Link>
-                  </Box>
+                  </StyledBox>
                 </Flex>
               </Flex>
-          </Card>
+          </Box>
         </Box>
       </Flex>
     </Theme>

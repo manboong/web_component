@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, Grid, Avatar, Box, Card, Flex, Text, Inset } from '@radix-ui/themes';
+import { Theme, Grid, Avatar, Box, Card, Flex, Text, Inset, Separator } from '@radix-ui/themes';
 import AcademicHistoryCard, { AcademicHistoryCardProps } from './AcademicHistoryCard';
 import LanguageCard, { LanguageCardProps } from './LanguageCard';
 
@@ -26,8 +26,9 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
 }) => {
   return (
     <Theme>
-      <Box style={{ width: '1200px', padding: '24px', margin: '16px 0'}}>
-        <Card>
+      <Flex align="center" justify="center">
+      <Box style={{ width: '1024px'}}>
+        <Box>
           <Inset>
             <img
               src={past_activity}
@@ -43,16 +44,19 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
           </Inset>
           <Flex direction="column" gap="4" align="start">
             <Flex direction="row" align="center" gap="4">
-              <Avatar src={imageUrl} size="7" alt={`${name} logo`} radius="full" fallback={name.charAt(0)} />
-              <Box>
+              <Box style={{position: 'relative', bottom: "40px", left: "40px"}}>
+                <Avatar src={imageUrl} size="7" alt={`${name} logo`} radius="full" fallback={name.charAt(0)}/>
+              </Box>
+              <Box style={{ position: 'relative', left: "40px"}}>
                 <Text as="div" size="5" weight="bold">{name}</Text>
                 <Text as="p" color="gray" size="2">{nationality}, {gender}, {age}</Text>
               </Box>
             </Flex>
           </Flex>
-        </Card>
-
-        <Card style={{ padding: '16px' }}>
+        </Box>
+        <Separator my="3" size="4" />
+        <Text as="div" size="6" weight="bold">Academic History</Text>
+        <Box style={{ padding: '16px' }}>
           <Grid columns="2" gap="3" rows="auto" width="auto">
             {academicHistory.map((history, index) => (
               <Flex
@@ -73,9 +77,10 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
               </Flex>
             ))}
           </Grid>
-        </Card>
-        
-        <Card style={{ padding: '16px' }}>
+        </Box>
+        <Separator my="3" size="4" />
+        <Text as="div" size="6" weight="bold">Language Proficiency</Text>
+        <Box style={{ padding: '16px' }}>
           <Grid columns="6" gap="3" rows="auto" width="auto">
             {languageHistory.map((history, index) => (
               <Flex
@@ -93,8 +98,9 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
               </Flex>
             ))}
           </Grid>
-        </Card>
+        </Box>
       </Box>
+      </Flex>
     </Theme>
   );
 };

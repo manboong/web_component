@@ -18,7 +18,6 @@ const meta = {
     location: '사이타마현',
     date: '2024-10-25',
     imageURL: 'image1',
-    onBookmarkClick: fn(),
   },
 } satisfies Meta<typeof RequestCard>;
 
@@ -32,6 +31,7 @@ export const WithBookmark: Story = {
     title: 'JLPT 監督官',
     subtitle: '副監督官',
     reward_price: '150000',
+    currency: 'KRW',
     location: 'ソウル',
     date: '2024-10-25',
     imageURL: 'image2',
