@@ -1,17 +1,21 @@
 import React from 'react';
-import { Theme, Box, Card, Flex, Text, Checkbox } from '@radix-ui/themes';
+import { Theme, Separator, Grid, Box, Card, Flex, Text } from '@radix-ui/themes';
+import CorpProfile from './CorpProfile';
+import { CIcon } from '@coreui/icons-react';
+import { cilPeople, cilMoney, cilCalendar, cilAvTimer, cilDinner, cilBusAlt } from '@coreui/icons';
 
 interface RequestProfileProps {
   title: string;
   subtitle: string;
   head_count: number;
   reward_price: number;
-  currency: 'krw' | 'jpy' | 'usd';
+  currency: 'USD' | 'JPY' | 'KRW';
   content: string;
   are_needed: string;
   are_required: string;
-  start_date: Date;
-  end_date: Date;
+  date: Date;
+  start_time: string;
+  end_time: string;
   address: string;
   address_coordinate: { lat: number; lng: number };
   provide_food: boolean;
@@ -20,88 +24,104 @@ interface RequestProfileProps {
   created_at: Date;
 }
 
+const isProvided = (idf: boolean) => (idf ? "제공함" : "제공안함")
+
 const RequestProfile: React.FC<RequestProfileProps> = ({
-    title,
-    subtitle,
-    head_count,
-    reward_price,
-    currency,
-    content,
-    are_needed,
-    are_required,
-    start_date,
-    end_date,
-    address,
-    address_coordinate,
-    provide_food,
-    provide_trans_exp,
-    prep_material,
-    created_at,
-  }) => {
-    return (
-        <Theme>
-            <Box style={{ width: '800px', padding: '24px', margin: '16px 0', gap: '16px' }}>
-              {/* 타이틀과 서브타이틀 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Text as="div" size="6" weight="bold">{title}</Text>
-                <Text as="div" size="4" color="gray">{subtitle}</Text>
-              </Card>
-              {/* 인원수와 보상 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Flex direction="row" gap="2" align="center">
-                  <Text>Head Count: {head_count}</Text>
-                  <Text>Reward: {reward_price} {currency.toUpperCase()}</Text>
-                </Flex>
-              </Card>
-              {/* 요청 내용 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Text as="p">{content}</Text>
-              </Card>
-              <Card style={{ padding: '16px' }}>
-                <Flex direction="row" gap="4" style={{ marginTop: '8px' }}>
-                  <Text as="p"><strong>Needed:</strong> {are_needed}</Text>
-                  <Text as="p"><strong>Required:</strong> {are_required}</Text>
-                </Flex>
-              </Card>
-              {/* 날짜 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Flex direction="row" gap="2" align="center">
-                  <Text>Start Date: {start_date.toLocaleDateString()}</Text>
-                  <Text>End Date: {end_date.toLocaleDateString()}</Text>
-                </Flex>
-              </Card>
-              {/* 주소 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Text as="p"><strong>Address:</strong> {address}</Text>
-              </Card>
-              {/* 제공 여부 체크박스 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Flex gap="3">
-                  <Text as="label" size="3">
-                    <Flex as="span" gap="2">
-                      <Checkbox size="2" checked={provide_food} /> "Provide Food"
-                    </Flex>
-                  </Text>
-                  <Text as="label" size="3">
-                    <Flex as="span" gap="2">
-                      <Checkbox size="2" checked={provide_trans_exp} /> "Transport Expenses"
-                    </Flex>
-                  </Text>
-                </Flex>
-              </Card>
-              {/* 준비물 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Text as="p"><strong>Preparation Materials:</strong> {prep_material}</Text>
-              </Card>
-              {/* 생성일 카드 */}
-              <Card style={{ padding: '16px' }}>
-                <Text as="p" style={{ fontSize: '0.875rem', color: 'gray' }}>
-                  Created At: {created_at.toLocaleDateString()} {created_at.toLocaleTimeString()}
-                </Text>
-              </Card>
-            </Box>
-      </Theme>
-    );
-  };
-  
-  export default RequestProfile;
+  title,
+  subtitle,
+  head_count,
+  reward_price,
+  currency,
+  content,
+  are_needed,
+  are_required,
+  date,
+  start_time,
+  end_time,
+  address,
+  address_coordinate,
+  provide_food,
+  provide_trans_exp,
+  prep_material,
+  created_at,
+}) => {
+  return (
+    <Theme>
+      <Box style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <CorpProfile 
+          name="Company Name"
+          nationality="Country"
+          corp_address="Company Address"
+          corp_num="Company Number"
+          review_count={42}
+          biz_type="Business Type"
+          logo_image="logo.png"
+          homepage_url="https://companyhomepage.com"
+        />
+        <Card style={{ width: '100%', padding: '20px 24px', boxSizing: 'border-box' }}>
+          <Flex direction="column" gap="4">
+            <Text as="div" size="6" weight="bold">{title}</Text>
+            <Text size="4" color="gray">{subtitle}</Text>
+            <Separator my="3" size="4" />
+            <Flex direction="column" justify="center" align="center" gap="5" style={{ marginTop: '10px', marginBottom: '10px' }}>
+              <Grid columns="3" rows="2" width="auto">
+                <Box width="200px" height="40px">
+                  <Flex direction="row" gap="5">
+                    <CIcon icon={cilPeople} style={{ width: '20px', height: '20px' }} />
+                    <Text size="3" color="gray">{head_count}</Text>
+                  </Flex>
+                </Box>
+                <Box width="200px" height="40px">
+                  <Flex direction="row" gap="5">
+                    <CIcon icon={cilMoney} style={{ width: '20px', height: '20px' }} />
+                    <Text size="3" color="gray">{reward_price} {currency}</Text>
+                  </Flex>
+                </Box>
+                <Box width="200px" height="40px">
+                  <Flex direction="row" gap="5">
+                   <CIcon icon={cilAvTimer} style={{ width: '20px', height: '20px' }} />
+                   <Text size="3" color="gray">
+                     {start_time} - {end_time}
+                   </Text>
+                  </Flex>
+                </Box>
+                <Box width="200px" height="40px">
+                  <Flex direction="row" gap="5">
+                    <CIcon icon={cilDinner} style={{ width: '20px', height: '20px' }} />
+                    <Text size="3" color="gray">{isProvided(provide_food)}</Text>
+                  </Flex>
+                </Box>
+                <Box width="200px" height="40px">
+                  <Flex direction="row" gap="5">
+                    <CIcon icon={cilBusAlt} style={{ width: '20px', height: '20px' }} />
+                    <Text size="3" color="gray">{isProvided(provide_trans_exp)}</Text>
+                  </Flex>
+                </Box>
+                <Box width="200px" height="40px">
+                  <Flex direction="row" gap="5">
+                   <CIcon icon={cilCalendar} style={{ width: '20px', height: '20px' }} />
+                   <Text size="3" color="gray">
+                     {date.toDateString()}
+                   </Text>
+                  </Flex>
+                </Box>
+              </Grid>
+            </Flex>
+            <Separator my="3" size="4" />
+            <Text size="4">{content}</Text>
+            <Separator my="3" size="4" />
+            <Text size="3" color="gray">필요사항: {are_needed}</Text>
+            <Text size="3" color="gray">권장사항: {are_required}</Text>
+            <Text size="3" color="gray">준비물: {prep_material}</Text>
+            <Separator my="3" size="4" />
+            <Text size="3" color="gray">주소: {address}</Text>
+            <Separator my="3" size="4" />
+            <Text size="3" color="gray">Posted on: {new Date(created_at).toLocaleDateString()}</Text>
+          </Flex>
+        </Card>
+      </Box>
+    </Theme>
+  );
+};
+
+export default RequestProfile;

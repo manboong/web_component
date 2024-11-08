@@ -21,7 +21,8 @@ export default meta;
 const requestCardExample: RequestCardProps = {
   title: 'Web Development Project',
   subtitle: 'Looking for a Frontend Developer',
-  salary: '$3000',
+  reward_price: '3000',
+  currency: 'USD',
   location: 'Remote',
   date: '2024-01-10',
   imageURL: 'https://via.placeholder.com/150',

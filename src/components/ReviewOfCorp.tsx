@@ -30,7 +30,8 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
                             <RequestCard
                                 title={request_card.title}
                                 subtitle={request_card.subtitle}
-                                salary={request_card.salary}
+                                reward_price={request_card.reward_price}
+                                currency={request_card.currency}
                                 location={request_card.location}
                                 date={request_card.date}
                                 imageURL={request_card.imageURL}

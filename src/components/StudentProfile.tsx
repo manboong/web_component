@@ -53,7 +53,7 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
         </Card>
 
         <Card style={{ padding: '16px' }}>
-          <Grid columns="3" gap="3" rows="auto" width="auto">
+          <Grid columns="2" gap="3" rows="auto" width="auto">
             {academicHistory.map((history, index) => (
               <Flex
                 key={index}
