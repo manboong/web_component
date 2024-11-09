@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Theme } from '@radix-ui/themes';
-import PageRequestProfile, { PageRequestProfileProps } from '../pages/PageRequestProfile';
+import PageRequestProfile, { PageRequestProfileProps } from './PageRequestProfile';
 import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof PageRequestProfile> = {

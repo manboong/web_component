@@ -15,16 +15,10 @@ export interface RequestCardProps {
 const ResponsiveBox = styled(Box)`
   display: flex;
   flex-direction: row;
-  width: 480px;
   height: 140px;
   padding: 0px 15px;
   position: relative;
   min-width: 300px;
-
-  @media (max-width: 480px) {
-    width: 300px;
-    height: 140px;
-  }
 `;
 
 const ResponsiveAvatar = styled(Avatar)`
@@ -79,7 +73,6 @@ const RequestCard = ({
   date,
   imageURL,
 }: RequestCardProps) => (
-  <Theme>
     <ResponsiveBox>
         <DateText>{date}</DateText>
         <Flex direction="row" gap="5" align="center" justify="center" style={{ width: '100%', height: '100%' }}>
@@ -96,7 +89,6 @@ const RequestCard = ({
           {reward_price} {currency}
         </RewardText>
     </ResponsiveBox>
-  </Theme>
 );
 
 export default RequestCard;

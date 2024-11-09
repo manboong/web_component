@@ -62,21 +62,18 @@ const ReviewOfStudent: React.FC<ReviewOfStudentProps> = ({
     want_cowork,
   }) => {
     return (
-        <Theme>
                 <StyledCard>
-                    <Flex direction="column" gap="2" align="center" justify="center">
-                      <Flex direction="row" align="center" justify="center">
-                      <RequestCard
-                          title={request_card.title}
-                          subtitle={request_card.subtitle}
-                          reward_price={request_card.reward_price}
-                          currency={request_card.currency}
-                          location={request_card.location}
-                          date={request_card.date}
-                          imageURL={request_card.imageURL}
-                      />
-                      <Box style={{width: "100%", height: "100%"}}>
-                      </Box>
+                    <Flex direction="column" gap="2" align="stretch" justify="center">
+                      <Flex direction="column" justify="center">
+                          <RequestCard
+                              title={request_card.title}
+                              subtitle={request_card.subtitle}
+                              reward_price={request_card.reward_price}
+                              currency={request_card.currency}
+                              location={request_card.location}
+                              date={request_card.date}
+                              imageURL={request_card.imageURL}
+                          />
                       </Flex>
                       <Text>{lateness(was_late)}</Text>
                         <Grid columns="3" gap="4" width="450px">
@@ -107,7 +104,6 @@ const ReviewOfStudent: React.FC<ReviewOfStudentProps> = ({
                         </Grid>
                     </Flex>
                 </StyledCard>
-      </Theme>
     );
   };
   
