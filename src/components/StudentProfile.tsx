@@ -27,7 +27,7 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
   return (
     <Theme>
       <Flex align="center" justify="center">
-      <Box style={{ width: '1024px'}}>
+      <Box width={{ xs: "520px", sm: "768px", md: "1024px"}} minWidth="300px">
         <Box>
           <Inset>
             <img
@@ -57,7 +57,7 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
         <Separator my="3" size="4" />
         <Text as="div" size="6" weight="bold">Academic History</Text>
         <Box style={{ padding: '16px' }}>
-          <Grid columns="2" gap="3" rows="auto" width="auto">
+          <Grid columns={{initial: "1", md: "2"}} gap="3" rows="auto" width="auto">
             {academicHistory.map((history, index) => (
               <Flex
                 key={index}
@@ -81,7 +81,7 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
         <Separator my="3" size="4" />
         <Text as="div" size="6" weight="bold">Language Proficiency</Text>
         <Box style={{ padding: '16px' }}>
-          <Grid columns="6" gap="3" rows="auto" width="auto">
+          <Grid columns={{initial: "1", xs: "2", sm: "3", md: "6"}} gap="3" rows="auto">
             {languageHistory.map((history, index) => (
               <Flex
                 key={index}

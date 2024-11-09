@@ -17,12 +17,14 @@ const PageRequestList: React.FC<PageRequestListProps> = ({
         <Theme>
             <Box width="100%" height="100%" minWidth="300px">
                 <Flex direction="column" align="center" justify="center" gap="3">
+                  
                     <SearchBar 
                         placeholder={searchbar.placeholder}
                         onSearch={searchbar.onSearch}
                     />
-                    <Separator my="3" size="4" />
                     <Container>
+                    <Separator my="3" size="4" />
+
                       <Text as="div" size="6" weight="bold">요청 리스트</Text>
                       <Separator my="3" size="4" />
                       <Grid 

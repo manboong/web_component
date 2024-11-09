@@ -17,7 +17,7 @@ const StyledCard = styled(Card)`
   flex-direction: row;
   align-items: center;
   gap: 16px;
-  width: 0px;
+  width: 480px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;

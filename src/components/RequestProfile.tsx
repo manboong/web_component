@@ -47,7 +47,7 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
 }) => {
   return (
     <Theme>
-      <Box style={{ width: '1024px'}}>
+      <Box width={{ initial: "300px", xs: "520px", sm: "768px", md: "1024px"}}>
         <CorpProfile 
           name="Company Name"
           nationality="Country"
@@ -65,20 +65,20 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
             <Text size="4" color="gray">{subtitle}</Text>
             <Separator my="3" size="4" />
             <Flex direction="column" justify="center" align="center" gap="5" style={{ marginTop: '10px', marginBottom: '10px' }}>
-              <Grid columns="3" rows="2" width="auto" gapX="9">
-                <Box width="200px" height="40px">
+              <Grid columns={{initial: "1", xs: "2", sm: "3"}} width="auto" gap="6">
+                <Box>
                   <Flex direction="row" gap="5">
                     <CIcon icon={cilPeople} style={{ width: '20px', height: '20px' }} />
                     <Text size="3" color="gray">{head_count}</Text>
                   </Flex>
                 </Box>
-                <Box width="200px" height="40px">
+                <Box>
                   <Flex direction="row" gap="5">
                     <CIcon icon={cilMoney} style={{ width: '20px', height: '20px' }} />
                     <Text size="3" color="gray">{reward_price} {currency}</Text>
                   </Flex>
                 </Box>
-                <Box width="200px" height="40px">
+                <Box>
                   <Flex direction="row" gap="5">
                    <CIcon icon={cilAvTimer} style={{ width: '20px', height: '20px' }} />
                    <Text size="3" color="gray">
@@ -86,19 +86,19 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
                    </Text>
                   </Flex>
                 </Box>
-                <Box width="200px" height="40px">
+                <Box>
                   <Flex direction="row" gap="5">
                     <CIcon icon={cilDinner} style={{ width: '20px', height: '20px' }} />
                     <Text size="3" color="gray">{isProvided(provide_food)}</Text>
                   </Flex>
                 </Box>
-                <Box width="200px" height="40px">
+                <Box>
                   <Flex direction="row" gap="5">
                     <CIcon icon={cilBusAlt} style={{ width: '20px', height: '20px' }} />
                     <Text size="3" color="gray">{isProvided(provide_trans_exp)}</Text>
                   </Flex>
                 </Box>
-                <Box width="200px" height="40px">
+                <Box>
                   <Flex direction="row" gap="5">
                    <CIcon icon={cilCalendar} style={{ width: '20px', height: '20px' }} />
                    <Text size="3" color="gray">
