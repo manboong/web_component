@@ -30,7 +30,7 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
   return (
     <Theme>
       <Flex>
-        <Box style={{ width: '1024px', boxSizing: 'border-box' }}>
+        <Box style={{ width: '1024px', boxSizing: 'border-box', minWidth: '320px' }}>
           <Box>
             <Inset>
               <img
@@ -60,15 +60,14 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
                     </Text>
                   </StyledBox>
                 </Flex>
-                <Flex direction="row" gap="1" style={{ marginTop: '16px' }}>
+                <Flex direction={{ initial: "column", xs: "row" }} gap={{ initial: "1", xs: "5"}} style={{ marginTop: '16px' }}>
                   <StyledBox>
                     <Text as="p" size="3" weight="bold" color="gray">{corp_address}</Text>
                   </StyledBox>
-                  {'\u00b7'}
                   <StyledBox>
                     <Text as="p" size="3" weight="bold" color="gray">리뷰 {review_count}건</Text>
                   </StyledBox>
-                  <StyledBox pl="3">
+                  <StyledBox>
                     <Link href={homepage_url} weight="bold">
                       홈페이지
                       <ExternalLinkIcon/>

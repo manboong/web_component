@@ -14,7 +14,7 @@ const PageRequestProfile: React.FC<PageRequestProfileProps> = ({
 }) => {
     return(
         <Theme>
-            <Box>
+            <Box width={{ initial: "300px", xs: "520px", sm: "768px", md: "1024px"}}>
                 <Flex direction="column" align="center" justify="center">
                     <RequestProfile
                         title={request_profile.title}

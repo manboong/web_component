@@ -24,7 +24,7 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
 }) => {
     return (
         <Theme>
-            <Box style={{ width: '480px', gap: '16px' }}>
+            <Box width={{ initial: "300px", xs: "480px" }}>
                 <Card>
                     <Flex direction="column" gap="2" align="center" justify="center">
                         <Inset>

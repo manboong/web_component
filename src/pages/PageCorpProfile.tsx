@@ -15,7 +15,13 @@ const PageCorpProfile: React.FC<PageCorpProfileProps> = ({
     return(
         <Theme>
                 <Flex direction="column" align="center" justify="center">
-                    <Box style={{ width: "1024px"}}>
+                    <Box 
+                        width={{
+                            initial: "300px",
+                            xs: "520px",
+                            sm: "768px",
+                            md: "1024px"
+                        }}>
                     <CorpProfile
                         name={corp_profile.name}
                         nationality={corp_profile.nationality}

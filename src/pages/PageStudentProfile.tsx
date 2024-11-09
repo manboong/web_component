@@ -15,7 +15,7 @@ const PageStudentProfile: React.FC<PageStudentProfileProps> = ({
     return(
         <Theme>
                 <Flex direction="column" align="center" justify="center">
-                    <Box style={{ width: "1024px"}}>
+                    <Box width={{ xs: "520px", sm: "768px", md: "1024px"}} minWidth="300px">
                     <StudentProfile
                         name={student_profile.name}
                         imageUrl={student_profile.imageUrl}
