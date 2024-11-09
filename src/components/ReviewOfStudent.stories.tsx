@@ -1,9 +1,16 @@
 import { Meta, StoryObj } from '@storybook/react';
 import ReviewOfStudent, { ReviewOfStudentProps } from './ReviewOfStudent';
-
+import { Theme } from '@radix-ui/themes';
 const meta: Meta<typeof ReviewOfStudent> = {
   title: 'Components/ReviewOfStudent',
   component: ReviewOfStudent,
+  decorators: [
+    (Story) => (
+      <Theme>
+        <Story />
+      </Theme>
+    ),
+  ],
   argTypes: {
     was_late: { control: 'number', min: 0, max: 10 },
     was_proactive: { control: 'number', min: 0, max: 10 },
