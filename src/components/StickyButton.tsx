@@ -19,13 +19,11 @@ const renderButton = (props: StickyButtonProps) => {
 }
 
 const StickyButton = (props: StickyButtonProps) => (
-    <Theme>
     <Container position="sticky" bottom="10px" minWidth="300px" maxWidth="500px">
         <Flex direction="column" align="stretch" justify="center" pl="3" pr="3">
             {renderButton(props)}
         </Flex>
     </Container>
-    </Theme>
     );
 
 export default StickyButton
