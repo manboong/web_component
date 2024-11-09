@@ -1,12 +1,12 @@
 import React from 'react';
-import { Theme, Card, Text, Inset, Box, Flex, Avatar } from '@radix-ui/themes';
-import styled, { css } from 'styled-components';
+import { Text, Box, Flex, Avatar } from '@radix-ui/themes';
+import styled from 'styled-components';
 
 export interface RequestCardProps {
   title: string;
   subtitle: string;
   reward_price: string;
-  currency: 'USD' | 'JPY' | 'KRW';
+  currency: 'USD' | 'JPY' | 'KRW' | '';
   location: string;
   date: string;
   imageURL: string;

@@ -51,7 +51,7 @@ const StyledCard = styled(Card)`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-const ReviewOfStudent: React.FC<ReviewOfStudentProps> = ({
+const ReviewOfStudent = ({
     request_card,
     was_late,
     was_proactive,
@@ -60,7 +60,7 @@ const ReviewOfStudent: React.FC<ReviewOfStudentProps> = ({
     lang_fluent,
     goal_fulfillment,
     want_cowork,
-  }) => {
+  }: ReviewOfStudentProps) => {
     return (
                 <StyledCard>
                     <Flex direction="column" gap="2" align="stretch" justify="center">
@@ -68,40 +68,42 @@ const ReviewOfStudent: React.FC<ReviewOfStudentProps> = ({
                           <RequestCard
                               title={request_card.title}
                               subtitle={request_card.subtitle}
-                              reward_price={request_card.reward_price}
-                              currency={request_card.currency}
+                              reward_price=''
+                              currency=''
                               location={request_card.location}
-                              date={request_card.date}
+                              date=''
                               imageURL={request_card.imageURL}
                           />
                       </Flex>
-                      <Text>{lateness(was_late)}</Text>
-                        <Grid columns="3" gap="4" width="450px">
-                          <Flex direction="row" justify="center" align="center" gap="3">
-                            <Avatar size="3" fallback={<LightningBoltIcon />} highContrast radius="full"/>
-                            <Progress value={was_proactive * 10} size="3" color="purple"/>
-                          </Flex>
-                          <Flex direction="row" justify="center" align="center" gap="3">
-                            <Avatar size="3" fallback={<BackpackIcon />} highContrast radius="full"/>
-                            <Progress value={was_diligent * 10} size="3" color="indigo"/>
-                          </Flex>
-                          <Flex direction="row" justify="center" align="center" gap="3">
-                            <Avatar size="3" fallback={<FaceIcon />} highContrast radius="full"/>
-                            <Progress value={commu_ability * 10} size="3" color="jade"/>
-                          </Flex>
-                          <Flex direction="row" justify="center" align="center" gap="3">
-                            <Avatar size="3" fallback={<LetterCaseToggleIcon />} highContrast radius="full"/>
-                            <Progress value={lang_fluent * 10} size="3" color="orange"/>
-                          </Flex>
-                          <Flex direction="row" justify="center" align="center" gap="3">
-                            <Avatar size="3" fallback={<RocketIcon />} highContrast radius="full"/>
-                            <Progress value={goal_fulfillment * 10} size="3" color="amber"/>
-                          </Flex>
-                          <Flex direction="row" justify="center" align="center" gap="3">
-                            <Avatar size="3" fallback={<PersonIcon />} highContrast radius="full"/>
-                            <Progress value={want_cowork * 10} size="3" color="tomato"/>
-                          </Flex>
-                        </Grid>
+                      <Flex direction="column" align="center" justify="center" gap="2">
+                        <Text>{lateness(was_late)}</Text>
+                          <Grid columns={{ initial: "2", xs: "3" }} gap="4" width="450px">
+                            <Flex direction="row" justify="center" align="center" gap="3">
+                              <Avatar size="3" fallback={<LightningBoltIcon />} highContrast radius="full"/>
+                              <Progress value={was_proactive * 10} size="3" color="purple"/>
+                            </Flex>
+                            <Flex direction="row" justify="center" align="center" gap="3">
+                              <Avatar size="3" fallback={<BackpackIcon />} highContrast radius="full"/>
+                              <Progress value={was_diligent * 10} size="3" color="indigo"/>
+                            </Flex>
+                            <Flex direction="row" justify="center" align="center" gap="3">
+                              <Avatar size="3" fallback={<FaceIcon />} highContrast radius="full"/>
+                              <Progress value={commu_ability * 10} size="3" color="jade"/>
+                            </Flex>
+                            <Flex direction="row" justify="center" align="center" gap="3">
+                              <Avatar size="3" fallback={<LetterCaseToggleIcon />} highContrast radius="full"/>
+                              <Progress value={lang_fluent * 10} size="3" color="orange"/>
+                            </Flex>
+                            <Flex direction="row" justify="center" align="center" gap="3">
+                              <Avatar size="3" fallback={<RocketIcon />} highContrast radius="full"/>
+                              <Progress value={goal_fulfillment * 10} size="3" color="amber"/>
+                            </Flex>
+                            <Flex direction="row" justify="center" align="center" gap="3">
+                              <Avatar size="3" fallback={<PersonIcon />} highContrast radius="full"/>
+                              <Progress value={want_cowork * 10} size="3" color="tomato"/>
+                            </Flex>
+                          </Grid>
+                        </Flex>
                     </Flex>
                 </StyledCard>
     );

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { Theme } from '@radix-ui/themes';
 import RequestCard from './RequestCard';
 

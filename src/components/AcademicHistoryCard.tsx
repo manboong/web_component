@@ -49,7 +49,7 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
   status,
   logo,
 }) => (
-  <Theme>
+
     <StyledCard>
       <Inset clip="padding-box" side="left" style={{ width: '80px', height: '80px', overflow: 'hidden' }}>
         {logo && (
@@ -84,7 +84,7 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
         </Flex>
       </Box>
     </StyledCard>
-  </Theme>
+
 );
 
 export default AcademicHistoryCard;

@@ -26,15 +26,15 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
         <Theme>
             <Box width={{ initial: "300px", xs: "480px" }}>
                 <Card>
-                    <Flex direction="column" gap="2" align="center" justify="center">
+                    <Flex direction="column" gap="2" align="stretch" justify="center">
                         <Inset>
                             <RequestCard
                                 title={request_card.title}
                                 subtitle={request_card.subtitle}
-                                reward_price={request_card.reward_price}
-                                currency={request_card.currency}
+                                reward_price=""
+                                currency=""
                                 location={request_card.location}
-                                date={request_card.date}
+                                date=""
                                 imageURL={request_card.imageURL}
                             />
                         </Inset>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, Separator, Grid, Box, Card, Flex, Text } from '@radix-ui/themes';
+import { Theme, Separator, Grid, Box, Flex, Text } from '@radix-ui/themes';
 import CorpProfile from './CorpProfile';
 import { CIcon } from '@coreui/icons-react';
 import { cilPeople, cilMoney, cilCalendar, cilAvTimer, cilDinner, cilBusAlt } from '@coreui/icons';
@@ -9,7 +9,7 @@ export interface RequestProfileProps {
   subtitle: string;
   head_count: number;
   reward_price: number;
-  currency: 'USD' | 'JPY' | 'KRW';
+  currency: 'USD' | 'JPY' | 'KRW' | '';
   content: string;
   are_needed: string;
   are_required: string;
