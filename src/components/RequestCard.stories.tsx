@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-
+import { Theme } from '@radix-ui/themes';
 import RequestCard from './RequestCard';
 
 const meta = {
@@ -10,6 +10,13 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  decorators:[
+    (Story) => (
+      <Theme>
+        <Story/>
+      </Theme>
+    ),
+  ],
   args: {
     title: 'TOPIK 감독관',
     subtitle: '관리요원',
