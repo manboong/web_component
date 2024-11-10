@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
-import { TextField, Box } from '@radix-ui/themes';
+import React from 'react';
+import TextField from '@mui/material/TextField';
+import { Controller } from 'react-hook-form';
 
-export interface ShortTextInputProps {
-  placeholder?: string;
-  maxwidth?: string;
-  size?: "1" | "2" | "3";
+interface ShortTextInputProps {
+  control: any;
+  name: string;
+  label: string;
 }
 
-const ShortTextInput: React.FC<ShortTextInputProps> = ({ placeholder , maxwidth, size }) => {
-  const [inputvalue, setInputValue] = useState<string>("");
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value)
-  }
-  
-  return (
-  <Box maxWidth={maxwidth}>
-    <TextField.Root size={size} placeholder={placeholder} value={inputvalue} onChange={handleInputChange}>
-    </TextField.Root>
-  </Box>
-  );
-};
+const ShortTextInput: React.FC<ShortTextInputProps> = ({ control, name, label }) => (
+  <Controller
+    name={name}
+    control={control}
+    render={({ field }) => (
+      <TextField {...field} label={label} fullWidth variant="outlined" />
+    )}
+  />
+);
 
 export default ShortTextInput;

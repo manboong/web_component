@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
-import { TextArea, Box } from '@radix-ui/themes';
+import React from 'react';
+import TextField from '@mui/material/TextField';
+import { Controller } from 'react-hook-form';
 
-export interface LongTextInputProps {
-  placeholder?: string;
-  maxwidth?: string;
-  size?: "1" | "2" | "3";
+interface LongTextInputProps {
+  control: any;
+  name: string;
+  label: string;
 }
 
-const LongTextInput: React.FC<LongTextInputProps> = ({ placeholder, maxwidth, size }) => {
-  const [inputvalue, setInputValue] = useState<string>("");
-
-  const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(event.target.value);
-  };
-
-  return (
-    <Box maxWidth={maxwidth}>
-      <TextArea 
-        size={size} 
-        placeholder={placeholder} 
-        value={inputvalue} 
-        onInput={handleInput}
-      />
-    </Box>
-  );
-};
+const LongTextInput: React.FC<LongTextInputProps> = ({ control, name, label }) => (
+  <Controller
+    name={name}
+    control={control}
+    render={({ field }) => (
+      <TextField {...field} label={label} multiline rows={4} fullWidth variant="outlined" />
+    )}
+  />
+);
 
 export default LongTextInput;

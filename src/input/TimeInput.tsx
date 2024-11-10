@@ -1,0 +1,33 @@
+import React from 'react';
+import { Controller } from 'react-hook-form';
+import { TimePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import TextField from '@mui/material/TextField';
+
+interface TimeInputProps {
+  control: any;
+  name: string;
+  label: string;
+}
+
+const TimeInput: React.FC<TimeInputProps> = ({ control, name, label }) => (
+  <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <TimePicker
+          {...field}
+          label={label}
+          onChange={(time) => field.onChange(time)}
+          value={field.value}
+          slotProps={{
+            textField: { fullWidth: true },
+          }}
+        />
+      )}
+    />
+  </LocalizationProvider>
+);
+
+export default TimeInput;
