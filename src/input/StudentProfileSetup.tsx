@@ -1,78 +1,135 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useFunnel } from '../hooks/useFunnel';
-import { StudentProfileProps } from '../components/StudentProfile';
-import ShortTextInput from './ShortTextInput';
-import LongTextInput from './LongTextInput';
-import { useForm, Controller } from 'react-hook-form';
+import UserTypeInput from './UserTypeInput';
+import EmailInput from './EmailInput';
+import TokenInput from './TokenInput';
+import BasicInfoInput from './BasicInfoInput';
+import AcademicHistoryInput from './AcademicHistoryInput';
+import LanguageProfInput from './LanguageProfInput';
+import ProfileImageInput from './ProfileImageInput';
+import BusinessNumberInput from './BusinessNumberInput';
 
+interface StudentProfileProps {
+  userType: string;
+  email: string;
+  token: string;
+  name: string;
+  imageUrl: string;
+  nationality: string;
+  age: string;
+  gender: string;
+  academicHistory: string;
+  languageProf: string;
+}
 
 const StudentProfileSetup: React.FC = () => {
-    const { control, handleSubmit } = useForm<StudentProfileProps>({
-      defaultValues: {
-        name: '',
-        imageUrl: '',
-        nationality: '',
-        age: '',
-        gender: '',
-        academicHistory: [],
-        languageHistory: [],
-        past_activity: '',
-      },
-    });
-  
-    const { Funnel, Step, setStep, currentStep } = useFunnel('name');
-  
-    const onSubmit = (data: StudentProfileProps) => {
-      console.log('Submitted Data:', data);
-    };
-  
-    return (
-      <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <h2>Enter Student Profile</h2>
-  
-        <Funnel>
-          <Step name="name">
-            <ShortTextInput control={control} name="name" label="Name" />
-            <button type="button" onClick={() => setStep('imageUrl')}>Next</button>
-          </Step>
+  const { control, handleSubmit, watch } = useForm<StudentProfileProps>({
+    defaultValues: {
+      userType: '',
+      email: '',
+      token: '',
+      name: '',
+      imageUrl: '',
+      nationality: '',
+      age: '',
+      gender: '',
+      academicHistory: '',
+      languageProf: '',
+    },
+  });
 
-          <Step name="imageUrl">
-            <ShortTextInput control={control} name="imageUrl" label="Image URL" />
-            <button type="button" onClick={() => setStep('nationality')}>Next</button>
-          </Step>
+  const { Funnel, Step, setStep } = useFunnel('userType'); // 기본 스텝을 'userType'으로 설정
 
-          <Step name="nationality">
-            <ShortTextInput control={control} name="nationality" label="Nationality" />
-            <button type="button" onClick={() => setStep('age')}>Next</button>
-          </Step>
+  // userType 선택에 따라 다음 단계로 이동하는 로직
+  const userType = watch('userType');
 
-          <Step name="age">
-            <ShortTextInput control={control} name="age" label="Age" />
-            <button type="button" onClick={() => setStep('gender')}>Next</button>
-          </Step>
-
-          <Step name="gender">
-            <ShortTextInput control={control} name="gender" label="Gender" />
-            <button type="button" onClick={() => setStep('academicHistory')}>Next</button>
-          </Step>
-
-          <Step name="academicHistory">
-            <ShortTextInput control={control} name="academicHistory" label="Academic History" />
-            <button type="button" onClick={() => setStep('languageHistory')}>Next</button>
-          </Step>
-
-          <Step name="languageHistory">
-            <ShortTextInput control={control} name="languageHistory" label="Language History" />
-            <button type="button" onClick={() => setStep('past_activity')}>Next</button>
-          </Step>
-
-          <Step name="past_activity">
-            <ShortTextInput control={control} name="past_activity" label="Past Activity" />
-            <button type="submit">Finish</button>
-          </Step>
-        </Funnel>
-      </form>
-    );
+  const onNextStep = () => {
+    if (userType === 'student') {
+      setStep('email'); // 학생인 경우 이메일 입력 단계로 이동
+    } else if (userType === 'company') {
+      setStep('businessNumber'); // 기업 또는 국가기관인 경우 사업자 번호 입력 단계로 이동
+    } else if (userType === 'government') {
+      setStep('GovernmentNumber');
+    }
   };
   
-  export default StudentProfileSetup;
+  const onSubmit = (data: StudentProfileProps) => {
+    console.log('Submitted Data:', data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <h2>Enter Profile Information</h2>
+
+      <Funnel>
+        {/* 공통 Step 1: User Type 선택 */}
+        <Step name="userType">
+          <UserTypeInput control={control} onNext={onNextStep} />
+        </Step>
+
+        {/* 학생 Step 2: Email 입력 */}
+        <Step name="email">
+          <EmailInput control={control} onNext={() => setStep('token')} />
+        </Step>
+
+        {/* 학생 3: Token 입력 */}
+        <Step name="token">
+          <TokenInput control={control} onNext={() => setStep('basicInfo')} />
+        </Step>
+
+        {/* 학생 4: Basic Info 입력 */}
+        <Step name="basicInfo">
+          <BasicInfoInput control={control} onNext={() => setStep('academicHistory')} />
+        </Step>
+
+        {/* 학생 5: Academic History 입력 */}
+        <Step name="academicHistory">
+          <AcademicHistoryInput control={control} onNext={() => setStep('languageProf')} />
+        </Step>
+
+        {/* 학생 6: Language History 입력 */}
+        <Step name="languageProf">
+          <LanguageProfInput control={control} onNext={() => setStep('imageUrl')} />
+        </Step>
+
+        {/* 학생 7: Image URL 입력 */}
+        <Step name="imageUrl">
+          <ProfileImageInput control={control} onSubmit={handleSubmit(onSubmit)} />
+        </Step>
+
+        {/* 기업 Step 2: Business Number 입력 */}
+        <Step name="businessNumber">
+          <BusinessNumberInput control={control} onNext={() => setStep('businessEmail')} />
+        </Step>
+
+        {/* 기업 Step 3: Email 입력 */}
+        <Step name="businessEmail">
+          <EmailInput control={control} onNext={() => setStep('businessToken')} />
+        </Step>
+
+        {/* 기업 4: Token 입력 */}
+        <Step name="businessToken">
+          <TokenInput control={control} onNext={() => setStep('imageUrl')} />
+        </Step>
+
+        {/* 기관 Step 2: Government Number 입력 */}
+        <Step name="GovernmentNumber">
+          <BusinessNumberInput control={control} onNext={() => setStep('governmentEmail')} />
+        </Step>
+
+        {/* 기관 Step 3: Email 입력 */}
+        <Step name="governmentEmail">
+          <EmailInput control={control} onNext={() => setStep('businessToken')} />
+        </Step>
+
+        {/* 기관 4: Token 입력 */}
+        <Step name="governmentToken">
+          <TokenInput control={control} onNext={() => setStep('imageUrl')} />
+        </Step>
+      </Funnel>
+    </form>
+  );
+};
+
+export default StudentProfileSetup;

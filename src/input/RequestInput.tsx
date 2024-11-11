@@ -24,7 +24,7 @@ interface RequestProfileProps {
   end_time: Date | null;
   address: string;
   address_coordinate: { lat: number; lng: number };
-  food_transport_options: string[]; // Updated field
+  food_transport_options: string[];
   prep_material: string;
   created_at: Date;
 }
@@ -45,7 +45,7 @@ const RequestInput: React.FC = () => {
       end_time: null,
       address: '',
       address_coordinate: { lat: 0, lng: 0 },
-      food_transport_options: [], // Initialized as empty array
+      food_transport_options: [],
       prep_material: '',
       created_at: new Date(),
     },

@@ -4,6 +4,8 @@
     "type": "module",
     "private": true,
     "dependencies": {
+        "@chatscope/chat-ui-kit-react": "^2.0.3",
+        "@chatscope/chat-ui-kit-styles": "^1.4.0",
         "@coreui/icons": "^3.0.1",
         "@coreui/icons-react": "^2.3.0",
         "@emotion/react": "^11.13.3",
