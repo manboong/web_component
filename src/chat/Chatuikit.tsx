@@ -1,6 +1,7 @@
 import React from 'react';
-import { MainContainer, ChatContainer, MessageList, MessageInput, Conversation, ConversationList, Avatar, Sidebar, ConversationHeader, ExpansionPanel, InfoButton, MessageSeparator, Message, Search } from '@chatscope/chat-ui-kit-react';
-import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css'; // 스타일 파일을 불러오는 방식으로 수정
+import { MainContainer, ChatContainer, MessageList, MessageInput, Conversation, ConversationList, Avatar, Sidebar, ConversationHeader, ExpansionPanel, InfoButton, MessageSeparator, Search } from '@chatscope/chat-ui-kit-react';
+import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import Message from './Message'
 
 export const Chatuikit: React.FC = () => {
     return (
@@ -130,7 +131,6 @@ export const Chatuikit: React.FC = () => {
                 />
               </Message>
               <Message
-                avatarSpacer
                 model={{
                   direction: 'outgoing',
                   message: 'Hello my friend',
@@ -170,6 +170,7 @@ export const Chatuikit: React.FC = () => {
                 }}
               />
               <Message
+                avatarSpacer
                 model={{
                   direction: 'incoming',
                   message: 'Hello my friend',
@@ -230,6 +231,7 @@ export const Chatuikit: React.FC = () => {
                 }}
               />
               <Message
+              avatarSpacer
                 model={{
                   direction: 'incoming',
                   message: 'Hello my friend',
@@ -246,81 +248,6 @@ export const Chatuikit: React.FC = () => {
             </MessageList>
             <MessageInput placeholder="Type message here" />
           </ChatContainer>
-          <Sidebar position="right">
-            <ExpansionPanel
-              open
-              title="INFO"
-            >
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-            </ExpansionPanel>
-            <ExpansionPanel title="LOCALIZATION">
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-            </ExpansionPanel>
-            <ExpansionPanel title="MEDIA">
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-            </ExpansionPanel>
-            <ExpansionPanel title="SURVEY">
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-            </ExpansionPanel>
-            <ExpansionPanel title="OPTIONS">
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-              <p>
-                Lorem ipsum
-              </p>
-            </ExpansionPanel>
-          </Sidebar>
         </MainContainer>
     );
 };
