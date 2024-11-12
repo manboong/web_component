@@ -11,7 +11,7 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({ control, onSubmit
     <div>
       <h3>Profile Picture</h3>
       <ShortTextInput control={control} name="imageUrl" label="Image URL" />
-      <button type="button" onClick={onSubmit}>Finish</button>
+      <button type="submit" onClick={onSubmit}>Finish</button>
     </div>
   );
 };

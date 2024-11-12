@@ -9,6 +9,8 @@ import AcademicHistoryInput from './AcademicHistoryInput';
 import LanguageProfInput from './LanguageProfInput';
 import ProfileImageInput from './ProfileImageInput';
 import BusinessNumberInput from './BusinessNumberInput';
+import { AcademicHistoryCardProps } from '../components/AcademicHistoryCard';
+import { LanguageCardProps } from '../components/LanguageCard';
 
 interface StudentProfileProps {
   userType: string;
@@ -19,8 +21,8 @@ interface StudentProfileProps {
   nationality: string;
   age: string;
   gender: string;
-  academicHistory: string;
-  languageProf: string;
+  academicHistory: AcademicHistoryCardProps[];
+  languageProf: LanguageCardProps[];
 }
 
 const StudentProfileSetup: React.FC = () => {
@@ -34,21 +36,20 @@ const StudentProfileSetup: React.FC = () => {
       nationality: '',
       age: '',
       gender: '',
-      academicHistory: '',
-      languageProf: '',
+      academicHistory: [],
+      languageProf: [],
     },
   });
 
-  const { Funnel, Step, setStep } = useFunnel('userType'); // 기본 스텝을 'userType'으로 설정
+  const { Funnel, Step, setStep } = useFunnel('userType');
 
-  // userType 선택에 따라 다음 단계로 이동하는 로직
   const userType = watch('userType');
 
   const onNextStep = () => {
     if (userType === 'student') {
-      setStep('email'); // 학생인 경우 이메일 입력 단계로 이동
+      setStep('email');
     } else if (userType === 'company') {
-      setStep('businessNumber'); // 기업 또는 국가기관인 경우 사업자 번호 입력 단계로 이동
+      setStep('businessNumber');
     } else if (userType === 'government') {
       setStep('GovernmentNumber');
     }
@@ -59,7 +60,7 @@ const StudentProfileSetup: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '600px', margin: '0 auto' }}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h2>Enter Profile Information</h2>
 
       <Funnel>
