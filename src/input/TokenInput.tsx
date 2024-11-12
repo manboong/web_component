@@ -3,15 +3,15 @@ import ShortTextInput from './ShortTextInput';
 
 interface TokenPageProps {
   control: any;
-  onNext: () => void;
+  onSubmit: () => void;
 }
 
-const TokenPage: React.FC<TokenPageProps> = ({ control, onNext }) => {
+const TokenPage: React.FC<TokenPageProps> = ({ control, onSubmit }) => {
   return (
     <div>
       <h3>Enter Verification Token</h3>
       <ShortTextInput control={control} name="token" label="Token" />
-      <button type="button" onClick={onNext}>Next</button>
+      <button type="submit" onClick={onSubmit}>Next</button>
     </div>
   );
 };

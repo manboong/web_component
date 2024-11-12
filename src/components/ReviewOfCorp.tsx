@@ -1,7 +1,7 @@
 import React from 'react';
-import { Theme, Progress, Grid, Box, Card, Flex, Text, Inset, Strong } from '@radix-ui/themes';
+import { Theme, Progress, Box, Card, Flex, Text, Inset, Strong } from '@radix-ui/themes';
 import RequestCard, { RequestCardProps } from './RequestCard';
-import { StarIcon, LightningBoltIcon, FaceIcon } from '@radix-ui/react-icons'
+import { StarIcon } from '@radix-ui/react-icons'
 
 export interface ReviewOfCorpProps {
     request_card: RequestCardProps;
@@ -9,8 +9,6 @@ export interface ReviewOfCorpProps {
     prep_requirement: string;
     work_atmosphere: string;
     sense_of_achive: number;
-    work_intensity: number;
-    pay_satisfaction: number;
 }
 
 const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
@@ -19,8 +17,6 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
     prep_requirement,
     work_atmosphere,
     sense_of_achive,
-    work_intensity,
-    pay_satisfaction,
 }) => {
     return (
         <Theme>
@@ -47,27 +43,12 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
                         <Text as="p" size="4" style={{ marginTop: '8px' }}>
                             <Strong>Work Atmosphere: </Strong>{work_atmosphere}
                         </Text>
-                        <Grid columns="3" gap="4" style={{ marginTop: '16px', width: '100%' }}>
-                            
-                            <Box>
-                                <Flex align="center" justify="center" direction="column" gap="2">
-                                    <StarIcon/>
-                                    <Progress value={sense_of_achive * 10} style={{ width: '100%' }} />
-                                </Flex>
-                            </Box>
-                            <Box>
-                                <Flex align="center" justify="center" direction="column" gap="2">
-                                    <LightningBoltIcon/>
-                                    <Progress value={work_intensity * 10} style={{ width: '100%' }} />
-                                </Flex>
-                            </Box>
-                            <Box>
-                                <Flex align="center" justify="center" direction="column" gap="2">
-                                    <FaceIcon/>
-                                    <Progress value={pay_satisfaction * 10} style={{ width: '100%' }} />
-                                </Flex>
-                            </Box>
-                        </Grid>
+                        <Box>
+                            <Flex align="center" justify="center" direction="column" gap="2">
+                                <StarIcon/>
+                                <Progress value={sense_of_achive * 10} style={{ width: '100%' }} />
+                            </Flex>
+                        </Box>
                     </Flex>
                 </Card>
             </Box>
