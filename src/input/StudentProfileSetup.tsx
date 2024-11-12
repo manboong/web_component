@@ -47,7 +47,7 @@ const StudentProfileSetup: React.FC = () => {
 
   const onNextStep = () => {
     if (userType === 'student') {
-      setStep('email');
+      setStep('basicInfo');
     } else if (userType === 'company') {
       setStep('businessNumber');
     } else if (userType === 'government') {
@@ -69,34 +69,34 @@ const StudentProfileSetup: React.FC = () => {
           <UserTypeInput control={control} onNext={onNextStep} />
         </Step>
 
-        {/* 학생 Step 2: Email 입력 */}
-        <Step name="email">
-          <EmailInput control={control} onNext={() => setStep('token')} />
-        </Step>
-
-        {/* 학생 3: Token 입력 */}
-        <Step name="token">
-          <TokenInput control={control} onNext={() => setStep('basicInfo')} />
-        </Step>
-
-        {/* 학생 4: Basic Info 입력 */}
+        {/* 학생 2: Basic Info 입력 */}
         <Step name="basicInfo">
           <BasicInfoInput control={control} onNext={() => setStep('academicHistory')} />
         </Step>
 
-        {/* 학생 5: Academic History 입력 */}
+        {/* 학생 3: Academic History 입력 */}
         <Step name="academicHistory">
           <AcademicHistoryInput control={control} onNext={() => setStep('languageProf')} />
         </Step>
 
-        {/* 학생 6: Language History 입력 */}
+        {/* 학생 4: Language History 입력 */}
         <Step name="languageProf">
           <LanguageProfInput control={control} onNext={() => setStep('imageUrl')} />
         </Step>
 
-        {/* 학생 7: Image URL 입력 */}
+        {/* 학생 5: Image URL 입력 */}
         <Step name="imageUrl">
-          <ProfileImageInput control={control} onSubmit={handleSubmit(onSubmit)} />
+          <ProfileImageInput control={control} onNext={() => setStep('email')} />
+        </Step>
+
+        {/* 학생 Step 6: Email 입력 */}
+        <Step name="email">
+          <EmailInput control={control} onNext={() => setStep('token')} />
+        </Step>
+
+        {/* 학생 7: Token 입력 */}
+        <Step name="token">
+          <TokenInput control={control} onSubmit={handleSubmit(onSubmit)} />
         </Step>
 
         {/* 기업 Step 2: Business Number 입력 */}
@@ -111,7 +111,7 @@ const StudentProfileSetup: React.FC = () => {
 
         {/* 기업 4: Token 입력 */}
         <Step name="businessToken">
-          <TokenInput control={control} onNext={() => setStep('imageUrl')} />
+          <TokenInput control={control} onSubmit={() => setStep('imageUrl')} />
         </Step>
 
         {/* 기관 Step 2: Government Number 입력 */}
@@ -126,7 +126,7 @@ const StudentProfileSetup: React.FC = () => {
 
         {/* 기관 4: Token 입력 */}
         <Step name="governmentToken">
-          <TokenInput control={control} onNext={() => setStep('imageUrl')} />
+          <TokenInput control={control} onSubmit={() => setStep('imageUrl')} />
         </Step>
       </Funnel>
     </form>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ShortTextInput from './ShortTextInput';
-import DateInput from './DateInput';
+import YearMonthInput from './YearMonthInput';
 import { Container, Typography, Button, Grid2 as Grid } from '@mui/material';
 
 interface SchoolInputProps {
@@ -39,14 +39,14 @@ const SchoolInput: React.FC<SchoolInputProps> = ({ control, index, onRemove }) =
         </Grid>
 
         <Grid size={{xs:12, sm:4}}>
-          <DateInput
+          <YearMonthInput
             control={control}
             name={`academicHistories[${index}].startDate`}
             label="Start Date"
           />
         </Grid>
         <Grid size={{xs:12, sm:4}}>
-          <DateInput
+          <YearMonthInput
             control={control}
             name={`academicHistories[${index}].endDate`}
             label="End Date"
