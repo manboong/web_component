@@ -25,7 +25,6 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
   past_activity,
 }) => {
   return (
-    <Theme>
       <Flex align="center" justify="center">
       <Box width={{ xs: "520px", sm: "768px", md: "1024px"}} minWidth="300px">
         <Box>
@@ -101,7 +100,6 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
         </Box>
       </Box>
       </Flex>
-    </Theme>
   );
 };
 

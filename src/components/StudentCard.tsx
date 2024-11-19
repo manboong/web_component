@@ -1,7 +1,6 @@
 import React from 'react';
-import { Theme, Box, Card, Flex, Avatar, Text, Button, Separator } from '@radix-ui/themes';
+import { Box, Card, Flex, Avatar, Text, Button, Separator } from '@radix-ui/themes';
 import styled from 'styled-components';
-import "@radix-ui/themes/styles.css";
 
 interface langWithLevelProps {
   language: string
@@ -19,16 +18,27 @@ export interface StudentCardProps {
 
 
 const renderLanguages = (langWithProps: langWithLevelProps[]) => {
-  const levelToColor = ['purple', 'cyan', 'crimson'];
   return (
     langWithProps.map((val)=>{
+      let color: 'purple' | 'cyan' | 'crimson' = 'purple'
+      switch (val.level) {
+        case 0:
+            color='purple';
+          break;
+        case 1:
+            color='cyan';
+          break;
+        default:
+            color='crimson'
+          break;
+      }
       return(
-        <Theme>
-          <Text as="span" color={levelToColor[val.level] ?? 'purple'}>
+        <div>
+          <Text as="span" color={color}>
             {val.language}
           </Text>
           <Separator orientation="vertical" />
-        </Theme>
+        </div>
       )
     })
   )

@@ -46,7 +46,6 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
   created_at,
 }) => {
   return (
-    <Theme>
       <Box width={{ initial: "300px", xs: "520px", sm: "768px", md: "1024px"}}>
         <CorpProfile 
           name="Company Name"
@@ -121,7 +120,6 @@ const RequestProfile: React.FC<RequestProfileProps> = ({
           </Flex>
         </Box>
       </Box>
-    </Theme>
   );
 };
 

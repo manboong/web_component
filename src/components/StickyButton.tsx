@@ -1,3 +1,4 @@
+import React from 'react';
 import { Theme, Button, Flex, Container } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 

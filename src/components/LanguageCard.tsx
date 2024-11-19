@@ -45,7 +45,6 @@ const LanguageCard: React.FC<LanguageCardProps> = ({
   const color = level_to_color(level);
 
   return (
-    <Theme>
       <StyledCard borderColor={color}>
         <Inset>
           <Box style={{ display: 'inline-flex', textAlign: 'center' }}>
@@ -60,7 +59,6 @@ const LanguageCard: React.FC<LanguageCardProps> = ({
           </Text>
         </Box>
       </StyledCard>
-    </Theme>
   );
 };
 

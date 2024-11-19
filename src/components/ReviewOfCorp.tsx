@@ -8,7 +8,9 @@ export interface ReviewOfCorpProps {
     review_text: string;
     prep_requirement: string;
     work_atmosphere: string;
+    work_intensity: number;
     sense_of_achive: number;
+    pay_satisfaction: number;
 }
 
 const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
@@ -16,10 +18,11 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
     review_text,
     prep_requirement,
     work_atmosphere,
+    work_intensity,
     sense_of_achive,
+    pay_satisfaction,
 }) => {
     return (
-        <Theme>
             <Box width={{ initial: "300px", xs: "480px" }}>
                 <Card>
                     <Flex direction="column" gap="2" align="stretch" justify="center">
@@ -52,7 +55,6 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
                     </Flex>
                 </Card>
             </Box>
-        </Theme>
     );
 };
 

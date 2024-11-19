@@ -28,7 +28,6 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
   homepage_url,
 }) => {
   return (
-    <Theme>
       <Flex>
         <Box style={{ width: '1024px', boxSizing: 'border-box', minWidth: '320px' }}>
           <Box>
@@ -78,7 +77,6 @@ const CorpProfile: React.FC<CorpProfileProps> = ({
           </Box>
         </Box>
       </Flex>
-    </Theme>
   );
 };
 
