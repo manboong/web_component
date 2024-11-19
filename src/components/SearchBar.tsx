@@ -8,7 +8,6 @@ export interface SearchBarProps {
 }
 
 const SearchBar = ({ placeholder = "Search...", onSearch }: SearchBarProps) => (
-    <Theme>
       <Box width={{ initial: "300px", md: "520px"}}>    
         <TextField.Root size="3" placeholder="요청 검색하기">
         	<TextField.Slot>
@@ -16,7 +15,6 @@ const SearchBar = ({ placeholder = "Search...", onSearch }: SearchBarProps) => (
         	</TextField.Slot>
         </TextField.Root>
         </Box>
-    </Theme>
 );
 
 export default SearchBar;

@@ -23,3 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 *storybook.log
+
+# compiled
+/dist
+
+# storybook build
+/storybook-static
