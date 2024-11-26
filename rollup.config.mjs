@@ -10,10 +10,12 @@ import resolve from "@rollup/plugin-commonjs"
 import commonjs from "@rollup/plugin-commonjs";
 
 
+const External = ['react', 'react-dom', '@radix-ui/themes', '@toss/react', '@mui/joy', '@react-ui/react-icons'];
+
 export default [
   {
     input: './src/components/index.ts',
-    external: ['react', 'react-dom', '@radix-ui/themes'],
+    External,
     output: [{
       file: 'dist/esm/index.js',
       format: 'esm',
@@ -39,7 +41,7 @@ export default [
     input: './src/components/index.ts',
     output: [{ file: 'dist/esm/index.d.ts', format: 'esm' }],
     plugins: [dts()],
-    external: ['react', 'react-dom', '@radix-ui/themes']
+    External,
   },
   {
     input: './src/components/index.ts',
@@ -63,12 +65,12 @@ export default [
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       })
     ],
-    external: ['react', 'react-dom', '@radix-ui/themes']
+    External,
   },
   {
     input: './src/components/index.ts',
     output: [{ file: 'dist/cjs/index.d.ts', format: 'cjs' }],
     plugins: [dts()],
-    external: ['react', 'react-dom', '@radix-ui/themes']
+    External,
   }
 ];

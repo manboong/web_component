@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckboxGroup, Flex, Box, Grid } from '@radix-ui/themes';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { useForm, Controller } from 'react-hook-form';
 
 import ShortTextInput from './ShortTextInput';
