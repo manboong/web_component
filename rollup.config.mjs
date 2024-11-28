@@ -10,7 +10,21 @@ import resolve from "@rollup/plugin-commonjs"
 import commonjs from "@rollup/plugin-commonjs";
 
 
-const External = ['react', 'react-dom', '@radix-ui/themes', '@toss/react', '@mui/joy', '@react-ui/react-icons'];
+const External = [
+  "react",
+  "react-dom",
+  "@radix-ui/themes",
+  "@toss/react",
+  "@mui/joy",
+  "@mui/material",
+  "@mui/x-date-pickers",
+  "@mui/x-date-pickers/AdapterDateFnsV3/index.js",
+  "@mui/styled-engine",
+  "@emotion/react",
+  "@emotion/styled",
+  "@emotion/cache",
+  "@emotion/serialize",
+];
 
 export default [
   {
