@@ -15,7 +15,7 @@ const meta = {
   decorators: [
     (Story) => (
       <Theme>
-            <Flex maxWidth={{initial: '100vw', sm: '500px'}}>
+            <Flex direction="column" width="500px">
                 <Story />
             </Flex>
       </Theme>
@@ -36,6 +36,7 @@ export const Inbound: Story = {
   args: {
     content: "This is message content",
     direction: "inbound",
+    senderName: "kang",
     sentAt: new Date(),
     unread: 2,
   },
@@ -45,6 +46,7 @@ export const LongInbound: Story = {
     args: {
         content: "This is message content This is message content This is message content",
         direction: "inbound",
+        senderName: '강제욱',
       sentAt: new Date(),
       unread: 1,
     },
@@ -73,4 +75,25 @@ export const WithoutTime: Story = {
         direction: 'outgoing',
         unread: 1,
     }
+}
+
+export const ImageContent: Story = {
+  args: {
+      contentType: "image",
+      imageUrl: "https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      direction: 'outgoing',
+      unread: 1,
+      sentAt: new Date(),
+  }
+}
+
+export const ImageContentInbound: Story = {
+  args: {
+      contentType: "image",
+      imageUrl: "https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      direction: 'inbound',
+      senderName: '강제욱',
+      unread: 1,
+      sentAt: new Date(),
+  }
 }

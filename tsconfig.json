@@ -22,6 +22,6 @@
         "outDir": "dist",
         "sourceMap": true,
     },
-    "include": ["src/components/*.tsx", "src/components/index.ts", "src/components/*.ts"],
+    "include": ["src/components/*.tsx", "src/components/**/*.tsx", "src/components/index.ts", "src/components/*.ts"],
     "exclude": ["src/components/*.stories.*", "dist", "node_modules"]
 }

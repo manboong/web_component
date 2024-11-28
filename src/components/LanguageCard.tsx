@@ -1,7 +1,6 @@
 import React from 'react';
 import { Theme, Box, Card, Text, Inset } from '@radix-ui/themes';
 import styled from 'styled-components';
-import "@radix-ui/themes/styles.css";
 
 export interface LanguageCardProps {
   level: number;
