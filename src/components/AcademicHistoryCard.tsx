@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, Card, Text, Inset, Box, Flex } from '@radix-ui/themes';
+import { Card, Text, Inset, Box, Flex } from '@radix-ui/themes';
 import styled, { css } from 'styled-components';
 
 export interface AcademicHistoryCardProps {
