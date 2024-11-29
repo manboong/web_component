@@ -10,6 +10,7 @@ export { default as ReviewOfStudent } from "./ReviewOfStudent";
 export { default as ReviewPopOver } from "./ReviewPopOver";
 export { default as StudentProfile } from "./StudentProfile"
 export { default as StickyButton } from "./StickyButton"
+export { default as NavigationButton } from "./NavigationButton"
 
 export { default as ChatRoom } from "./chat/ChatRoom"
 export { default as Message } from "./chat/Message"
@@ -18,7 +19,6 @@ export { default as InputBox } from "./chat/InputBox"
 
 export { default as ShortTextInput } from "./input/ShortTextInput"
 export { default as DateInput } from "./input/DateInput"
-export { default as EmailInput } from "./input/EmailInput"
 export { default as LongTextInput } from "./input/LongTextInput"
 export { default as ProfileImageInput } from "./input/ProfileImageInput"
 export { default as RatingInput } from "./input/RatingInput"
