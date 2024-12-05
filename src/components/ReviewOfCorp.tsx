@@ -56,6 +56,7 @@ const ReviewOfCorp: React.FC<ReviewOfCorpProps> = ({
                                 address={request_card.address}
                                 start_date={new Date()}
                                 logo_image={request_card.logo_image}
+                                link={request_card.link}
                             />
                         </Inset>
                         <Text as="p" size="4" style={{ marginTop: "16px" }}>

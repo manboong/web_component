@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, Box, Flex, Avatar } from "@radix-ui/themes";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export interface RequestCardProps {
     title: string;
@@ -10,6 +11,7 @@ export interface RequestCardProps {
     address: string;
     start_date: Date;
     logo_image?: string;
+    link: string;
 }
 
 const ResponsiveBox = styled(Box)`
@@ -19,6 +21,7 @@ const ResponsiveBox = styled(Box)`
     padding: 0px 15px;
     position: relative;
     min-width: 300px;
+    cursor: pointer;
 `;
 
 const ResponsiveAvatar = styled(Avatar)`
@@ -72,33 +75,36 @@ const RequestCard = ({
     address,
     start_date,
     logo_image,
+    link,
 }: RequestCardProps) => (
-    <ResponsiveBox>
-        <DateText>{start_date.toString()}</DateText>
-        <Flex
-            direction="row"
-            gap="5"
-            align="center"
-            justify="center"
-            style={{ width: "100%", height: "100%" }}
-        >
-            <ResponsiveAvatar
-                size="5"
-                src={logo_image}
-                radius="medium"
-                fallback={title.charAt(0)}
-            />
-            <Box style={{ flex: 1 }}>
-                <Flex direction="column">
-                    <TitleText>{title}</TitleText>
-                    <SubtitleText>{subtitle}</SubtitleText>
-                    <LocationText>{address}</LocationText>
-                </Flex>
-            </Box>
-        </Flex>
-        <RewardText>
-            {reward_price} {currency}
-        </RewardText>
+    <ResponsiveBox asChild>
+        <Link to={link}>
+            <DateText>{start_date.toDateString()}</DateText>
+            <Flex
+                direction="row"
+                gap="5"
+                align="center"
+                justify="center"
+                style={{ width: "100%", height: "100%" }}
+            >
+                <ResponsiveAvatar
+                    size="5"
+                    src={logo_image}
+                    radius="medium"
+                    fallback={title.charAt(0)}
+                />
+                <Box style={{ flex: 1 }}>
+                    <Flex direction="column">
+                        <TitleText>{title}</TitleText>
+                        <SubtitleText>{subtitle}</SubtitleText>
+                        <LocationText>{address}</LocationText>
+                    </Flex>
+                </Box>
+            </Flex>
+            <RewardText>
+                {reward_price} {currency}
+            </RewardText>
+        </Link>
     </ResponsiveBox>
 );
 

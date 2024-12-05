@@ -21,6 +21,7 @@ import {
     PersonIcon,
 } from "@radix-ui/react-icons";
 import styled from "styled-components";
+import { request } from "http";
 
 export interface StudentReviewProps {
     corp_id?: number;
@@ -105,6 +106,7 @@ const ReviewOfStudent = ({
                         address={request_card.address}
                         start_date={request_card.start_date}
                         logo_image={request_card.logo_image}
+                        link={request_card.link}
                     />
                 </Flex>
                 <Flex
