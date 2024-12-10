@@ -1,6 +1,8 @@
+import React from 'react'
 import { Meta, StoryObj } from '@storybook/react';
 import { Theme } from '@radix-ui/themes';
 import AcademicHistoryCard, { AcademicHistoryCardProps } from './AcademicHistoryCard';
+import '@radix-ui/themes/styles.css';
 
 const meta: Meta<typeof AcademicHistoryCard> = {
   title: 'Components/AcademicHistoryCard',

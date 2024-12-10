@@ -9,18 +9,18 @@ export interface LanguageCardProps {
   language: string;
 }
 
-type LevelColorProps = 'purple' | 'cyan' | 'crimson';
+type LevelColorProps = 'indigo' | 'purple' | 'crimson';
 
 const level_to_color = (level: number): LevelColorProps =>  {
   switch (level) {
     case 1:
-      return 'purple';
+      return 'indigo';
     case 2:
-      return 'cyan';
+      return 'purple';
     case 3:
       return 'crimson';
     default:
-      return 'purple';
+      return 'indigo';
   }
 };
 

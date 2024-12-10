@@ -50,12 +50,8 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
     language,
 }) => {
     return (
-        <Theme>
             <Flex align="center" justify="center">
-                <Box
-                    width={{ xs: "520px", sm: "768px", md: "1024px" }}
-                    minWidth="300px"
-                >
+                <Box>
                     <Box>
                         <Inset>
                             <img
@@ -191,7 +187,6 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
                     </Box>
                 </Box>
             </Flex>
-        </Theme>
     );
 };
 
