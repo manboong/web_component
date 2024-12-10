@@ -66,11 +66,7 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
           </Box>
         )}
       </Inset>
-      <StatusText status={status}>
-        {status}
-      </StatusText>
-
-      <Box style={{ flex: 1 }}>
+      <Box width="400px">
         <Flex direction="column">
           <Text size="5" weight="bold" style={{ color: '#2c3e50', fontSize: '1.5em' }}>
             {school_name}
@@ -83,6 +79,9 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
           </Text>
         </Flex>
       </Box>
+      <StatusText status={status}>
+        {status}
+      </StatusText>
     </StyledCard>
 
 );
