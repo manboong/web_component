@@ -48,9 +48,10 @@ const PageRequestList: React.FC<PageRequestListProps> = ({
                               subtitle={card.subtitle}
                               reward_price={card.reward_price}
                               currency={card.currency}
-                              location={card.location}
-                              date={card.date}
-                              imageURL={card.imageURL}
+                              address={card.address}
+                              start_date={card.start_date}
+                              logo_image={card.logo_image}
+                              link={card.link}
                             />
                           </Flex>
                         ))}

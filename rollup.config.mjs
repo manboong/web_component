@@ -20,10 +20,12 @@ const External = [
   "@mui/x-date-pickers",
   "@mui/x-date-pickers/AdapterDateFnsV3/index.js",
   "@mui/styled-engine",
+  "@mui/icons-material",
   "@emotion/react",
   "@emotion/styled",
   "@emotion/cache",
   "@emotion/serialize",
+  "ethereum-blockies",
 ];
 
 export default [
