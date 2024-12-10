@@ -1,7 +1,7 @@
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Theme } from '@radix-ui/themes';
 import PageRequestProfile, { PageRequestProfileProps } from './PageRequestProfile';
-import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof PageRequestProfile> = {
   title: 'Pages/PageRequestProfile',
@@ -33,7 +33,7 @@ export const Default: Story = {
       content: 'JLPT 시험 감독관의 업무를 수행합니다.',
       are_needed: '기본 일본어 지식',
       are_required: 'JLPT N1 자격증 소지자',
-      date: new Date(2024-12-10),
+      start_date: new Date(2024-12-10),
       start_time: '09:00',
       end_time: '17:00',
       address: '서울시 중구 을지로 5가',

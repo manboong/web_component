@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Controller } from "react-hook-form";
-import { TextField, Box, Typography } from "@mui/material";
+import blockies from "ethereum-blockies";
+import { TextField, Box, Typography, Container } from "@mui/material";
+import NavigationButton from "../NavigationButton";
 
 export interface ProfileImageInputProps {
     control: any;
@@ -8,23 +10,35 @@ export interface ProfileImageInputProps {
     onPrevious: () => void;
 }
 
-const defaultImages = [
-    "https://i.namu.wiki/i/v1b4uaM-yFnzNvFhk-Zge7CFxautpS8JCJdL16yN86DgHKLLkVLf1iUIhQkuj8qVc02jqurkgFzl6Id41N103x2z2DENixsN8pLYtRd4GJylg5g8aktlin_ye1X-CsYF8alXWZvpIGxfC-TlXnSRa_lvacJ2Y1Eugm7rJOeSd28.webp",
-    "https://i.namu.wiki/i/v1b4uaM-yFnzNvFhk-Zge83nkC_wnymdlUAPEJl56LmG0sptyzYvWKjSD9V1QScx7fMXMPWAvc9w5knbjdXWj1RXfXnOWxhhcfqxSMaglilFCJ4uXCu7jJgHSCsE46J5hyvW4RsjSbfm5PktIxHr2RrkGbCiVcmnl439nDAAf4c.webp",
-    "https://i.namu.wiki/i/v1b4uaM-yFnzNvFhk-Zgewjoy8VDTUsEm1dw5WQC8HrfEJcLi7y-FqtrSJ-rXDKubq3ewLo0MO7AxTzooJ1BMyxiwBCVZoEhwZbGHKMtOpVfggyGglKtuGVaU9Luwp890RDJE0v0YFvU32g5zbYnMZNi7B_AMwL6Rl_EkMb9M3c.webp",
-    "https://i.namu.wiki/i/v1b4uaM-yFnzNvFhk-Zge3-rrGrgydLxw509tVXb9O3dTpxosoDwoFc720uOiXklA3bqTmLIijXIhnuAqkf9x7lSy6fJvAbSRczCx7mx_pUdkbMTyyUXqw9cE-MuuXPJ2pGbCX2i-rI-wB-IFi-LBSAQJb9F-LKw2XF0MAIOVpA.webp",
-];
-
 const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
     control,
     onNext,
     onPrevious,
 }) => {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [defaultImages, setDefaultImages] = useState<string[]>([]);
+
+    // Blockies 기본 이미지 생성
+    useEffect(() => {
+        const generateBlockiesImages = () => {
+            const images = Array(4)
+                .fill(null)
+                .map((_, index) =>
+                    blockies.create({
+                        seed: `blockies-${index}-${Math.random()}`,
+                        size: 8,
+                        scale: 20,
+                        bgcolor: "#ffffff",
+                    }).toDataURL()
+                );
+            setDefaultImages(images);
+        };
+        generateBlockiesImages();
+    }, []);
 
     const handleImageDrop = (
         event: React.DragEvent<HTMLDivElement>,
-        onChange: (url: string) => void,
+        onChange: (url: string) => void
     ) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
@@ -32,8 +46,8 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
             const reader = new FileReader();
             reader.onload = () => {
                 const result = reader.result as string;
-                onChange(result); // 이미지 URL을 폼에 설정
-                setPreviewUrl(result); // 미리보기를 위해 설정
+                onChange(result);
+                setPreviewUrl(result);
             };
             reader.readAsDataURL(file);
         }
@@ -41,15 +55,15 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
 
     const handleDefaultImageClick = (
         url: string,
-        onChange: (url: string) => void,
+        onChange: (url: string) => void
     ) => {
         onChange(url);
         setPreviewUrl(url);
     };
 
     return (
-        <Box>
-            <Typography variant="h5" gutterBottom>
+        <Container>
+            <Typography variant="h4" gutterBottom>
                 Profile Picture
             </Typography>
             <Controller
@@ -68,8 +82,9 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
                                 setPreviewUrl(e.target.value);
                             }}
                             placeholder="Enter or drop an image URL here"
+                            sx={{ mt: 2 }}
                         />
-                        {/* 드래그 */}
+                        {/* 드래그 영역 */}
                         <Box
                             onDrop={(event) =>
                                 handleImageDrop(event, field.onChange)
@@ -77,12 +92,13 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
                             onDragOver={(event) => event.preventDefault()}
                             sx={{
                                 border: "2px dashed #ccc",
-                                padding: 2,
-                                marginTop: 2,
+                                padding: 3,
+                                marginTop: 3,
                                 textAlign: "center",
                                 borderRadius: 1,
                                 color: "#777",
                                 cursor: "pointer",
+                                backgroundColor: "#f9f9f9",
                             }}
                         >
                             Drag and Drop Image Here
@@ -90,7 +106,7 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
                         {/* 미리보기 */}
                         {previewUrl && (
                             <Box sx={{ mt: 2, textAlign: "center" }}>
-                                <Typography variant="body2">
+                                <Typography variant="body2" gutterBottom>
                                     Image Preview:
                                 </Typography>
                                 <img
@@ -101,6 +117,7 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
                                         height: "150px",
                                         objectFit: "cover",
                                         borderRadius: "8px",
+                                        border: "1px solid #ccc",
                                     }}
                                 />
                             </Box>
@@ -108,7 +125,8 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
                         {/* 기본 제공 이미지 */}
                         <Box
                             display="flex"
-                            justifyContent="space-around"
+                            justifyContent="center"
+                            gap={2}
                             mt={2}
                         >
                             {defaultImages.map((url, index) => (
@@ -119,7 +137,7 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
                                     onClick={() =>
                                         handleDefaultImageClick(
                                             url,
-                                            field.onChange,
+                                            field.onChange
                                         )
                                     }
                                     style={{
@@ -138,13 +156,17 @@ const ProfileImageInput: React.FC<ProfileImageInputProps> = ({
                     </Box>
                 )}
             />
-            <button type="button" onClick={onNext}>
-                Next
-            </button>
-            <button type="button" onClick={onPrevious}>
-                Previous
-            </button>
-        </Box>
+            {/* 네비게이션 버튼 */}
+            <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mt={3}
+            >
+                <NavigationButton label="previous" onClick={onPrevious} />
+                <NavigationButton label="next" onClick={onNext} />
+            </Box>
+        </Container>
     );
 };
 

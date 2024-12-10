@@ -1,7 +1,9 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { Theme } from "@radix-ui/themes"
 import StudentCard from './StudentCard';
+import '@radix-ui/themes/styles.css';
 
 const meta = {
   title: 'StudentCard',
@@ -23,7 +25,7 @@ const meta = {
     school: 'Harvard University',
     major: 'Computer Science',
     languageWithLevel: [{language: 'English', level: 1}, {language: 'Spanish', level: 2}],
-    imageUrl: 'https://via.placeholder.com/120',
+    imageUrl: 'https://i.namu.wiki/i/I1HFSsVj5145o1mz8jp3Y4MSRxL4ytFGvxfLx1r6ORLEhbTsrBcZ7Yx4TeUawBFFdFL4BL2Ktee4m4IyyN7JjV66G2NReiZv-1Zd0FS0juouF80im0yrUNcWK1Rr-jJ0xu19WjJeHxama_GwUz5ozR9qPSUG3O7ncIVjRPPfpwg.webp',
     onBookmarkClick: fn(),
   },
 } satisfies Meta<typeof StudentCard>;

@@ -1,14 +1,26 @@
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import ReviewOfStudent, { ReviewOfStudentProps } from './ReviewOfStudent';
 import { Theme } from '@radix-ui/themes';
+import { MemoryRouter } from "react-router-dom"; 
+import '@radix-ui/themes/styles.css';
+
+
 const meta: Meta<typeof ReviewOfStudent> = {
   title: 'Components/ReviewOfStudent',
   component: ReviewOfStudent,
   decorators: [
     (Story) => (
-      <Theme>
-        <Story />
-      </Theme>
+
+        <Theme>
+          <MemoryRouter>
+          <Story />
+
+          </MemoryRouter>
+
+        </Theme>
+
+
     ),
   ],
   argTypes: {
@@ -30,11 +42,12 @@ export const Default: Story = {
     request_card: {
       title: 'Translation',
       subtitle: 'Looking for ',
-      reward_price: '1500',
+      reward_price: 1500,
       currency: 'USD',
-      location: 'Remote',
-      date: '2023-11-01',
-      imageURL: 'https://via.placeholder.com/150',
+      address: 'Remote',
+      start_date: new Date(),
+      logo_image: 'https://via.placeholder.com/150',
+      link: '#'
     },
     was_late: 2,
     was_proactive: 8,
@@ -51,11 +64,12 @@ export const HighEvaluation: Story = {
     request_card: {
       title: 'Technical Writing Assistance',
       subtitle: 'Experienced technical writer required for documentation.',
-      reward_price: '2000',
+      reward_price: 20000,
       currency: 'USD',
-      location: 'On-Site',
-      date: '2023-12-15',
-      imageURL: 'https://via.placeholder.com/150',
+      address: 'On-Site',
+      start_date: new Date(),
+      logo_image: 'https://via.placeholder.com/150',
+      link: '#'
     },
     was_late: 1,
     was_proactive: 9,
@@ -72,11 +86,12 @@ export const LowEvaluation: Story = {
     request_card: {
       title: 'Data Entry for Survey Results',
       subtitle: 'Looking for data entry specialists.',
-      reward_price: '500',
+      reward_price: 50000,
       currency: 'USD',
-      location: 'Office',
-      date: '2023-11-20',
-      imageURL: 'https://via.placeholder.com/150',
+      address: 'Office',
+      start_date: new Date(),
+      logo_image: 'https://via.placeholder.com/150',
+      link: ''
     },
     was_late: 8,
     was_proactive: 3,

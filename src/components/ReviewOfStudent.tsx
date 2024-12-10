@@ -9,7 +9,6 @@ import {
     Flex,
     Text,
     Strong,
-    ThemeContext,
 } from "@radix-ui/themes";
 import RequestCard from "./RequestCard";
 import {
@@ -21,7 +20,7 @@ import {
     PersonIcon,
 } from "@radix-ui/react-icons";
 import styled from "styled-components";
-import { request } from "http";
+import ReviewPopOver from "./ReviewPopOver";
 
 export interface StudentReviewProps {
     corp_id?: number;
@@ -96,8 +95,8 @@ const ReviewOfStudent = ({
 }: ReviewOfStudentProps) => {
     return (
         <StyledCard>
-            <Flex direction="column" gap="2" align="stretch" justify="center">
-                <Flex direction="column" justify="center">
+            <Flex direction="column" gap="4" align="stretch" justify="center">
+                <Flex direction="column" justify="center" gap="3">
                     <RequestCard
                         title={request_card.title}
                         subtitle={request_card.subtitle}
@@ -113,25 +112,25 @@ const ReviewOfStudent = ({
                     direction="column"
                     align="center"
                     justify="center"
-                    gap="2"
+                    gap="5" // 세로 간격 확대
                 >
                     <Text>{lateness(was_late)}</Text>
                     <Grid
                         columns={{ initial: "2", xs: "3" }}
-                        gap="4"
+                        gap="6" // 각 Progress와 PopOver 간의 간격 확대
                         width="450px"
                     >
                         <Flex
                             direction="row"
                             justify="center"
                             align="center"
-                            gap="3"
+                            gap="4"
+                            style={{ marginBottom: "10px" }} // 추가 간격
                         >
-                            <Avatar
-                                size="3"
-                                fallback={<LightningBoltIcon />}
-                                highContrast
-                                radius="full"
+                            <ReviewPopOver
+                                color="purple"
+                                triggerIcon={LightningBoltIcon}
+                                popOverString="This measures how proactive the student was in their tasks."
                             />
                             <Progress
                                 value={was_proactive * 10}
@@ -143,13 +142,13 @@ const ReviewOfStudent = ({
                             direction="row"
                             justify="center"
                             align="center"
-                            gap="3"
+                            gap="4"
+                            style={{ marginBottom: "10px" }}
                         >
-                            <Avatar
-                                size="3"
-                                fallback={<BackpackIcon />}
-                                highContrast
-                                radius="full"
+                            <ReviewPopOver
+                                color="indigo"
+                                triggerIcon={BackpackIcon}
+                                popOverString="This measures how diligent the student was in their tasks."
                             />
                             <Progress
                                 value={was_diligent * 10}
@@ -161,13 +160,13 @@ const ReviewOfStudent = ({
                             direction="row"
                             justify="center"
                             align="center"
-                            gap="3"
+                            gap="4"
+                            style={{ marginBottom: "10px" }}
                         >
-                            <Avatar
-                                size="3"
-                                fallback={<FaceIcon />}
-                                highContrast
-                                radius="full"
+                            <ReviewPopOver
+                                color="jade"
+                                triggerIcon={FaceIcon}
+                                popOverString="This measures the student's communication ability."
                             />
                             <Progress
                                 value={commu_ability * 10}
@@ -179,13 +178,13 @@ const ReviewOfStudent = ({
                             direction="row"
                             justify="center"
                             align="center"
-                            gap="3"
+                            gap="4"
+                            style={{ marginBottom: "10px" }}
                         >
-                            <Avatar
-                                size="3"
-                                fallback={<LetterCaseToggleIcon />}
-                                highContrast
-                                radius="full"
+                            <ReviewPopOver
+                                color="orange"
+                                triggerIcon={LetterCaseToggleIcon}
+                                popOverString="This measures how fluent the student is in the required language."
                             />
                             <Progress
                                 value={lang_fluent * 10}
@@ -197,13 +196,13 @@ const ReviewOfStudent = ({
                             direction="row"
                             justify="center"
                             align="center"
-                            gap="3"
+                            gap="4"
+                            style={{ marginBottom: "10px" }}
                         >
-                            <Avatar
-                                size="3"
-                                fallback={<RocketIcon />}
-                                highContrast
-                                radius="full"
+                            <ReviewPopOver
+                                color="amber"
+                                triggerIcon={RocketIcon}
+                                popOverString="This measures how well the student fulfilled their goals."
                             />
                             <Progress
                                 value={goal_fulfillment * 10}
@@ -215,13 +214,13 @@ const ReviewOfStudent = ({
                             direction="row"
                             justify="center"
                             align="center"
-                            gap="3"
+                            gap="4"
+                            style={{ marginBottom: "10px" }}
                         >
-                            <Avatar
-                                size="3"
-                                fallback={<PersonIcon />}
-                                highContrast
-                                radius="full"
+                            <ReviewPopOver
+                                color="tomato"
+                                triggerIcon={PersonIcon}
+                                popOverString="This measures whether the student would be recommended for future collaboration."
                             />
                             <Progress
                                 value={want_cowork * 10}
