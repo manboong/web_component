@@ -2,162 +2,101 @@ import React from "react";
 import {
   Card,
   CardContent,
-  Avatar,
+  CardMedia,
   Typography,
   Box,
+  Grid2 as Grid,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 
 export interface RequestCardProps {
   title: string;
-  subtitle: string;
   reward_price: number;
   currency: "USD" | "KRW" | "JPY" | "";
   address: string;
   start_date: Date;
+  renderLogo: boolean;
   logo_image?: string;
-  link: string;
+  onClick: () => void;
 }
 
 const RequestCard = ({
   title,
-  subtitle,
   reward_price,
   currency,
   address,
   start_date,
+  renderLogo,
   logo_image,
-  link,
+  onClick,
 }: RequestCardProps) => (
-    <Card
-    component={Link}
-    to={link}
+  <Card
     sx={{
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      textDecoration: "none",
+      maxWidth: "1080px",
+      margin: "auto",
+      borderRadius: "16px",
+      fontFamily: "Noto Sans KR",
+      backgroundColor: renderLogo ? "#ffffff" : "#f5f5f5",
+      border: renderLogo ? "1px solid #d3d3d3" : "none",
       cursor: "pointer",
-      padding: "10px",
-      overflow: "hidden",
-      height: { xs: "100px", sm: "120px" }, 
-      width: "100%", 
+      display: "flex",
+      boxShadow: "none",
+      alignItems: "stretch",
     }}
+    onClick={onClick}
   >
-    {/* 로고 */}
-    <Avatar
-      alt={title}
-      src={logo_image}
-      sx={{
-        width: 50,
-        height: 50,
-        marginRight: "15px",
-        display: { xs: "none", sm: "block" }, 
-      }}
-    >
-      {title.charAt(0)}
-    </Avatar>
-
+    {renderLogo && logo_image && (
+      <CardMedia
+        component="img"
+        image={logo_image}
+        alt="Logo"
+        sx={{
+          width: "114px",
+          borderRadius: "16px",
+          marginTop: "14px",
+          marginBottom: "14px",
+          marginRight: "14px",
+          marginLeft: "14px",
+          objectFit: "cover",
+        }}
+      />
+    )}
     <CardContent
-      sx={{
-        flex: 1,
-        padding: 0,
-        overflow: "hidden",
-      }}
-    >
-      {/* 제목 */}
-      <Box
-        sx={{
-          display: "block",
-          width: "100%",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: "bold",
-            color: "#2c3e50",
-          }}
-        >
-          {title}
-        </Typography>
-      </Box>
-      {/* 부제목 */}
-      <Box
-        sx={{
-          display: "block",
-          width: "100%",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
-      >
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          sx={{
-            marginBottom: "6px",
-          }}
-        >
-          {subtitle}
-        </Typography>
-      </Box>
-      {/* 주소 */}
-      <Box
-        sx={{
-          display: "block",
-          width: "100%",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
-      >
-        <Typography
-          variant="caption"
-          color="textSecondary"
-          sx={{
-            fontSize: "0.8rem",
-          }}
-        >
-          {address}
-        </Typography>
-      </Box>
-    </CardContent>
-
-    {/* 리워드와 날짜 */}
-    <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        alignItems: "flex-end",
-        height: "100%",
+        flexGrow: 1,
+        padding: 3,
+        fontFamily: "Noto Sans KR",
+        gap: "8px",
       }}
     >
-      <Typography
-        variant="caption"
-        color="textSecondary"
-        sx={{
-          fontSize: "0.7rem",
-          marginBottom: "auto",
-        }}
-      >
-        {start_date.toDateString()}
-      </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          fontWeight: "bold",
-          color: "#e67e22",
-          fontSize: "0.8rem",
-        }}
-      >
-        {reward_price} {currency}
-      </Typography>
-    </Box>
+      <Grid container spacing={1}>
+        <Grid size={12}>
+          <Typography variant="h5" component="div" sx={{ fontWeight: "bold", fontFamily: "Noto Sans KR" }}>
+            {title}
+          </Typography>
+        </Grid>
+        <Grid size={12}>
+          <Typography variant="body2" sx={{ fontFamily: "Noto Sans KR", color: "rgba(0, 0, 0, 0.7)" }}>
+            {start_date.toDateString()}
+          </Typography>
+        </Grid>
+        <Grid size={10}>
+          <Typography variant="body2" sx={{ fontFamily: "Noto Sans KR", color: "rgba(0, 0, 0, 0.7)" }}>
+            {address}
+          </Typography>
+        </Grid>
+        <Grid size={2}>
+          <Typography
+            variant="body2"
+            sx={{ fontWeight: "bold", fontFamily: "Noto Sans KR", color: "rgba(0, 0, 0, 0.7)" }}
+          >
+            {reward_price} {currency}
+          </Typography>
+        </Grid>
+      </Grid>
+    </CardContent>
   </Card>
 );
 

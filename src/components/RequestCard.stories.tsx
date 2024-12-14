@@ -1,53 +1,43 @@
-import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { MemoryRouter } from "react-router-dom";
-import RequestCard from "./RequestCard";
-import { Theme } from "@radix-ui/themes";
+import React from 'react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import RequestCard, { RequestCardProps } from './RequestCard';
 
-
-const meta = {
-  title: "RequestCard",
+const meta: Meta<typeof RequestCard> = {
+  title: 'Components/RequestCard',
   component: RequestCard,
   tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
+  argTypes: {
+    title: { control: 'text' },
+    reward_price: { control: 'number' },
+    currency: { control: 'text' },
+    address: { control: 'text' },
+    start_date: { control: 'date' },
+    renderLogo: { control: 'boolean' },
+    logo_image: { control: 'text' },
   },
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Theme>
-          <Story />
-        </Theme>
-      </MemoryRouter>
-    ),
-  ],
-  args: {
-    title: "TOPIK 감독관 및 관리요원",
-    subtitle: "관리요원",
-    reward_price: 22000,
-    currency: "JPY",
-    address: "사이타마현",
-    start_date: new Date(),
-    logo_image: "https://via.placeholder.com/50", 
-    link: "#",
-  },
-} satisfies Meta<typeof RequestCard>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const Template: StoryFn<RequestCardProps> = (args) => <RequestCard {...args} />;
 
-export const LongContent: Story = {
-  args: {
-    title: "TOPIK 감독관 - 매우 길고 길어진 제목의 예제입니다",
-    subtitle: "관리요원의 상세한 직책 및 요구사항에 대한 예제",
-    address: "사이타마현, 아주 상세한 위치와 정보를 포함한 주소입니다",
-  },
+export const Default = Template.bind({});
+Default.args = {
+  title: "TOPIK 시험감독관 및 관리요원 모집",
+  reward_price: 20000,
+  currency: "JPY",
+  address: "사이타마현 슈쿠토쿠요노 고등학교",
+  start_date: new Date(),
 };
 
-export const WithoutImage: Story = {
+export const WithLogo: StoryObj = {
   args: {
-    logo_image: undefined,
-  },
-};
+    title: "TOPIK 시험감독관 및 관리요원 모집",
+    reward_price: 20000,
+    currency: "JPY",
+    address: "사이타마현 슈쿠토쿠요노 고등학교",
+    start_date: new Date(),
+    renderLogo: true,
+    logo_image: "https://upload.wikimedia.org/wikipedia/commons/1/19/Vulfpeck_Logo.jpg"
+  }
+}
