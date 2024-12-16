@@ -149,7 +149,7 @@ const StudentMypage = () => {
             </Container>
 
             <Container sx={{ width: '344px', padding: '0 !important', position: 'sticky', top: '50%', transform: 'translateY(-50%)' }}>
-                <IndexCard sections={sections}/>
+                <IndexCard roles="student" sections={sections}/>
             </Container>
         </Box>
     );
