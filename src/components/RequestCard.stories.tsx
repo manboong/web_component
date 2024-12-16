@@ -37,6 +37,7 @@ export const WithLogo: StoryObj = {
     currency: "JPY",
     address: "사이타마현 슈쿠토쿠요노 고등학교",
     start_date: new Date(),
+    request_status: 3,
     renderLogo: true,
     logo_image: "https://upload.wikimedia.org/wikipedia/commons/1/19/Vulfpeck_Logo.jpg"
   }

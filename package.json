@@ -120,6 +120,7 @@
     "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
     "dependencies": {
         "@economist/design-system": "^7.31.0",
+        "@fontsource/noto-sans-kr": "^5.1.0",
         "@mui/icons-material": "^6.1.10",
         "ethereum-blockies": "^0.1.1",
         "react-blockies": "^1.4.1"

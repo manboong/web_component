@@ -16,6 +16,7 @@ const meta: Meta<typeof CorpProfileCard> = {
     biz_type: { control: 'text' },
     logo_image: { control: 'text' },
     site_url: { control: 'text' },
+    isMypage: { controle: 'boolean'}
   },
 };
 
@@ -33,4 +34,5 @@ Default.args = {
   biz_type: "Funky Jazz",
   logo_image: "https://upload.wikimedia.org/wikipedia/commons/1/19/Vulfpeck_Logo.jpg",
   site_url: "https://www.vulfpeck.com/",
+  isMypage: true,
 };

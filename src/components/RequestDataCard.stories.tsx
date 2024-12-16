@@ -123,6 +123,7 @@ export const WithLogo: StoryObj<RequestDataCardProps> = {
           renderLogo: false,
           logo_image: "https://via.placeholder.com/50",
           onClick: () => alert("Clicked TOPIK Event 2023"),
+          request_status: 3
         },
       ],
     },
