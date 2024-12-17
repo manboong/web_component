@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent } from '@mui/material';
 import StudentProfileCard from './StudentProfileCard';
 import IndexCard from './IndexCard';
 import RequestCard, { RequestCardProps } from './RequestCard';
 import RequestDataCard from './RequestDataCard';
+import RequestSideCard from './RequestSideCard';
 
 const mockRequests: RequestCardProps[] = [
     {
@@ -99,6 +100,12 @@ const requestDataExample = {
     request_status: 1,
     created_at: new Date(),
     updated_at: new Date(),
+    head_count: 3,
+    reward_price: 15000,
+    currency: "JPY",
+    start_date: new Date(),
+    end_date: new Date(),
+    provide_food: false
 };
 
 const corpProfileExample = {
@@ -138,8 +145,31 @@ const StudentMypage = () => {
                 <RequestDataCard requestData={requestDataExample} corpProfile={corpProfileExample}/>
             </Container>
 
-            <Container sx={{ width: '344px', padding: '0 !important', position: 'sticky', top: '50%', transform: 'translateY(-50%)' }}>
-
+            <Container 
+                sx={{
+                    width: { xs: '100%', md: '344px' }, // 작은 화면에서는 100% 폭
+                    padding: '0 !important',
+                    position: { xs: 'relative', md: 'sticky' }, // 작은 화면에서는 위치 고정 해제
+                    top: { md: '50%' }, // 중간 위치 (데스크톱만)
+                    transform: { md: 'translateY(-50%)' }, // 중간 위치 조정 (데스크톱만)
+                    order: { xs: -1, md: 1 }, // 모바일에서 위로 이동
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '24px',
+                }}>
+                <RequestSideCard request={requestDataExample}/>
+                <Card 
+                    sx={{
+                        borderRadius: "16px",
+                        backgroundColor: "#ff7961",
+                    }}
+                >
+                    <CardContent sx={{textAlign: 'center', padding: "8px !important"}}>
+                        <Typography>
+                            신청하기
+                        </Typography>
+                    </CardContent>
+                </Card>
             </Container>
         </Box>
     );

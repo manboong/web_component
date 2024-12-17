@@ -99,7 +99,6 @@ const ReviewOfStudent = ({
                 <Flex direction="column" justify="center" gap="3">
                     <RequestCard
                         title={request_card.title}
-                        subtitle={request_card.subtitle}
                         reward_price={request_card.reward_price}
                         currency={request_card.currency}
                         address={request_card.address}

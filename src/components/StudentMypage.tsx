@@ -148,7 +148,15 @@ const StudentMypage = () => {
 
             </Container>
 
-            <Container sx={{ width: '344px', padding: '0 !important', position: 'sticky', top: '50%', transform: 'translateY(-50%)' }}>
+            <Container                 
+                sx={{
+                    width: { xs: '100%', md: '344px' }, // 작은 화면에서는 100% 폭
+                    padding: '0 !important',
+                    position: { xs: 'relative', md: 'sticky' }, // 작은 화면에서는 위치 고정 해제
+                    top: { md: '50%' }, // 중간 위치 (데스크톱만)
+                    transform: { md: 'translateY(-50%)' }, // 중간 위치 조정 (데스크톱만)
+                    order: { xs: -1, md: 1 }, // 모바일에서 위로 이동
+                }}>
                 <IndexCard roles="student" sections={sections}/>
             </Container>
         </Box>
