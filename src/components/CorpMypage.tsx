@@ -110,13 +110,13 @@ const CorpMypage = () => {
     const openRequests = mockRequests.filter((req) => req.request_status === 0);
     const pastRequests = mockRequests.filter((req) => req.request_status === 4 || req.request_status === 5);
 
-    const sections = ["0", "1", "2", "3", "4"]
+    const sections = ["0", "1", "2", "3", "4"];
 
     return (
         <Box
             sx={{
                 display: 'flex',
-                flexDirection: 'row',
+                flexDirection: { xs: 'column', md: 'row' }, // 가로(row) → 세로(column) 변경
                 justifyContent: 'center',
                 alignItems: 'flex-start',
                 gap: '24px',
@@ -126,7 +126,12 @@ const CorpMypage = () => {
             }}
             id={sections[0]}
         >
-            <Container sx={{ width: '712px', padding: '0 !important' }}>
+            <Container 
+                sx={{
+                    width: { xs: '100%', md: '712px' }, // 작은 화면에서는 100% 폭
+                    padding: '0 !important',
+                }}
+            >
                 <CorpProfileCard
                     corp_name={corpProfileDummyData.corp_name}
                     nationality={corpProfileDummyData.nationality}
@@ -171,11 +176,19 @@ const CorpMypage = () => {
                         </Box>
                     ))}
                 </Box>
-
             </Container>
 
-            <Container sx={{ width: '344px', padding: '0 !important', position: 'sticky', top: '50%', transform: 'translateY(-50%)' }}>
-                <IndexCard roles= "corp" sections={sections}/>
+            <Container 
+                sx={{
+                    width: { xs: '100%', md: '344px' }, // 작은 화면에서는 100% 폭
+                    padding: '0 !important',
+                    position: { xs: 'relative', md: 'sticky' }, // 작은 화면에서는 위치 고정 해제
+                    top: { md: '50%' }, // 중간 위치 (데스크톱만)
+                    transform: { md: 'translateY(-50%)' }, // 중간 위치 조정 (데스크톱만)
+                    order: { xs: -1, md: 1 }, // 모바일에서 위로 이동
+                }}
+            >
+                <IndexCard roles="corp" sections={sections} />
             </Container>
         </Box>
     );

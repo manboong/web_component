@@ -26,6 +26,8 @@ const External = [
   "@emotion/cache",
   "@emotion/serialize",
   "ethereum-blockies",
+  '@fontsource/noto-sans-kr',
+
 ];
 
 export default [
