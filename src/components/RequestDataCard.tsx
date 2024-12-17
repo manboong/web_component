@@ -6,11 +6,10 @@ import {
   Box,
   Tabs,
   Tab,
+  Divider,
 } from "@mui/material";
 import CorpProfileCard, { CorpProfileProps } from "./CorpProfileCard";
 import RequestCard, { RequestCardProps } from "./RequestCard";
-import Divider from '@mui/material/Divider';
-
 
 export interface RequestData {
   title: string;
@@ -28,13 +27,10 @@ export interface RequestData {
   updated_at?: Date;
 }
 
-interface CorpWithPastRequest extends CorpProfileProps {
-  past_requests: RequestCardProps[];
-}
-
 export interface RequestDataCardProps {
   requestData: RequestData;
-  corpProfile: CorpWithPastRequest;
+  corpCard: CorpProfileProps;
+  pastRequests: RequestCardProps[]
 }
 
 interface TabPanelProps {
@@ -49,7 +45,7 @@ const TabPanel: React.FC<TabPanelProps> = ({ children, index, value }) => (
   </Box>
 );
 
-const RequestDataCard: React.FC<RequestDataCardProps> = ({ requestData, corpProfile }) => {
+const RequestDataCard: React.FC<RequestDataCardProps> = ({ requestData, corpCard, pastRequests }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   const googleMapsKey = "AIzaSyB8_1BXxTpvEJHABsLs2EXXNZ1MqS5Kz0c";
@@ -80,16 +76,16 @@ const RequestDataCard: React.FC<RequestDataCardProps> = ({ requestData, corpProf
           {requestData.title}
         </Typography>
         <Box display="flex" alignItems="center" marginBottom={3}>
-          {corpProfile.logo_image && (
+          {corpCard.logo_image && (
             <Box
               component="img"
-              src={corpProfile.logo_image}
-              alt={`${corpProfile.corp_name} logo`}
+              src={corpCard.logo_image}
+              alt={`${corpCard.corp_name} logo`}
               sx={{ width: 50, height: 50, marginRight: 2, borderRadius: "4px" }}
             />
           )}
           <Typography variant="subtitle1" sx={{ fontFamily: "Noto Sans KR" }}>
-            {corpProfile.corp_name}
+            {corpCard.corp_name}
           </Typography>
         </Box>
         <Tabs
@@ -198,11 +194,11 @@ const RequestDataCard: React.FC<RequestDataCardProps> = ({ requestData, corpProf
         <TabPanel value={activeTab} index={1}>
 
           <Box sx={{ marginBottom: 4 }}>
-            <CorpProfileCard {...corpProfile} />
+            <CorpProfileCard {...corpCard} />
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
-            {corpProfile.past_requests.map((request, index) => (
+            {pastRequests.map((request, index) => (
             <Box key={index} sx={{ width: "100%" }}>
               <RequestCard key={index} {...request} />
             </Box>

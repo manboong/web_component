@@ -104,7 +104,9 @@ const ReviewOfStudent = ({
                         address={request_card.address}
                         start_date={request_card.start_date}
                         logo_image={request_card.logo_image}
-                        link={request_card.link}
+                        renderLogo={true}
+                        request_status={4}
+                        onClick={()=>{alert("onclick")}}
                     />
                 </Flex>
                 <Flex

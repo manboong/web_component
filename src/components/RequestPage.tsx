@@ -116,7 +116,6 @@ const corpProfileExample = {
     corp_address: "123 AI Lane, San Francisco, CA",
     biz_started_at: "2023-01-01",
     biz_type: "AI Development",
-    past_requests: mockRequests
 };
     
 
@@ -142,7 +141,7 @@ const StudentMypage = () => {
             id={sections[0]}
         >
             <Container sx={{ width: '712px', padding: '0 !important' }}>
-                <RequestDataCard requestData={requestDataExample} corpProfile={corpProfileExample}/>
+                <RequestDataCard requestData={requestDataExample} corpCard={corpProfileExample} past_requests={mockRequests}/>
             </Container>
 
             <Container 

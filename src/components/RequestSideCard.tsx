@@ -10,8 +10,8 @@ export interface Request {
     end_date?: Date;
     provide_food?: boolean;
     provide_trans_exp?: boolean;
-    start_time?: Date;
-    end_time?: Date;
+    start_time?: string;
+    end_time?: string;
 }
 
 interface RequestSideCardProps {
@@ -63,13 +63,13 @@ const RequestSideCard: React.FC<RequestSideCardProps> = ({ request }) => {
           <ListItem sx={{padding: '0'}}>
             <ListItemText
               primary="시작 시간"
-              secondary={request.start_time?.toDateString()}
+              secondary={request.start_time}
             />
           </ListItem>
           <ListItem sx={{padding: '0'}}>
             <ListItemText
               primary="종료 시간"
-              secondary={request.end_time?.toDateString()}
+              secondary={request.end_time}
             />
           </ListItem>
         </List>
