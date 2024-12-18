@@ -6,10 +6,12 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3/index.js";
 export interface DateInputProps {
     control: any;
     name: string;
-    label: string;
+    label?: string;
+    defaultValue?: Date;
+    sx?: object;
 }
 
-const DateInput: React.FC<DateInputProps> = ({ control, name, label }) => (
+const DateInput: React.FC<DateInputProps> = ({ control, name, label, defaultValue, sx }) => (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Controller
             name={name}
@@ -18,11 +20,13 @@ const DateInput: React.FC<DateInputProps> = ({ control, name, label }) => (
                 <DatePicker
                     {...field}
                     label={label}
+                    defaultValue={defaultValue}
                     onChange={(date) => field.onChange(date)}
                     value={field.value}
                     slotProps={{
                         textField: { fullWidth: true },
                     }}
+                    sx={sx}
                 />
             )}
         />

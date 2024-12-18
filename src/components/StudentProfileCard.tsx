@@ -6,12 +6,12 @@ import '@fontsource/noto-sans-kr';
 export interface StudentAttributes {
     student_name: string;
     nationality: string;
-    age: string;
+    birth_date: Date;
     phone_number?: string;
     emergency_contact?: string;
-    gender: string;
+    gender: number;
     image?: string;
-    has_car?: boolean;
+    has_car?: 0 | 1;
     isMypage?: boolean;
     onEditClick?: () => void;
 }
@@ -19,7 +19,7 @@ export interface StudentAttributes {
 const StudentProfileCard: React.FC<StudentAttributes> = ({
     student_name,
     nationality,
-    age,
+    birth_date,
     phone_number,
     emergency_contact,
     gender,
@@ -114,7 +114,7 @@ const StudentProfileCard: React.FC<StudentAttributes> = ({
                             variant="body2"
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
-                            {age}
+                            {birth_date.toISOString()}
                         </Typography>
                     </Grid>
 

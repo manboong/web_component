@@ -141,7 +141,7 @@ const StudentMypage = () => {
             id={sections[0]}
         >
             <Container sx={{ width: '712px', padding: '0 !important' }}>
-                <RequestDataCard requestData={requestDataExample} corpCard={corpProfileExample} past_requests={mockRequests}/>
+                <RequestDataCard requestData={requestDataExample} corpCard={corpProfileExample} otherRequests={mockRequests}/>
             </Container>
 
             <Container 
