@@ -10,8 +10,9 @@ export interface StudentAttributes {
     phone_number?: string;
     emergency_contact?: string;
     gender: number;
-    image?: string;
-    has_car?: 0 | 1;
+    image: string;
+    has_car: 0 | 1;
+    keyword_list: string[];
     isMypage?: boolean;
     onEditClick?: () => void;
 }
@@ -25,6 +26,7 @@ const StudentProfileCard: React.FC<StudentAttributes> = ({
     gender,
     image,
     has_car,
+    keyword_list,
     isMypage = false,
     onEditClick,
 }) => {
@@ -39,6 +41,7 @@ const StudentProfileCard: React.FC<StudentAttributes> = ({
                 backgroundColor: '#f5f5f5',
                 boxShadow: 'none',
                 display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
                 transition: 'background-color 0.3s ease',
                 '&:hover': isMypage ? { backgroundColor: '#e0e0e0' } : undefined,
                 position: 'relative',
@@ -60,9 +63,9 @@ const StudentProfileCard: React.FC<StudentAttributes> = ({
             {isMypage && (<IconButton
                 onClick={onEditClick}
                 sx={{
-                    position: 'absolute',
-                    top: 16,
-                    right: 16,
+                    position: { xs: "relative" ,md: 'absolute' },
+                    top: { xs: "50%", md: 16 },
+                    right: { xs: "50%", md: 16 },
                     backgroundColor: '#f5f5f5',
                     '&:hover': {
                         backgroundColor: '#e0e0e0',
@@ -106,7 +109,7 @@ const StudentProfileCard: React.FC<StudentAttributes> = ({
                             fontWeight="bold"
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
-                            나이
+                            생년월일
                         </Typography>
                     </Grid>
                     <Grid size={9}>
@@ -195,6 +198,40 @@ const StudentProfileCard: React.FC<StudentAttributes> = ({
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
                             {has_car ? '예' : '아니오'}
+                        </Typography>
+                    </Grid>
+
+                    <Grid size={3}>
+                        <Typography
+                            variant="body2"
+                            fontWeight="bold"
+                            sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
+                        >
+                            키워드
+                        </Typography>
+                    </Grid>
+                    <Grid size={3}>
+                        <Typography
+                            variant="body2"
+                            sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
+                        >
+                            {keyword_list[0]}
+                        </Typography>
+                    </Grid>
+                    <Grid size={3}>
+                        <Typography
+                            variant="body2"
+                            sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
+                        >
+                            {keyword_list[1]}
+                        </Typography>
+                    </Grid>
+                    <Grid size={3}>
+                        <Typography
+                            variant="body2"
+                            sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
+                        >
+                            {keyword_list[2]}
                         </Typography>
                     </Grid>
                 </Grid>

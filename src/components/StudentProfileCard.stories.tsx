@@ -31,6 +31,7 @@ Default.args = {
   birth_date: new Date(),
   gender: 0,
   image: 'https://via.placeholder.com/150',
+  keyword_list: ["자유", "평등", "박애"],
   has_car: 1,
 };
 
@@ -44,5 +45,6 @@ MyPageView.args = {
   emergency_contact: '010-8765-4321',
   image: 'https://via.placeholder.com/150',
   has_car: 1,
+  keyword_list: ["자유", "평등", "박애"],
   isMypage: true,
 };

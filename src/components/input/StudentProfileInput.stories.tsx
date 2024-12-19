@@ -25,6 +25,7 @@ const Template: StoryFn = () => {
       gender: 1,
       image: "https://via.placeholder.com/160",
       has_car: 1,
+      keyword_list: ["자유", "평등", "박애"]
     },
   });
 
@@ -39,6 +40,7 @@ const Template: StoryFn = () => {
         gender: 1,
         image: "https://via.placeholder.com/160",
         has_car: 1,
+        keyword_list: ["자유", "평등", "박애"]
       }}
       control={control}
     />

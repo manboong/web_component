@@ -12,25 +12,22 @@ export interface DateInputProps {
 }
 
 const DateInput: React.FC<DateInputProps> = ({ control, name, label, defaultValue, sx }) => (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Controller
-            name={name}
-            control={control}
-            render={({ field }) => (
+    <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                     {...field}
                     label={label}
                     defaultValue={defaultValue}
                     onChange={(date) => field.onChange(date)}
                     value={field.value}
-                    slotProps={{
-                        textField: { fullWidth: true },
-                    }}
                     sx={sx}
                 />
-            )}
-        />
-    </LocalizationProvider>
+            </LocalizationProvider>
+        )}
+    />   
 );
 
 export default DateInput;

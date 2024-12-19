@@ -126,7 +126,7 @@ const StudentMypage = () => {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'center',
         alignItems: 'flex-start',
         gap: '24px',
@@ -136,7 +136,12 @@ const StudentMypage = () => {
       }}
       id={sections[0]}
     >
-      <Container sx={{ width: '712px', padding: '0 !important' }}>
+      <Container 
+          sx={{
+          width: { xs: '100%', md: '712px' },
+          padding: '0 !important',
+        }}
+        >
         <StudentProfileCard
           student_name="김철수"
           nationality="대한민국"
@@ -147,6 +152,7 @@ const StudentMypage = () => {
           isMypage={true}
           phone_number="010-1234-5678"
           emergency_contact="010-8765-4321"
+          keyword_list={["자유", "평등", "박애"]}
           onEditClick={() => alert('Edit Student Profile')}
         />
 
@@ -192,7 +198,7 @@ const StudentMypage = () => {
             <Box sx={{ marginTop: '16px' }}>
               <Grid container spacing={3}>
                 {mockReviews.map((review, index) => (
-                  <Grid size={12} key={index}>
+                  <Grid size={6} key={index}>
                     <ReviewOfStudentCard {...review} />
                   </Grid>
                 ))}

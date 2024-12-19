@@ -112,13 +112,14 @@ const ReviewOfStudentCard: React.FC<ReviewOfStudentCardProps> = ({
     <Card
       sx={{
         borderRadius: '16px',
-        maxWidth: 1080,
+        width: 344,
+        height: 480,
         margin: 'auto',
-        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+        border: '1px solid #d3d3d3',
         padding: 2,
       }}
     >
-      <CardContent>
+      <CardContent sx={{ padding: "0 !important"}}>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
           <Radar data={data} options={options} />
         </Box>
@@ -126,7 +127,7 @@ const ReviewOfStudentCard: React.FC<ReviewOfStudentCardProps> = ({
           <Grid container spacing={2} sx={{ marginTop: 2 }}>
             <Grid size={3}>
               <Typography variant="body1" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', fontWeight: 'bold' }}>
-                칭찬할 점:
+                칭찬:
               </Typography>
             </Grid>
             <Grid size={9}>
@@ -138,7 +139,7 @@ const ReviewOfStudentCard: React.FC<ReviewOfStudentCardProps> = ({
           <Grid container spacing={2} sx={{ marginTop: 2 }}>
             <Grid size={3}>
               <Typography variant="body1" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', fontWeight: 'bold' }}>
-                개선할 점:
+                개선:
               </Typography>
             </Grid>
             <Grid size={9}>

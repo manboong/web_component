@@ -3,33 +3,32 @@ import { Card, CardContent, CardMedia, Typography, Grid2 as Grid, Box } from '@m
 import { Control } from 'react-hook-form';
 import '@fontsource/noto-sans-kr';
 import ShortTextInput from './ShortTextInput';
-import DateInput from './DateInput';
-import RadioInput from './RadioInput';
 
-export interface StudentProfileData {
-    student_name: string;
+export interface CorpProfileData {
+    corp_name: string;
     nationality: string;
-    birth_date: Date;
+    ceo_name?: string;
+    corp_address?: string;
+    biz_started_at?: string;
+    biz_type?: string;
+    logo_image?: string;
+    site_url?: string;
+    isMypage?: boolean;
+    corp_domain?: string;
     phone_number?: string;
-    emergency_contact?: string;
-    gender: number;
-    image: string;
-    has_car: 0 | 1;
-    keyword_list: string[]
+    corp_num?: number;
+    biz_num?: number;
+    corp_status?: string;
 }
 
-interface StudentProfileInputProps {
-    initialData: StudentProfileData;
+interface CorpProfileInputProps {
+    initialData: CorpProfileData;
     control: Control<any>;
-    onNext: () => void;
-    onPrevious: () => void;
 }
 
-const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
+const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
     initialData,
     control,
-    onNext,
-    onPrevious,
 }) => {
     return (
         <Card
@@ -48,7 +47,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
         >
             <CardMedia
                 component="img"
-                image={initialData.image}
+                image={initialData.logo_image}
                 sx={{
                     width: '160px',
                     height: '160px',
@@ -63,7 +62,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                     <ShortTextInput 
                         control={control} 
                         name="student_name" 
-                        defaultValue={initialData.student_name}
+                        defaultValue={initialData.corp_name}
                     />
                 </Box>
                 <Grid container spacing={4}>
@@ -84,22 +83,22 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                         />
                     </Grid>
 
-                    <Grid size={3}>
-                        <Typography
-                            variant="body2"
-                            fontWeight="bold"
-                            sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
-                        >
-                            생년월일
-                        </Typography>
-                    </Grid>
-                    <Grid size={9}>
-                        <DateInput 
-                            control={control} 
-                            name="birth_date" 
-                            defaultValue={initialData.birth_date}
-                        />
-                    </Grid>
+                    {initialData.isMypage && (
+                        <>
+                            <Grid size={3}>
+                                <Typography variant="body2" fontWeight="bold" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>
+                                    도메인
+                                </Typography>
+                            </Grid>
+                            <Grid size={9}>
+                                <ShortTextInput 
+                                    control={control} 
+                                    name="corp_domain" 
+                                    defaultValue={initialData.corp_domain}
+                                />
+                            </Grid>
+                        </>
+                    )}
 
                     <Grid size={3}>
                         <Typography
@@ -107,32 +106,14 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                             fontWeight="bold"
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
-                            성별
-                        </Typography>
-                    </Grid>
-                    <Grid size={9}>
-                        <RadioInput 
-                            control={control} 
-                            name="gender" 
-                            options={[{value: 0, label: "남성"}, {value: 1, label: "여성"}]} 
-                            defaultValue={initialData.gender}
-                        />
-                    </Grid>
-
-                    <Grid size={3}>
-                        <Typography
-                            variant="body2"
-                            fontWeight="bold"
-                            sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
-                        >
-                            전화번호
+                            대표명
                         </Typography>
                     </Grid>
                     <Grid size={9}>
                         <ShortTextInput 
                             control={control} 
-                            name="phone_number" 
-                            defaultValue={initialData.phone_number}
+                            name="ceo_name" 
+                            defaultValue={initialData.ceo_name}
                         />
                     </Grid>
 
@@ -142,16 +123,37 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                             fontWeight="bold"
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
-                            긴급 연락처
+                            주소
                         </Typography>
                     </Grid>
                     <Grid size={9}>
                         <ShortTextInput 
                             control={control} 
-                            name="emergency_contact" 
-                            defaultValue={initialData.emergency_contact}
+                            name="corp_address" 
+                            defaultValue={initialData.corp_address}
                         />
                     </Grid>
+
+                    {initialData.isMypage && (
+                        <>
+                            <Grid size={3}>
+                                <Typography
+                                    variant="body2"
+                                    fontWeight="bold"
+                                    sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
+                                >
+                                    전화번호
+                                </Typography>
+                            </Grid>
+                            <Grid size={9}>
+                                <ShortTextInput 
+                                    control={control} 
+                                    name="phone_number" 
+                                    defaultValue={initialData.phone_number}
+                                />
+                            </Grid>
+                        </>
+                    )}
                             
                     <Grid size={3}>
                         <Typography
@@ -159,16 +161,15 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                             fontWeight="bold"
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
-                            차량 소유 여부
+                            설립일자
                         </Typography>
                     </Grid>
                     <Grid size={9}>
-                        <RadioInput 
-                                control={control} 
-                                name="has_car" 
-                                options={[{value: 0, label: "없음"}, {value: 1, label: "있음"}]} 
-                                defaultValue={initialData.has_car}
-                            />
+                        <ShortTextInput 
+                            control={control} 
+                            name="biz_started_at" 
+                            defaultValue={initialData.biz_started_at}
+                        />
                     </Grid>
 
                     <Grid size={3}>
@@ -177,29 +178,15 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                             fontWeight="bold"
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
-                            키워드
+                            업종
                         </Typography>
                     </Grid>
-                    <Grid size={3}>
+                    <Grid size={9}>
                         <ShortTextInput 
-                                control={control} 
-                                name={`keyword_list[${0}]`}
-                                defaultValue={initialData.keyword_list[0]}
-                            />
-                    </Grid>
-                    <Grid size={3}>
-                        <ShortTextInput 
-                                control={control} 
-                                name={`keyword_list[${1}]`}
-                                defaultValue={initialData.keyword_list[1]}
-                            />
-                    </Grid>
-                    <Grid size={3}>
-                        <ShortTextInput 
-                                control={control} 
-                                name={`keyword_list[${2}]`}
-                                defaultValue={initialData.keyword_list[2]}
-                            />
+                            control={control} 
+                            name="biz_type" 
+                            defaultValue={initialData.biz_type}
+                        />
                     </Grid>
                 </Grid>
             </CardContent>
