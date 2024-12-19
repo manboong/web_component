@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Typography, ListItem, ListItemButton, ListItemText, ListItemAvatar, Checkbox } from "@mui/material";
+import { Avatar, Typography, ListItem, ListItemButton, ListItemText, ListItemAvatar, Checkbox, Badge } from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 
 interface IChatRoom {
@@ -50,7 +50,6 @@ const ChatRoom = (props: IChatRoom) => {
                         edge="end"
                         onChange={handleCheckboxToggle}
                         checked={props.checked}
-                        inputProps={{ 'aria-labelledby': `checkbox-list-secondary-label-${props.title}` }}
                     />
                 )
             }
@@ -74,12 +73,14 @@ const ChatRoom = (props: IChatRoom) => {
                 }}
             >
                 <ListItemAvatar>
-                    <Avatar
-                        src={props.image}
-                        alt={props.title}
-                    >
-                        {!props.image && <PersonIcon />}
-                    </Avatar>
+                    <Badge badgeContent={props.unreadCount} color="primary">
+                        <Avatar
+                            src={props.image}
+                            alt={props.title}
+                        >
+                            {!props.image && <PersonIcon />}
+                        </Avatar>
+                    </Badge>
                 </ListItemAvatar>
                 <ListItemText
                     primary={
