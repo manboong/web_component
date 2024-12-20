@@ -14,7 +14,7 @@ export interface MessageHeaderProps {
 
 const MessageHeader: React.FC<MessageHeaderProps> = ({ username, onClickArrow, onClickUser }) => {
     return (
-        <AppBar position="static" elevation={0} sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+        <AppBar position="static" elevation={0} sx={{ maxWidth: 1080 }}>
             <Toolbar>
                 <IconButton
                     edge="start"

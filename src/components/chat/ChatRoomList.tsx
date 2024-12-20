@@ -30,7 +30,7 @@ const ChatRoomList: React.FC<ChatRoomListProps> = ({
     selectedRooms
 }) => {
     return (
-        <List style={{ width: '100%', maxWidth: 360, backgroundColor: '#f9f9f9' }}>
+        <List style={{ width: '100%', maxWidth: 1080, backgroundColor: '#f9f9f9' }}>
             {chatRooms.map((room) => (
                 <ChatRoom
                     key={room.chatRoomId}

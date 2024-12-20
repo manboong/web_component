@@ -5,6 +5,7 @@ import '@fontsource/noto-sans-kr';
 import ShortTextInput from './ShortTextInput';
 import DateInput from './DateInput';
 import RadioInput from './RadioInput';
+import NavigationButton from '../NavigationButton';
 
 export interface StudentProfileData {
     student_name: string;
@@ -19,7 +20,7 @@ export interface StudentProfileData {
 }
 
 interface StudentProfileInputProps {
-    initialData: StudentProfileData;
+    initialData?: StudentProfileData;
     control: Control<any>;
     onNext: () => void;
     onPrevious: () => void;
@@ -48,7 +49,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
         >
             <CardMedia
                 component="img"
-                image={initialData.image}
+                image={initialData?.image}
                 sx={{
                     width: '160px',
                     height: '160px',
@@ -63,7 +64,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                     <ShortTextInput 
                         control={control} 
                         name="student_name" 
-                        defaultValue={initialData.student_name}
+                        defaultValue={initialData?.student_name}
                     />
                 </Box>
                 <Grid container spacing={4}>
@@ -80,7 +81,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="nationality" 
-                            defaultValue={initialData.nationality}
+                            defaultValue={initialData?.nationality}
                         />
                     </Grid>
 
@@ -97,7 +98,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                         <DateInput 
                             control={control} 
                             name="birth_date" 
-                            defaultValue={initialData.birth_date}
+                            defaultValue={initialData?.birth_date}
                         />
                     </Grid>
 
@@ -115,7 +116,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                             control={control} 
                             name="gender" 
                             options={[{value: 0, label: "남성"}, {value: 1, label: "여성"}]} 
-                            defaultValue={initialData.gender}
+                            defaultValue={initialData?.gender}
                         />
                     </Grid>
 
@@ -132,7 +133,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="phone_number" 
-                            defaultValue={initialData.phone_number}
+                            defaultValue={initialData?.phone_number}
                         />
                     </Grid>
 
@@ -149,7 +150,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="emergency_contact" 
-                            defaultValue={initialData.emergency_contact}
+                            defaultValue={initialData?.emergency_contact}
                         />
                     </Grid>
                             
@@ -167,7 +168,7 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                                 control={control} 
                                 name="has_car" 
                                 options={[{value: 0, label: "없음"}, {value: 1, label: "있음"}]} 
-                                defaultValue={initialData.has_car}
+                                defaultValue={initialData?.has_car}
                             />
                     </Grid>
 
@@ -184,24 +185,28 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
                         <ShortTextInput 
                                 control={control} 
                                 name={`keyword_list[${0}]`}
-                                defaultValue={initialData.keyword_list[0]}
+                                defaultValue={initialData?.keyword_list[0]}
                             />
                     </Grid>
                     <Grid size={3}>
                         <ShortTextInput 
                                 control={control} 
                                 name={`keyword_list[${1}]`}
-                                defaultValue={initialData.keyword_list[1]}
+                                defaultValue={initialData?.keyword_list[1]}
                             />
                     </Grid>
                     <Grid size={3}>
                         <ShortTextInput 
                                 control={control} 
                                 name={`keyword_list[${2}]`}
-                                defaultValue={initialData.keyword_list[2]}
+                                defaultValue={initialData?.keyword_list[2]}
                             />
                     </Grid>
                 </Grid>
+                <Box display="flex" justifyContent="space-between" mt={3}>
+                    <NavigationButton label="previous" onClick={onPrevious} />
+                    <NavigationButton label="next" onClick={onNext} />
+                </Box>
             </CardContent>
         </Card>
     );

@@ -1,7 +1,6 @@
-import React from "react"
-import { Flex, IconButton } from "@radix-ui/themes"
-import { Textarea } from "@mui/joy"
-import { PaperPlaneIcon, Link2Icon } from "@radix-ui/react-icons"
+import React from "react";
+import { Box, IconButton, TextField } from "@mui/material";
+import { Send as SendIcon, AttachFile as AttachIcon } from "@mui/icons-material";
 
 interface InputBoxProps {
     value: string;
@@ -11,39 +10,63 @@ interface InputBoxProps {
     onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
     disabled: boolean;
 }
-const InputBox = (props: InputBoxProps) => { 
 
-    // @ts-ignore
-    const handleKeyPress = (evt) => {
-        if (
-            evt.key === "Enter" &&
-            evt.shiftKey === false &&
-            props.disabled === false
-        ) {
-          evt.preventDefault();
-          props.onSend(evt);
+const InputBox: React.FC<InputBoxProps> = ({
+    value,
+    placeholder,
+    onAttachClick,
+    onSend,
+    onChange,
+    disabled,
+}) => {
+    const handleKeyPress = (evt: React.KeyboardEvent<HTMLDivElement>) => {
+        if (evt.key === "Enter" && !evt.shiftKey && !disabled) {
+            evt.preventDefault();
+            onSend(evt as unknown as React.MouseEvent<HTMLButtonElement>);
         }
-      };
-
- 
+    };
 
     return (
+        <Box
+            sx={{
+                display: "flex",
+                alignItems: "flex-end",
+                gap: 1,
+                padding: 1,
+                borderTop: "1px solid #ccc",
+                backgroundColor: "#f9f9f9",
+                maxWidth: 1080,
+            }}
+        >
+            <IconButton onClick={onAttachClick} disabled={disabled}>
+                <AttachIcon fontSize="small" />
+            </IconButton>
 
-        <Flex direction="row" align="end" justify="center" gap="2" p="3">
-            <IconButton variant="ghost" onClick={(e)=>(props.onAttachClick(e))}>
-                <Link2Icon width="22" height="22"/>
-            </IconButton>
-            <Textarea  name="chatSubmit" sx={{flex: "1"}}  minRows={1} maxRows={3} disabled={props.disabled} 
-                    value={props.value}
-                    placeholder={props.placeholder} 
-                    onChange={props.onChange}
-                    onKeyDown={handleKeyPress}
+            <TextField
+                multiline
+                minRows={1}
+                maxRows={3}
+                fullWidth
+                value={value}
+                placeholder={placeholder}
+                onChange={onChange}
+                onKeyDown={handleKeyPress}
+                disabled={disabled}
+                sx={{
+                    flexGrow: 1,
+                    backgroundColor: "white",
+                    borderRadius: "4px",
+                    "& .MuiOutlinedInput-root": {
+                        padding: 1,
+                    },
+                }}
             />
-            <IconButton variant="ghost" onClick={(e)=>(props.onSend(e))}>
-                <PaperPlaneIcon width="22" height="22"/>
+
+            <IconButton onClick={onSend} disabled={disabled}>
+                <SendIcon fontSize="small" />
             </IconButton>
-        </Flex>
-    )
-}
+        </Box>
+    );
+};
 
 export default InputBox;

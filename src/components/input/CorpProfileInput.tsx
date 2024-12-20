@@ -3,6 +3,7 @@ import { Card, CardContent, CardMedia, Typography, Grid2 as Grid, Box } from '@m
 import { Control } from 'react-hook-form';
 import '@fontsource/noto-sans-kr';
 import ShortTextInput from './ShortTextInput';
+import NavigationButton from '../NavigationButton';
 
 export interface CorpProfileData {
     corp_name: string;
@@ -22,13 +23,17 @@ export interface CorpProfileData {
 }
 
 interface CorpProfileInputProps {
-    initialData: CorpProfileData;
+    initialData?: CorpProfileData;
     control: Control<any>;
+    onNext: () => void;
+    onPrevious: () => void;
 }
 
 const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
     initialData,
     control,
+    onNext,
+    onPrevious,
 }) => {
     return (
         <Card
@@ -47,7 +52,7 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
         >
             <CardMedia
                 component="img"
-                image={initialData.logo_image}
+                image={initialData?.logo_image}
                 sx={{
                     width: '160px',
                     height: '160px',
@@ -62,7 +67,7 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                     <ShortTextInput 
                         control={control} 
                         name="student_name" 
-                        defaultValue={initialData.corp_name}
+                        defaultValue={initialData?.corp_name}
                     />
                 </Box>
                 <Grid container spacing={4}>
@@ -79,11 +84,11 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="nationality" 
-                            defaultValue={initialData.nationality}
+                            defaultValue={initialData?.nationality}
                         />
                     </Grid>
 
-                    {initialData.isMypage && (
+                    {initialData?.isMypage && (
                         <>
                             <Grid size={3}>
                                 <Typography variant="body2" fontWeight="bold" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>
@@ -94,7 +99,7 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                                 <ShortTextInput 
                                     control={control} 
                                     name="corp_domain" 
-                                    defaultValue={initialData.corp_domain}
+                                    defaultValue={initialData?.corp_domain}
                                 />
                             </Grid>
                         </>
@@ -113,7 +118,7 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="ceo_name" 
-                            defaultValue={initialData.ceo_name}
+                            defaultValue={initialData?.ceo_name}
                         />
                     </Grid>
 
@@ -130,11 +135,11 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="corp_address" 
-                            defaultValue={initialData.corp_address}
+                            defaultValue={initialData?.corp_address}
                         />
                     </Grid>
 
-                    {initialData.isMypage && (
+                    {initialData?.isMypage && (
                         <>
                             <Grid size={3}>
                                 <Typography
@@ -149,7 +154,7 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                                 <ShortTextInput 
                                     control={control} 
                                     name="phone_number" 
-                                    defaultValue={initialData.phone_number}
+                                    defaultValue={initialData?.phone_number}
                                 />
                             </Grid>
                         </>
@@ -168,7 +173,7 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="biz_started_at" 
-                            defaultValue={initialData.biz_started_at}
+                            defaultValue={initialData?.biz_started_at}
                         />
                     </Grid>
 
@@ -185,10 +190,14 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         <ShortTextInput 
                             control={control} 
                             name="biz_type" 
-                            defaultValue={initialData.biz_type}
+                            defaultValue={initialData?.biz_type}
                         />
                     </Grid>
                 </Grid>
+                <Box display="flex" justifyContent="space-between" mt={3}>
+                    <NavigationButton label="previous" onClick={onPrevious} />
+                    <NavigationButton label="next" onClick={onNext} />
+                </Box>
             </CardContent>
         </Card>
     );

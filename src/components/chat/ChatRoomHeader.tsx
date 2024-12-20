@@ -41,7 +41,7 @@ const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, role, onBackClic
 
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="static" sx={{ maxWidth: 1080 }} >
                 <Toolbar>
                     {!isMobile && (
                         <IconButton

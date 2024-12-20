@@ -1,137 +1,120 @@
-import React from "react"
-import { Box, Card, Text, Avatar, Badge, Flex, Inset } from "@radix-ui/themes";
+import React from "react";
+import { Box, Avatar, Badge, Typography, Card } from "@mui/material";
 
 export interface MessageProps {
     content?: string;
-    direction: "outgoing" | "inbound";
-    contentType?: "image" | "text" | "map" | "file";
+    direction: "outgoing" | "inbound" | "alarm";
+    contentType?: "image" | "text" | "map" | "file" | "alarm";
     senderName?: string;
     senderImage?: string;
     imageUrl?: string;
     sentAt?: Date;
     unread?: number;
+    status: 0 | 1 | 2;
 }
 
-const Padding = () => {
+const Profile = ({ senderName, senderImage }: { senderName?: string; senderImage?: string }) => {
     return (
-        <Box flexGrow="1" minWidth="20%" />
-    )
-}
+        <Box sx={{ minWidth: 50, display: "flex", flexDirection: "column-reverse", alignItems: "center", justifyContent: "center" }}>
+            {senderName ? (
+                <Avatar alt={senderName} src={senderImage} sx={{ width: 40, height: 40 }}>
+                    {senderName[0]}
+                </Avatar>
+            ) : (
+                <Box sx={{ width: 40, height: 40 }} />
+            )}
+        </Box>
+    );
+};
 
-const Profile = ({senderName, senderImage}: {senderName?: string, senderImage?: string}) => {
+const TextContent = ({ text }: { text: string }) => {
     return (
-        senderName === undefined ?
-            <Box minWidth="50px">
-
-            </Box> 
-        :   
-            <Box minWidth="50px">
-                <Avatar fallback={senderName[0]} size="3" src={senderImage} radius="large" />
-            </Box>
-        
-    )
-}
-
-const TextContent = ({text}: {text: string}) => {
-
-    return (
-        <Text as="p" size="2" wrap="pretty">
+        <Typography variant="body2" sx={{ wordWrap: "break-word" }}>
             {text}
-        </Text>
-    )
-}
+        </Typography>
+    );
+};
 
-const ImageContent = ({imageUrl}: {imageUrl?: string}) => {
+const ImageContent = ({ imageUrl }: { imageUrl?: string }) => {
     return (
-        <Inset p="current" clip="padding-box">
-            <img
-                src={imageUrl}
-                alt="Bold typography"
-                style={{
-                    display: "block",
-                    objectFit: "cover",
-                    width: "100%",
-                    height: 140,
-                    backgroundColor: "var(--gray-5)",
-                }}
-            />
-        </Inset>
-    )
-}
+        <Box
+            component="img"
+            src={imageUrl}
+            alt="Image content"
+            sx={{
+                width: "100%",
+                height: 140,
+                objectFit: "cover",
+                borderRadius: 1,
+                backgroundColor: "#e0e0e0",
+            }}
+        />
+    );
+};
 
 const renderContent = (props: MessageProps) => {
     let content;
 
     switch (props.contentType) {
         case "image":
-            content = <ImageContent imageUrl={props.imageUrl} />
+            content = <ImageContent imageUrl={props.imageUrl} />;
             break;
         default:
-            // @ts-ignore
-            content = <TextContent text={props.content} />
+            content = <TextContent text={props.content || ""} />;
             break;
     }
 
     return (
-        <Box maxWidth="70%" flexShrink="1">
-            {
-            props.senderName === undefined ?
-                <></>    
-            :
-                <Text size="2" weight="medium">{props.senderName}</Text>
-            }
-            <Card size="1">
+        <Box sx={{ maxWidth: "70%", flexShrink: 1 }}>
+            {props.senderName && (
+                <Typography variant="caption" fontWeight="medium">
+                    {props.senderName}
+                </Typography>
+            )}
+            <Card variant="outlined" sx={{ padding: 1, marginTop: 0.5 }}>
                 {content}
             </Card>
         </Box>
-    )
-}
+    );
+};
 
-const Footer = ({unread, sentAt, direction}: {unread?: number, sentAt?: Date, direction: "outgoing" | "inbound"}) => {
-    const Align = direction === 'outgoing' ? 'end' : 'start';
-
+const Footer = ({ unread, sentAt, direction }: { unread?: number; sentAt?: Date; direction: "outgoing" | "inbound" }) => {
     return (
-        <Flex align={Align} justify="end" direction="column" gap="1" pl="1" pr="1">
-            {
-                unread === undefined ?
-                    <></>
-                :
-                    <Badge radius="full">{unread}</Badge>
-            }
-            {
-                sentAt === undefined ?
-                    <></>
-                :
-                    <Text size="1" color="gray">{sentAt.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', second: undefined})}</Text>
-            }
-        </Flex>
-    )
-}
-
+        <Box sx={{ textAlign: direction === "outgoing" ? "right" : "left", marginLeft: 1, marginRight: 1 }}>
+            {unread !== undefined && unread > 0 && (
+                <Badge badgeContent={unread} color="primary" sx={{ marginBottom: 0.5 }} />
+            )}
+            {sentAt && (
+                <Typography variant="caption" color="textSecondary">
+                    {sentAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                </Typography>
+            )}
+        </Box>
+    );
+};
 
 const Message = (props: MessageProps) => {
-    
-
-
-    return (
-        props.direction === "outgoing" ?
-            <Flex direction="row" pl="2" pr="2">
-                <Padding />
-                <Footer sentAt={props.sentAt} unread={props.unread} direction={props.direction}/>
-                {
-                    renderContent(props)
-                }
-            </Flex>
-        :
-            <Flex direction="row" pl="2" pr="2">
-                <Profile senderName={props.senderName} senderImage={props.senderImage}/>
-                {
-                    renderContent(props)
-                }
-                <Footer sentAt={props.sentAt} unread={props.unread} direction={props.direction}/>
-                <Padding />
-            </Flex>
-        )
-}
+    if (props.direction === "alarm") {
+        return (
+            <Box sx={{ display: "flex", flexDirection: "row", padding: 2 }}>
+                {renderContent(props)}
+            </Box>
+        );
+    }
+    return props.direction === "outgoing" ? (
+        <Box sx={{ display: "flex", flexDirection: "row", padding: 2 }}>
+            <Box sx={{ flexGrow: 1 }} />
+            <Footer sentAt={props.sentAt} unread={props.unread} direction={props.direction} />
+            {renderContent(props)}
+        </Box>
+    ) : (
+        <Box sx={{ display: "flex", flexDirection: "row", padding: 2 }}>
+            <Profile senderName={props.senderName} senderImage={props.senderImage} />
+            {renderContent(props)}
+            <Footer sentAt={props.sentAt} unread={props.unread} direction={props.direction} />
+            <Box sx={{ flexGrow: 1 }} />
+        </Box>
+    );
+};
 
 export default Message;
