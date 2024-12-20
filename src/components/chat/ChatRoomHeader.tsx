@@ -13,14 +13,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-interface AppBarProps {
+export interface ChatRoomHeaderProps {
     title: string;
+    role: "provider" | "consumer";
     onBackClick: () => void;
     onHireClick: () => void;
     onEndHireClick: () => void;
 }
 
-const CustomAppBar: React.FC<AppBarProps> = ({ title, onBackClick, onHireClick, onEndHireClick }) => {
+const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, role, onBackClick, onHireClick, onEndHireClick }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [openDialog, setOpenDialog] = useState(false);
@@ -55,8 +56,16 @@ const CustomAppBar: React.FC<AppBarProps> = ({ title, onBackClick, onHireClick, 
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {title}
                     </Typography>
-                    <Button color="inherit" onClick={onHireClick}>채용하기</Button>
-                    <Button color="inherit" onClick={handleOpenDialog}>채용종료</Button>
+                    {role === "provider" && (
+                        <>
+                            <Button color="inherit" onClick={onHireClick}>
+                                채용하기
+                            </Button>
+                            <Button color="inherit" onClick={handleOpenDialog}>
+                                채용종료
+                            </Button>
+                        </>
+                    )}
                 </Toolbar>
             </AppBar>
 
@@ -85,4 +94,4 @@ const CustomAppBar: React.FC<AppBarProps> = ({ title, onBackClick, onHireClick, 
     );
 };
 
-export default CustomAppBar;
+export default ChatRoomHeader;
