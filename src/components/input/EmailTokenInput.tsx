@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { ShortTextInput, NavigationButton } from "../";
+import NavigationButton from "../NavigationButton";
+import ShortTextInput from "./ShortTextInput"
 import { Box, Typography, Grid2 as Grid, Card, CardContent, Button } from "@mui/material";
 
-export interface StudentEmailInputProps {
+export interface EmailTokenInputProps {
     control: any; 
     onSend: () => void;
     onSubmit: () => void;
@@ -10,7 +11,7 @@ export interface StudentEmailInputProps {
     userType: "student" | "corp" | "orgn";
 }
 
-const EmailInput: React.FC<StudentEmailInputProps> = ({
+const EmailTokenInput: React.FC<EmailTokenInputProps> = ({
     control,
     onSend,
     onSubmit,
@@ -108,4 +109,4 @@ const EmailInput: React.FC<StudentEmailInputProps> = ({
     );
 };
 
-export default EmailInput;
+export default EmailTokenInput;
