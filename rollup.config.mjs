@@ -19,6 +19,7 @@ const External = [
     "@mui/x-date-pickers/AdapterDateFnsV3/index.js",
     "@mui/styled-engine",
     "@mui/icons-material",
+    "@mui/icons-material/NavigateBefore",
     "@emotion/react",
     "@emotion/styled",
     "@emotion/cache",

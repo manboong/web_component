@@ -160,7 +160,8 @@ const StudentMypage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '24px',
-                }}>
+                }}
+                >
                 <RequestSideCard request={requestDataExample}/>
                 <Card 
                     sx={{

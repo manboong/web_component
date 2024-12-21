@@ -1,9 +1,11 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {
+    AppBar,
+    Toolbar,
+    IconButton,
+    Typography,
+    Button,
+} from '@mui/material';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 export interface MessageHeaderProps {

@@ -33,3 +33,5 @@ export { default as CorpProfileInput } from "./input/CorpProfileInput";
 export { default as StudentProfileInput } from "./input/StudentProfileInput";
 export { default as UserTypeInput } from "./input/UserTypeInput";
 export { default as EmailTokenInput } from "./input/EmailTokenInput";
+
+export { default as PageContainer } from "./container/PageContainer";

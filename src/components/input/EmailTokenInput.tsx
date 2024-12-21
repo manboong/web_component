@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import NavigationButton from "../NavigationButton";
 import ShortTextInput from "./ShortTextInput"
 import { Box, Typography, Grid2 as Grid, Card, CardContent, Button } from "@mui/material";
+import { Control } from "react-hook-form";
 
 export interface EmailTokenInputProps {
-    control: any; 
+    control: Control<any>; 
     onSend: () => void;
     onSubmit: () => void;
     onPrevious: () => void;
