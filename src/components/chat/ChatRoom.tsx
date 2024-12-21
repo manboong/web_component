@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Typography, ListItem, ListItemButton, ListItemText, ListItemAvatar, Checkbox, Badge } from "@mui/material";
+import { Avatar, Typography, ListItem, ListItemButton, ListItemText, ListItemAvatar, Checkbox, Badge, Grid2 as Grid } from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 
 interface IChatRoom {
@@ -76,7 +76,6 @@ const ChatRoom = (props: IChatRoom) => {
                     <Badge badgeContent={props.unreadCount} color="primary">
                         <Avatar
                             src={props.image}
-                            alt={props.title}
                         >
                             {!props.image && <PersonIcon />}
                         </Avatar>
@@ -92,13 +91,27 @@ const ChatRoom = (props: IChatRoom) => {
                         </Typography>
                     }
                     secondary={
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
-                        >
-                            {props.lastMessage}
-                        </Typography>
+                        <Grid container spacing={1}>
+                            <Grid size={9}>
+                                <Typography
+                                    variant="body2"
+                                    color="textSecondary"
+                                    style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                >
+                                    {props.lastMessage}
+                                </Typography>
+                            </Grid>
+                            <Grid size={3}>
+                                <Typography
+                                    variant="body2"
+                                    color="textSecondary"
+                                    style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                >
+                                    {props.lastSentAt.toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' })}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+
                     }
                 />
             </ListItemButton>

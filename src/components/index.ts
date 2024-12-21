@@ -18,8 +18,10 @@ export { default as ReviewOfStudentCard } from "./ReviewOfStudentCard";
 
 export { default as ChatRoom } from "./chat/ChatRoom";
 export { default as Message } from "./chat/Message";
+export { default as ChatRoomHeader } from "./chat/ChatRoomHeader";
 export { default as MessageHeader } from "./chat/MessageHeader";
 export { default as InputBox } from "./chat/InputBox";
+export { default as RequestRoom } from "./chat/RequestRoom";
 
 export { default as ShortTextInput } from "./input/ShortTextInput";
 export { default as DateInput } from "./input/DateInput";
