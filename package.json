@@ -14,8 +14,6 @@
         "@chatscope/chat-ui-kit-styles": "^1.4.0",
         "@coreui/icons": "^3.0.1",
         "@coreui/icons-react": "^2.3.0",
-        "@emotion/react": "^11.13.3",
-        "@emotion/styled": "^11.13.0",
         "@fontsource/roboto-condensed": "^5.1.0",
         "@mui/joy": "^5.0.0-beta.48",
         "@mui/material": "^6.1.6",
@@ -41,7 +39,15 @@
         "react-hook-form": "^7.53.2",
         "react-icons": "^5.3.0",
         "styled-components": "^6.1.13",
-        "web-vitals": "^2.1.4"
+        "web-vitals": "^2.1.4",
+        "@economist/design-system": "^7.31.0",
+        "@fontsource/noto-sans-kr": "^5.1.0",
+        "@mui/icons-material": "^6.1.10",
+        "api_spec": "file:../api_spec/api_spec-1.0.0.tgz",
+        "chart.js": "^4.4.7",
+        "ethereum-blockies": "^0.1.1",
+        "react-blockies": "^1.4.1",
+        "react-chartjs-2": "^5.2.0"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -119,13 +125,5 @@
     },
     "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
     "dependencies": {
-        "@economist/design-system": "^7.31.0",
-        "@fontsource/noto-sans-kr": "^5.1.0",
-        "@mui/icons-material": "^6.1.10",
-        "api_spec": "file:../api_spec/api_spec-1.0.0.tgz",
-        "chart.js": "^4.4.7",
-        "ethereum-blockies": "^0.1.1",
-        "react-blockies": "^1.4.1",
-        "react-chartjs-2": "^5.2.0"
     }
 }

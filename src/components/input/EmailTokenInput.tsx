@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { ShortTextInput, NavigationButton } from "../";
+import NavigationButton from "../NavigationButton";
+import ShortTextInput from "./ShortTextInput"
 import { Box, Typography, Grid2 as Grid, Card, CardContent, Button } from "@mui/material";
+import { Control } from "react-hook-form";
 
-export interface StudentEmailInputProps {
-    control: any; 
+export interface EmailTokenInputProps {
+    control: Control<any>; 
     onSend: () => void;
     onSubmit: () => void;
     onPrevious: () => void;
     userType: "student" | "corp" | "orgn";
 }
 
-const EmailInput: React.FC<StudentEmailInputProps> = ({
+const EmailTokenInput: React.FC<EmailTokenInputProps> = ({
     control,
     onSend,
     onSubmit,
@@ -108,4 +110,4 @@ const EmailInput: React.FC<StudentEmailInputProps> = ({
     );
 };
 
-export default EmailInput;
+export default EmailTokenInput;

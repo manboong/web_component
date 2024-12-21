@@ -41,7 +41,6 @@ interface StudentProfileProps extends VerificationProps{
     keyword_list?: object;
     academicHistory: AcademicHistoryProps[];
     examHistory: ExamProps[];
-
 }
 interface ConsumerProfileProps extends VerificationProps{
     corp_id?: number | null;
