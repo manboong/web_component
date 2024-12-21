@@ -10,12 +10,8 @@
     ],
     "private": true,
     "peerDependencies": {
-        "@chatscope/chat-ui-kit-react": "^2.0.3",
-        "@chatscope/chat-ui-kit-styles": "^1.4.0",
         "@coreui/icons": "^3.0.1",
         "@coreui/icons-react": "^2.3.0",
-        "@emotion/react": "^11.13.3",
-        "@emotion/styled": "^11.13.0",
         "@fontsource/roboto-condensed": "^5.1.0",
         "@mui/joy": "^5.0.0-beta.48",
         "@mui/material": "^6.1.6",
@@ -32,7 +28,6 @@
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-        "@toss/react": "^1.8.1",
         "@use-funnel/react-router-dom": "^0.0.7",
         "classnames": "^2.5.1",
         "date-fns": "^4.1.0",
@@ -123,9 +118,6 @@
         "@fontsource/noto-sans-kr": "^5.1.0",
         "@mui/icons-material": "^6.1.10",
         "api_spec": "file:../api_spec/api_spec-1.0.0.tgz",
-        "chart.js": "^4.4.7",
-        "ethereum-blockies": "^0.1.1",
-        "react-blockies": "^1.4.1",
-        "react-chartjs-2": "^5.2.0"
+        "chart.js": "^4.4.7"
     }
 }
