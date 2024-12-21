@@ -56,6 +56,9 @@ const renderContent = (props: MessageProps) => {
     let content;
 
     switch (props.contentType) {
+        case "alarm":
+            content = <TextContent text={props.content || ""} />;
+            break;
         case "image":
             content = <ImageContent imageUrl={props.imageUrl} />;
             break;
@@ -96,7 +99,7 @@ const Footer = ({ unread, sentAt, direction }: { unread?: number; sentAt?: Date;
 const Message = (props: MessageProps) => {
     if (props.direction === "alarm") {
         return (
-            <Box sx={{ display: "flex", flexDirection: "row", padding: 2 }}>
+            <Box sx={{ display: "flex", flexDirection: "row", padding: 2, alignItems: "center" }}>
                 {renderContent(props)}
             </Box>
         );

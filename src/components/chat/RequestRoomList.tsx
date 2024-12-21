@@ -21,20 +21,17 @@ const reqs = [
 ];
 
 const RequestRoomList = () => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
         <List
-            onMouseLeave={() => setHoveredIndex(null)}
-            style={{ width: '100%', maxWidth: 360, backgroundColor: '#f9f9f9', padding: "12px" }}
+            disablePadding
+            style={{ width: 90, backgroundColor: '#f9f9f9' }}
         >
             {reqs.map((req, index) => (
                 <RequestRoom
                     key={index}
                     title={req.title}
-                    start_date={req.start_date}
                     logo_image={req.logo_image}
-                    isHover={hoveredIndex === index}
                     onClick={() => console.log(`Clicked on ${req.title}`)}
                 />
             ))}
