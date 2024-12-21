@@ -83,14 +83,24 @@ const renderContent = (props: MessageProps) => {
 
 const Footer = ({ unread, sentAt, direction }: { unread?: number; sentAt?: Date; direction: "outgoing" | "inbound" }) => {
     return (
-        <Box sx={{ textAlign: direction === "outgoing" ? "right" : "left", marginLeft: 1, marginRight: 1 }}>
-            {unread !== undefined && unread > 0 && (
-                <Badge badgeContent={unread} color="primary" sx={{ marginBottom: 0.5 }} />
-            )}
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: direction === "outgoing" ? "flex-end" : "flex-start",
+                textAlign: direction === "outgoing" ? "right" : "left",
+                marginLeft: 1,
+                marginRight: 1,
+            }}
+        >
             {sentAt && (
-                <Typography variant="caption" color="textSecondary">
+                <Typography variant="caption" color="textSecondary" sx={{ marginBottom: 1 }}>
                     {sentAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                 </Typography>
+            )}
+            {unread !== undefined && unread > 0 && (
+                <Badge badgeContent={unread} color="primary" sx={{ marginLeft: 1, marginRight: 1 }}/>
             )}
         </Box>
     );
