@@ -5,45 +5,36 @@ import {
     Toolbar,
     IconButton,
     Typography,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
+    Divider,
+    Menu,
+    MenuItem,
     useMediaQuery
 } from '@mui/material';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import MenuIcon from "@mui/icons-material/Menu"
 
 export interface ChatRoomHeaderProps {
     title: string;
-    role: "provider" | "consumer";
+    menuItemList?: ((closeMenuHandler: ()=>(void))=>JSX.Element)[];
     onBackClick: () => void;
-    onHireClick: () => void;
-    onEndHireClick: () => void;
 }
 
-const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, role, onBackClick, onHireClick, onEndHireClick }) => {
+const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, menuItemList, onBackClick }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const [openDialog, setOpenDialog] = useState(false);
 
-    const handleOpenDialog = () => {
-        setOpenDialog(true);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
     };
-
-    const handleCloseDialog = () => {
-        setOpenDialog(false);
-    };
-
-    const handleConfirmEndHire = () => {
-        setOpenDialog(false);
-        onEndHireClick();
+    const handleClose = () => {
+      setAnchorEl(null);
     };
 
     return (
         <>
-            <AppBar position="static" sx={{ maxWidth: 1080 }} >
+            <AppBar position="static" >
                 <Toolbar>
                     {!isMobile && (
                         <IconButton
@@ -58,40 +49,60 @@ const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, role, onBackClic
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {title}
                     </Typography>
-                    {role === "provider" && (
-                        <>
-                            <Button color="inherit" onClick={onHireClick}>
-                                채용하기
-                            </Button>
-                            <Button color="inherit" onClick={handleOpenDialog}>
-                                채용종료
-                            </Button>
-                        </>
-                    )}
+                    <IconButton
+                        id="chat-header-button"
+                        aria-controls={open ? 'chat-header-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        aria-label='menu'
+                        onClick={handleClick}
+                        color="inherit"
+                    >
+                            <MenuIcon />
+                    </IconButton>
+                    <Menu
+                        id='chat-header-menu'
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        elevation={0}
+                        anchorOrigin={{
+                            vertical: "center",
+                            horizontal: "left",
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        MenuListProps={{
+                            'aria-labelledby': 'chat-header-button',
+                        }}
+                    >
+                        {
+                            menuItemList === undefined ?
+                                <></>
+                            :
+                                menuItemList.map((val, idx) => {
+                                    return (
+                                        <>
+                                        <MenuItem
+                                        >
+                                           {val(handleClose)}
+                                        </MenuItem>
+                                        {/** Add divider */}
+                                        {
+                                            idx < menuItemList.length ?
+                                                <Divider sx={{ my: 0.5 }} />
+                                            :
+                                                <></>
+                                        }
+                                        </>
+                                    )
+                                })
+                        }
+                    </Menu>
                 </Toolbar>
             </AppBar>
-
-            <Dialog
-                open={openDialog}
-                onClose={handleCloseDialog}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">채용 종료 확인</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        정말로 채용과정을 종료하시겠습니까?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog} color="primary">
-                        뒤로
-                    </Button>
-                    <Button onClick={handleConfirmEndHire} color="primary" autoFocus>
-                        채용종료
-                    </Button>
-                </DialogActions>
-            </Dialog>
         </>
     );
 };

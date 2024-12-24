@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ChatRoom from './ChatRoom';
+import { List, Checkbox } from '@mui/material';
 import { Meta, StoryFn } from '@storybook/react';
 
 export default {
     title: 'Components/ChatRoom',
     component: ChatRoom,
     argTypes: {
+        title: {type: "string"},
+        lastSentMessage: {type: "string"},
+        unreadCount: {type: "number"},
+        disalbed: {type: 'boolean'},
+        selected: {type: 'boolean'},
+        checkBoxMode: {type: 'boolean'},
+        lastSentAt: {type: Date},
         onClick: { action: 'clicked' },
         onContextMenu: { action: 'context menu' },
         onLongPress: { action: 'long press' },
@@ -14,29 +22,46 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => {
-    const [isCheckbox, setIsCheckbox] = useState(false);
+    const [checkBoxMode, setCheckBoxMode] = useState(args.checkBoxMode as boolean ?? false);
     const [checked, setChecked] = useState(false);
 
-    const handleLongPress = () => {
-        setIsCheckbox(true);
-        args.onLongPress();
-    };
-
-    const handleCheckboxToggle = (newChecked) => {
+    useEffect(()=>{
+        const preventBack = () => {
+            // save state when checkbox mode on
+            if(checkBoxMode === true){
+                window.history.pushState(null, '', window.location.href);
+                setCheckBoxMode((prev) => !prev);
+            }
+        }
+            window.addEventListener('popstate', preventBack)
+        return () => {
+            window.removeEventListener('popstate', preventBack)
+        }
+    }, [])
+    
+    const handleCheckboxToggle = (newChecked: any) => {
         setChecked(newChecked);
         args.onCheckboxToggle(newChecked);
     };
-
+    
     return (
-        <ChatRoom
-            {...args}
-            isCheckbox={isCheckbox}
-            checked={checked}
-            onLongPress={handleLongPress}
-            onCheckboxToggle={handleCheckboxToggle}
-        />
+        <List dense sx={{width: "100%", maxWidth: '500px'}}>
+            <ChatRoom
+                title={args.title}
+                lastMessage={args.lastMessage}
+                lastSentAt={args.lastSentAt}
+                unreadCount={args.unreadCount}
+                image={args.image}
+                disabled={args.disabled}
+                selected={args.selected}
+                checkBoxMode={checkBoxMode}
+                onCheckboxToggle={handleCheckboxToggle}
+                onLongPress={() => setCheckBoxMode((prev) => !prev)}
+            />
+        </List>
     );
 };
+
 
 export const Default = Template.bind({});
 Default.args = {
@@ -44,7 +69,8 @@ Default.args = {
     lastMessage: 'This is the last message in the chat room.',
     lastSentAt: new Date(),
     unreadCount: 3,
-    enabled: true,
+    checkBoxMode: false,
+    disabled: false,
     image: '',
 };
 
@@ -57,12 +83,18 @@ WithAvatar.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
     ...Default.args,
-    enabled: false,
+    disabled: true,
 };
 
 export const CheckboxEnabled = Template.bind({});
 CheckboxEnabled.args = {
     ...Default.args,
-    isCheckbox: true,
+    checkBoxMode: true,
     checked: false,
+};
+
+export const Selected = Template.bind({});
+Selected.args = {
+    ...Default.args,
+    selected: true,
 };
