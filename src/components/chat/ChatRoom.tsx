@@ -42,7 +42,6 @@ const elapsedTime = (date?: Date): string => {
 
 const ChatRoom = (props: IChatRoom) => {
     const [pressTimer, setPressTimer] = useState<NodeJS.Timeout | null>(null);
-    const [isCheckBoxMode, setCheckBoxMode] = useState(props.checkBoxMode ?? false);
     const [boxChecked, setBoxChecked] = useState(false);
 
 
@@ -63,12 +62,11 @@ const ChatRoom = (props: IChatRoom) => {
         if(props.disabled){
             return;
         }
-        if(isCheckBoxMode === true){
+        if(props.checkBoxMode === true){
             handleCheckBoxChange(e);
         }
         else{
             const timer = setTimeout(() => {
-                setCheckBoxMode(true)
                 props.onLongPress?.(e);
             }, 1000);
             setPressTimer(timer);
@@ -79,7 +77,7 @@ const ChatRoom = (props: IChatRoom) => {
         if(props.disabled){
             return;
         }
-        if(isCheckBoxMode === false){
+        if(props.checkBoxMode === false){
             if (pressTimer) {
                 clearTimeout(pressTimer);
                 setPressTimer(null);
@@ -101,7 +99,7 @@ const ChatRoom = (props: IChatRoom) => {
         <ListItem
             disablePadding
             secondaryAction={
-                isCheckBoxMode &&  !props.disabled && (
+                props.checkBoxMode &&  !props.disabled && (
                     <Checkbox
                         edge="end"
                         onChange={handleCheckBoxChange}
@@ -119,7 +117,7 @@ const ChatRoom = (props: IChatRoom) => {
                 sx={{
                     minWidth: "300px",
                     flexShrink: 1,
-                    background: isCheckBoxMode === false ? undefined: 
+                    background: props.checkBoxMode === false ? undefined: 
                                 ( boxChecked ? 'rgb(102, 157, 100)' :'rgb(102, 157, 246)'),
                     'padding': "12px",
                     'borderBottom': "1px solid #ccc",
@@ -165,7 +163,7 @@ const ChatRoom = (props: IChatRoom) => {
                     }
                     />
                     {
-                        isCheckBoxMode === true ?
+                        props.checkBoxMode === true ?
                             <></>
                         :
                             <ListItemText
