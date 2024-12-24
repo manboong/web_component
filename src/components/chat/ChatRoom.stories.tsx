@@ -40,13 +40,14 @@ const Template: StoryFn = (args) => {
     }, [])
     
     const handleCheckboxToggle = (newChecked: any) => {
-        setChecked(newChecked);
-        args.onCheckboxToggle(newChecked);
+        console.log("chatroom id", args.chatRoomId)
+        console.log(newChecked)
     };
     
     return (
         <List dense sx={{width: "100%", maxWidth: '500px'}}>
             <ChatRoom
+                key={args.chatRoomId}
                 title={args.title}
                 lastMessage={args.lastMessage}
                 lastSentAt={args.lastSentAt}
@@ -69,6 +70,7 @@ Default.args = {
     lastMessage: 'This is the last message in the chat room.',
     lastSentAt: new Date(),
     unreadCount: 3,
+    chatRoomId: '123',
     checkBoxMode: false,
     disabled: false,
     image: '',

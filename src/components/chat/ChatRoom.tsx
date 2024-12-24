@@ -6,7 +6,6 @@ interface IChatRoom {
     onClick?: React.MouseEventHandler;
     onContextMenu?: React.MouseEventHandler;
     onLongPress?: React.MouseEventHandler;
-    chatRoomId?: string;
     checkBoxMode?: boolean;
     selected?: boolean;
     image?: string;
