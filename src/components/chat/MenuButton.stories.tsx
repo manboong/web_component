@@ -1,23 +1,23 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import ChatRoomHeader, { ChatRoomHeaderProps } from './ChatRoomHeader';
 import { Box, IconButton, Button, Snackbar, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, ExtendButtonBase, ButtonTypeMap, ButtonProps } from '@mui/material';
 import type {SnackbarCloseReason} from "@mui/material/Snackbar"
+import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
+import * as MenuButton from "./MenuButton"
 
 export default {
-    title: 'Components/ChatRoomHeader',
-    component: ChatRoomHeader,
+    title: 'Components/MenuButton',
+    component: MenuButton.MenuButton,
     decorators: [
         (StoryFn) => (
-            <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ height: '100px', maxWidth: "200px",  display: 'flex', flexDirection: 'column' }}>
                 {StoryFn()}
             </Box>
         ),
     ],
 } as Meta;
 
-const Template: StoryFn<ChatRoomHeaderProps> = (args) => <ChatRoomHeader {...args} />;
 
 const AlertDialogMenuItem = ({close}: {close?: boolean}) => {
     const [open, setOpen] = React.useState(false);
@@ -112,40 +112,52 @@ const SnackbarMenuItem = () => {
     );
   }
 
-const TestText = ({close}: {close?: boolean}) => {
+const TestTextItem = ({close}: {close?: boolean}) => {
     return (
         <button     >
             Test
         </button>
     )
 }
-export const Default = Template.bind({});
+
+const Template: StoryFn<MenuButton.MenuButtonProps> = (args) => {
+    return (
+        <MenuButton.MenuButton trigger={<MenuIcon />}>
+        {/* @ts-ignore */} 
+        {args.children.map((val, idx) => (
+            <MenuButton.Item>
+                {val}
+            </MenuButton.Item>
+        ))} 
+        </MenuButton.MenuButton>    
+    )
+}
+
+
+const TemplateWithClose: StoryFn<MenuButton.MenuButtonProps> = (args) => {
+  return (
+      <MenuButton.MenuButton trigger={<MenuIcon />}>
+      {/* @ts-ignore */} 
+      {args.children.map((val, idx) => (
+          <MenuButton.ItemWithClose>
+              {val}
+          </MenuButton.ItemWithClose>
+      ))} 
+      </MenuButton.MenuButton>    
+  )
+}
+
+export const Default = Template.bind({})
 Default.args = {
-    title: 'Provider',
-    menuItemList: [<TestText/>],
-    onBackClick: () => alert('Back button clicked'),
-};
+    children: [<TestTextItem />]
+}
 
+export const WithCloseItem = TemplateWithClose.bind({})
+WithCloseItem.args = {
+    children: [<TestTextItem />]
+}
 
-export const WithTwoItem = Template.bind({});
-WithTwoItem.args = {
-    title: 'Provider',
-    menuItemList: [<TestText close/>, <TestText/>],
-    onBackClick: () => alert('Back button clicked'),
-};
-
-export const WithDialogItem = Template.bind({});
-WithDialogItem.args = {
-    title: 'Provider',
-    menuItemList: [<AlertDialogMenuItem close/>],
-    onBackClick: () => alert('Back button clicked'),
-};
-
-
-export const WithSnackBarItem = Template.bind({});
-WithSnackBarItem.args = {
-    title: 'Provider',
-    menuItemList: [<SnackbarMenuItem/>],
-    onBackClick: () => alert('Back button clicked'),
-};
-
+export const AlartDialog = Template.bind({})
+AlartDialog.args = {
+  children: [<AlertDialogMenuItem />]
+}
