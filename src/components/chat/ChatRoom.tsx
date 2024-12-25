@@ -14,7 +14,7 @@ interface IChatRoom {
     lastMessage?: string;
     lastSentAt?: Date;
     unreadCount?: number;
-    onCheckboxToggle?: React.EventHandler<React.ChangeEvent | React.MouseEvent>;
+    onCheckboxToggle?: (event: React.ChangeEvent | React.MouseEvent, checked: boolean) => void;
 }
 const elapsedTime = (date?: Date): string => {
     if(!date){
@@ -53,7 +53,7 @@ const ChatRoom = (props: IChatRoom) => {
         if(props.disabled){
             return;
         }
-        props.onCheckboxToggle?.(event);
+        props.onCheckboxToggle?.(event, boxChecked);
         setBoxChecked((prev) => !prev)
     }
 
