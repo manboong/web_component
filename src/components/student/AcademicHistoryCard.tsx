@@ -1,6 +1,12 @@
 import React from 'react';
-import { Card, Text, Inset, Box, Flex } from '@radix-ui/themes';
-import styled, { css } from 'styled-components';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Chip
+} from '@mui/material';
+import '@fontsource/noto-sans-kr';
 
 export interface AcademicHistoryCardProps {
   degree: string;
@@ -12,34 +18,6 @@ export interface AcademicHistoryCardProps {
   logo?: string;
 }
 
-const StyledCard = styled(Card)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
-  width: 480px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-`;
-
-const StatusText = styled(Text)<{ status: 'Graduated' | 'In Progress' | 'Withdrawn' }>`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 0.76em;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-  background-color: #ecf0f1;
-  ${({ status }) =>
-    status === 'Graduated' && css`color: indigo;`}
-  ${({ status }) =>
-    status === 'In Progress' && css`color: jade;`}
-  ${({ status }) =>
-    status === 'Withdrawn' && css`color: tomato;`}
-`;
-
 const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
   degree,
   faculty,
@@ -49,41 +27,64 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
   status,
   logo,
 }) => (
-
-    <StyledCard>
-      <Inset clip="padding-box" side="left" style={{ width: '80px', height: '80px', overflow: 'hidden' }}>
-        {logo && (
-          <Box style={{ width: '100%', height: '100%' }}>
-            <img
-              src={logo}
-              alt={`${school_name} logo`}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }}
-            />
-          </Box>
-        )}
-      </Inset>
-      <Box width="400px">
-        <Flex direction="column">
-          <Text size="5" weight="bold" style={{ color: '#2c3e50', fontSize: '1.5em' }}>
-            {school_name}
-          </Text>
-          <Text size="4" style={{ color: '#34495e', fontStyle: 'italic', fontSize: '1.1em' }}>
-            {degree} in {faculty}
-          </Text>
-          <Text size="3" style={{ color: '#7f8c8d', fontSize: '0.9em' }}>
-            {new Date(start_date).toLocaleDateString()} - {end_date ? new Date(end_date).toLocaleDateString() : 'Present'}
-          </Text>
-        </Flex>
-      </Box>
-      <StatusText status={status}>
-        {status}
-      </StatusText>
-    </StyledCard>
-
+  <Card
+    sx={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 2,
+      width: 480,
+      padding: 2,
+      boxShadow: 2,
+      position: 'relative',
+    }}
+  >
+    {logo && (
+      <CardMedia
+        component="img"
+        image={logo}
+        alt={`${school_name} logo`}
+        sx={{
+          width: 80,
+          height: 80,
+          borderRadius: '4px',
+          objectFit: 'cover',
+        }}
+      />
+    )}
+    <CardContent
+      sx={{
+        flex: 1,
+      }}
+    >
+      <Typography variant="h6" component="div" sx={{ color: '#2c3e50', fontSize: '1.5em' }}>
+        {school_name}
+      </Typography>
+      <Typography variant="body1" sx={{ color: '#34495e', fontStyle: 'Noto Sans KR', fontSize: '1.1em' }}>
+        {degree} in {faculty}
+      </Typography>
+      <Typography variant="body2" sx={{ color: '#7f8c8d', fontSize: '0.9em' }}>
+        {new Date(start_date).toLocaleDateString()} - {end_date ? new Date(end_date).toLocaleDateString() : 'Present'}
+      </Typography>
+    </CardContent>
+    <Chip
+      label={status}
+      sx={{
+        position: 'absolute',
+        top: 1,
+        right: 1,
+        fontSize: '0.76em',
+        fontWeight: 'bold',
+        backgroundColor: '#ecf0f1',
+        color:
+          status === 'Graduated'
+            ? 'indigo'
+            : status === 'In Progress'
+            ? 'green'
+            : 'tomato',
+      }}
+    />
+  </Card>
 );
 
 export default AcademicHistoryCard;

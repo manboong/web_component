@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useFunnel } from "../hooks/useFunnel";
 import PageContainer from "../components/container/PageContainer"
 import UserTypeInput from "../components/input/UserTypeInput";
-import StudentStepperCard from "../components/StudentStepperCard"
+import StudentStepperCard from "../components/student/StudentStepperCard"
 import StudentProfileInput from "../components/input/StudentProfileInput"
 import EmailTokenInput from "../components/input/EmailTokenInput"
 import CorpProfileInput from "../components/input/CorpProfileInput"

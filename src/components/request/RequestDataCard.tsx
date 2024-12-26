@@ -8,7 +8,7 @@ import {
   Tab,
   Divider,
 } from "@mui/material";
-import CorpProfileCard, { CorpProfileData } from "./CorpProfileCard";
+import CorpProfileCard, { CorpProfileCardProps } from "../corporation/CorpProfileCard";
 import RequestCard, { RequestCardProps } from "./RequestCard";
 
 export interface RequestData {
@@ -29,7 +29,7 @@ export interface RequestData {
 
 export interface RequestDataCardProps {
   requestData: RequestData;
-  corpCard: CorpProfileData;
+  corpCard: CorpProfileCardProps;
   otherRequests: RequestCardProps[]
 }
 

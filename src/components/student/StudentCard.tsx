@@ -1,14 +1,15 @@
 import React from "react";
 import {
   Card,
-  Flex,
+  CardContent,
+  CardMedia,
   Avatar,
-  Text,
+  Typography,
+  Box,
   IconButton,
-  Separator,
-} from "@radix-ui/themes";
-import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
-import styled from "styled-components";
+  Divider,
+} from "@mui/material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 
 interface langWithLevelProps {
   language: string;
@@ -37,26 +38,20 @@ const renderLanguages = (langWithLevel: langWithLevelProps[]) => {
   );
 
   return (
-    <Flex direction="row" align="center" style={{ width: "100%" }}>
+    <Box display="flex" justifyContent="space-between" width="100%">
       {languageSlots.map((lang, index) => (
-        <Flex
-          key={index}
-          align="center"
-          justify="center"
-          style={{
-            flex: 1,
-            textAlign: "center",
-            position: "relative",
-          }}
-        >
-          <Text as="span" color={lang === "-" ? "gray" : "crimson"}>
+        <Box key={index} textAlign="center" flex={1} position="relative">
+          <Typography
+            variant="body2"
+            color={lang === "-" ? "text.secondary" : "error"}
+          >
             {lang}
-          </Text>
+          </Typography>
           {index < 2 && (
-            <Separator
+            <Divider
               orientation="vertical"
-              size="3"
-              style={{
+              flexItem
+              sx={{
                 position: "absolute",
                 right: 0,
                 height: "30px",
@@ -64,23 +59,11 @@ const renderLanguages = (langWithLevel: langWithLevelProps[]) => {
               }}
             />
           )}
-        </Flex>
+        </Box>
       ))}
-    </Flex>
+    </Box>
   );
 };
-
-const ResponsiveCard = styled(Card)`
-  width: 300px;
-  height: 340px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-`;
 
 const StudentCard = ({
   student_id,
@@ -104,68 +87,93 @@ const StudentCard = ({
   };
 
   return (
-    <ResponsiveCard>
-      <div onClick={handleCardClick} style={{ width: "100%", height: "100%" }}>
-        <Flex
-          direction="column"
-          align="center"
-          gap="0.5"
-          style={{ height: "100%" }}
+    <Card
+      sx={{
+        width: 300,
+        height: 340,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        boxShadow: 2,
+        borderRadius: 2,
+        position: "relative",
+        padding: 2,
+      }}
+      onClick={handleCardClick}
+    >
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 1,
+          height: "100%",
+        }}
+      >
+        {/* Profile Image */}
+        <Avatar
+          src={imageUrl}
+          alt={name}
+          sx={{ width: 72, height: 72, marginBottom: 2 }}
         >
-          {/* Profile Image */}
-          <Avatar
-            size="9"
-            src={imageUrl}
-            radius="full"
-            fallback={name.charAt(0)}
-            style={{ marginBottom: "12px" }}
-          />
+          {name.charAt(0)}
+        </Avatar>
 
-          {/* Name */}
-          <Text as="div" size="5" weight="bold" align="center">
-            {name}
-          </Text>
+        {/* Name */}
+        <Typography variant="h6" component="div" align="center">
+          {name}
+        </Typography>
 
-          {/* Nationality */}
-          <Text as="p" color="gray" size="3" align="center" style={{ marginTop: "-4px" }}>
-            {nationality}
-          </Text>
+        {/* Nationality */}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          align="center"
+          sx={{ mt: -0.5 }}
+        >
+          {nationality}
+        </Typography>
 
-          {/* School */}
-          <Text as="p" color="gray" size="3" align="center" style={{ marginTop: "-4px" }}>
-            {school}
-          </Text>
+        {/* School */}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          align="center"
+          sx={{ mt: -0.5 }}
+        >
+          {school}
+        </Typography>
 
-          {/* Major */}
-          <Text as="p" color="gray" size="3" align="center" style={{ marginTop: "-4px" }}>
-            {major}
-          </Text>
+        {/* Major */}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          align="center"
+          sx={{ mt: -0.5 }}
+        >
+          {major}
+        </Typography>
 
-          {/* Separator */}
-          <Separator size="3" style={{ margin: "12px 0", width: "100%" }} />
+        {/* Separator */}
+        <Divider sx={{ my: 2, width: "100%" }} />
 
-          {/* Languages */}
-          {renderLanguages(languageWithLevel)}
+        {/* Languages */}
+        {renderLanguages(languageWithLevel)}
+      </CardContent>
 
-          {/* Bookmark Button */}
-          <IconButton
-            onClick={handleBookmarkClick}
-            radius="full" 
-            variant="ghost"
-            color={isBookmarked ? "red" : "gray"}
-            style={{
-              position: "absolute",
-              top: "8px",
-              right: "8px",
-              width: "48px",
-              height: "48px",
-            }}
-          >
-            {isBookmarked ? <HeartFilledIcon width="30" height="30"/> : <HeartIcon width="30" height="30"/>}
-          </IconButton>
-        </Flex>
-      </div>
-    </ResponsiveCard>
+      {/* Bookmark Button */}
+      <IconButton
+        onClick={handleBookmarkClick}
+        sx={{
+          position: "absolute",
+          top: 8,
+          right: 8,
+          color: isBookmarked ? "error.main" : "text.secondary",
+        }}
+      >
+        {isBookmarked ? <Favorite /> : <FavoriteBorder />}
+      </IconButton>
+    </Card>
   );
 };
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { Theme } from "@radix-ui/themes"
 import StudentCard from '../../components/student/StudentCard';
-import '@radix-ui/themes/styles.css';
 
 const meta = {
   title: 'student/StudentCard',
@@ -12,13 +10,6 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [
-    (Story) => (
-      <Theme>
-        <Story />
-      </Theme>
-    )
-  ],
   args: {
     name: 'John Doe',
     nationality: 'American',

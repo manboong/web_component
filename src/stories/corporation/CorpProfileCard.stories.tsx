@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import CorpProfileCard, { CorpProfileCardProps } from '../../components/corporation/CorpProfileCard';
-import '@radix-ui/themes/styles.css';
 
 const meta: Meta<typeof CorpProfileCard> = {
   title: 'corporation/CorpProfileCard',

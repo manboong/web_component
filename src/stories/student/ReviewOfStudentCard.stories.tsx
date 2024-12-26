@@ -1,22 +1,10 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import ReviewOfStudentCard, { ReviewOfStudentCardProps } from '../../components/student/ReviewOfStudentCard';
-import { Theme } from '@radix-ui/themes';
-import { MemoryRouter } from "react-router-dom"; 
-import '@radix-ui/themes/styles.css';
 
 const meta: Meta<typeof ReviewOfStudentCard> = {
   title: 'student/ReviewOfStudentCard',
   component: ReviewOfStudentCard,
-  decorators: [
-    (Story) => (
-      <Theme>
-        <MemoryRouter>
-          <Story />
-        </MemoryRouter>
-      </Theme>
-    ),
-  ],
   argTypes: {
     was_late: { control: 'number', min: 0, max: 2 },
     was_proactive: { control: 'number', min: 0, max: 10 },

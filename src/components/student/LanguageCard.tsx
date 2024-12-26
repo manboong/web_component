@@ -1,6 +1,6 @@
 import React from 'react';
-import { Theme, Box, Card, Text, Inset } from '@radix-ui/themes';
-import styled from 'styled-components';
+import { Box, Card, CardContent, Typography } from '@mui/material';
+import '@fontsource/noto-sans-kr';
 
 export interface LanguageCardProps {
   level: number;
@@ -11,7 +11,7 @@ export interface LanguageCardProps {
 
 type LevelColorProps = 'indigo' | 'purple' | 'crimson';
 
-const level_to_color = (level: number): LevelColorProps =>  {
+const levelToColor = (level: number): LevelColorProps => {
   switch (level) {
     case 1:
       return 'indigo';
@@ -24,42 +24,50 @@ const level_to_color = (level: number): LevelColorProps =>  {
   }
 };
 
-const StyledCard = styled(Card)<{ borderColor: LevelColorProps }>`
-  width: fit-content;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  border: 2px solid ${({ borderColor }) => borderColor};
-  color: ${({ borderColor }) => borderColor};
-`;
-
 const LanguageCard: React.FC<LanguageCardProps> = ({
   level,
   exam_result,
   exam_name,
-  language
+  language,
 }) => {
-  const color = level_to_color(level);
+  const color = levelToColor(level);
 
   return (
-    <Theme>
-      <StyledCard borderColor={color}>
-        <Inset>
-          <Box style={{ display: 'inline-flex', textAlign: 'center' }}>
-            <Text as="div" size="4" weight="bold" style={{ color: color, fontSize: '0.6em' }}>
-              {language}
-            </Text>
-          </Box>
-        </Inset>
-        <Box style={{ display: 'inline-flex', textAlign: 'center' }}>
-          <Text as="p" style={{ color: color, fontSize: '1.4em', transform: 'scale(1.0, 1.2)'}}>
-            <strong>{exam_name}: {exam_result}</strong>
-          </Text>
+    <Card
+      sx={{
+        width: 'fit-content',
+        padding: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 1,
+        border: `2px solid ${color}`,
+        color: color,
+      }}
+    >
+      <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+        <Box sx={{ display: 'inline-flex', textAlign: 'center' }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ color: color, fontSize: '0.6em', fontWeight: 'bold' }}
+          >
+            {language}
+          </Typography>
         </Box>
-      </StyledCard>
-    </Theme>
+        <Box sx={{ display: 'inline-flex', textAlign: 'center' }}>
+          <Typography
+            variant="h5"
+            component="p"
+            sx={{ color: color, fontSize: '1.4em', transform: 'scale(1.0, 1.2)' }}
+          >
+            <strong>
+              {exam_name}: {exam_result}
+            </strong>
+          </Typography>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

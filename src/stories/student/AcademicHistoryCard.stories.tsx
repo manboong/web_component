@@ -1,8 +1,6 @@
 import React from 'react'
 import { Meta, StoryObj } from '@storybook/react';
-import { Theme } from '@radix-ui/themes';
 import AcademicHistoryCard, { AcademicHistoryCardProps } from '../../components/student/AcademicHistoryCard';
-import '@radix-ui/themes/styles.css';
 
 const meta: Meta<typeof AcademicHistoryCard> = {
   title: 'student/AcademicHistoryCard',
@@ -16,13 +14,6 @@ const meta: Meta<typeof AcademicHistoryCard> = {
     status: 'Graduated',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg',
   },
-  decorators: [
-    (Story) => (
-      <Theme>
-        <Story />
-      </Theme>
-    ),
-  ],
 };
 
 export default meta;
