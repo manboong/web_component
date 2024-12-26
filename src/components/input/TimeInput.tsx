@@ -21,7 +21,7 @@ const TimeInput: React.FC<TimeInputProps> = ({ control, name, label }) => (
                     format="hh:mm"
                     label={label}
                     onChange={(time) => field.onChange(time)}
-                    value={field.value}
+                    value={field.value.format("HH:mm")}
                     slotProps={{
                         textField: { fullWidth: true },
                     }}
