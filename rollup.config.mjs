@@ -33,7 +33,7 @@ const External = [
 export default [
     {
         input: "./src/components/index.ts",
-        External,
+        external: External,
         output: [
             {
                 file: "dist/esm/index.js",
@@ -61,7 +61,7 @@ export default [
         input: "./src/components/index.ts",
         output: [{ file: "dist/esm/index.d.ts", format: "esm" }],
         plugins: [dts()],
-        External,
+        external: External,
     },
     {
         input: "./src/components/index.ts",
@@ -85,12 +85,12 @@ export default [
                 extensions: [".js", ".jsx", ".ts", ".tsx"],
             }),
         ],
-        External,
+        external: External,
     },
     {
         input: "./src/components/index.ts",
         output: [{ file: "dist/cjs/index.d.ts", format: "cjs" }],
         plugins: [dts()],
-        External,
+        external: External,
     },
 ];

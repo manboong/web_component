@@ -5,45 +5,27 @@ import {
     Toolbar,
     IconButton,
     Typography,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
     useMediaQuery
 } from '@mui/material';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import MenuIcon from "@mui/icons-material/Menu"
+
+import * as MenuButton from './MenuButton'
 
 export interface ChatRoomHeaderProps {
     title: string;
-    role: "provider" | "consumer";
+    menuItemList: React.ReactElement[];
     onBackClick: () => void;
-    onHireClick: () => void;
-    onEndHireClick: () => void;
 }
 
-const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, role, onBackClick, onHireClick, onEndHireClick }) => {
+const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, menuItemList, onBackClick }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const [openDialog, setOpenDialog] = useState(false);
 
-    const handleOpenDialog = () => {
-        setOpenDialog(true);
-    };
-
-    const handleCloseDialog = () => {
-        setOpenDialog(false);
-    };
-
-    const handleConfirmEndHire = () => {
-        setOpenDialog(false);
-        onEndHireClick();
-    };
 
     return (
         <>
-            <AppBar position="static" sx={{ maxWidth: 1080 }} >
+            <AppBar position="static" >
                 <Toolbar>
                     {!isMobile && (
                         <IconButton
@@ -58,40 +40,16 @@ const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, role, onBackClic
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {title}
                     </Typography>
-                    {role === "provider" && (
-                        <>
-                            <Button color="inherit" onClick={onHireClick}>
-                                채용하기
-                            </Button>
-                            <Button color="inherit" onClick={handleOpenDialog}>
-                                채용종료
-                            </Button>
-                        </>
-                    )}
+                    
+                    <MenuButton.MenuButton trigger={<MenuIcon />}>
+                            {menuItemList.map((val, idx) => (
+                                <MenuButton.Item>
+                                    {val}
+                                </MenuButton.Item>
+                            ))} 
+                    </MenuButton.MenuButton>
                 </Toolbar>
             </AppBar>
-
-            <Dialog
-                open={openDialog}
-                onClose={handleCloseDialog}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">채용 종료 확인</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        정말로 채용과정을 종료하시겠습니까?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog} color="primary">
-                        뒤로
-                    </Button>
-                    <Button onClick={handleConfirmEndHire} color="primary" autoFocus>
-                        채용종료
-                    </Button>
-                </DialogActions>
-            </Dialog>
         </>
     );
 };

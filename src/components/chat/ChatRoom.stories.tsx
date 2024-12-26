@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ChatRoom from './ChatRoom';
-import { List } from '@mui/material';
+import { List, Checkbox } from '@mui/material';
 import { Meta, StoryFn } from '@storybook/react';
 
 export default {
@@ -11,6 +11,7 @@ export default {
         lastSentMessage: {type: "string"},
         unreadCount: {type: "number"},
         disalbed: {type: 'boolean'},
+        selected: {type: 'boolean'},
         checkBoxMode: {type: 'boolean'},
         lastSentAt: {type: Date},
         onClick: { action: 'clicked' },
@@ -21,7 +22,7 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => {
-    const [checkBoxMode, setCheckBoxMode] = useState(false);
+    const [checkBoxMode, setCheckBoxMode] = useState(args.checkBoxMode as boolean ?? false);
     const [checked, setChecked] = useState(false);
 
     useEffect(()=>{
@@ -46,10 +47,14 @@ const Template: StoryFn = (args) => {
     return (
         <List dense sx={{width: "100%", maxWidth: '500px'}}>
             <ChatRoom
+                key={args.chatRoomId}
                 title={args.title}
                 lastMessage={args.lastMessage}
                 lastSentAt={args.lastSentAt}
                 unreadCount={args.unreadCount}
+                image={args.image}
+                disabled={args.disabled}
+                selected={args.selected}
                 disabled={args.disabled}
                 checkBoxMode={checkBoxMode}
                 onCheckboxToggle={handleCheckboxToggle}
@@ -59,12 +64,14 @@ const Template: StoryFn = (args) => {
     );
 };
 
+
 export const Default = Template.bind({});
 Default.args = {
     title: 'Chat Room Title',
     lastMessage: 'This is the last message in the chat room.',
     lastSentAt: new Date(),
     unreadCount: 3,
+    chatRoomId: '123',
     checkBoxMode: false,
     disabled: false,
     image: '',
@@ -87,4 +94,10 @@ CheckboxEnabled.args = {
     ...Default.args,
     checkBoxMode: true,
     checked: false,
+};
+
+export const Selected = Template.bind({});
+Selected.args = {
+    ...Default.args,
+    selected: true,
 };
