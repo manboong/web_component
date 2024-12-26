@@ -40,8 +40,8 @@ const Template: StoryFn = (args) => {
     }, [])
     
     const handleCheckboxToggle = (newChecked: any) => {
-        console.log("chatroom id", args.chatRoomId)
-        console.log(newChecked)
+        setChecked(newChecked);
+        args.onCheckboxToggle(newChecked);
     };
     
     return (
@@ -55,6 +55,7 @@ const Template: StoryFn = (args) => {
                 image={args.image}
                 disabled={args.disabled}
                 selected={args.selected}
+                disabled={args.disabled}
                 checkBoxMode={checkBoxMode}
                 onCheckboxToggle={handleCheckboxToggle}
                 onLongPress={() => setCheckBoxMode((prev) => !prev)}
