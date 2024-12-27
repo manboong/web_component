@@ -3,12 +3,16 @@ import { Card, CardContent, CardMedia, Typography, Grid2 as Grid, Box } from '@m
 import { Control } from 'react-hook-form';
 import '@fontsource/noto-sans-kr';
 import ShortTextInput from './ShortTextInput';
+import GlobalNameInput from './GlobalNameInput'
 import DateInput from './DateInput';
 import RadioInput from './RadioInput';
 import NavigationButton from '../NavigationButton';
 
 export interface StudentProfileData {
-    student_name: string;
+    name_glb: {
+        language: string;
+        name: string;
+    };
     nationality: string;
     birth_date: Date;
     phone_number?: string;
@@ -61,10 +65,11 @@ const StudentProfileInput: React.FC<StudentProfileInputProps> = ({
 
             <CardContent sx={{ padding: 3, fontFamily: 'Noto Sans KR', flex: 1 }}>
                 <Box mb={5}>
-                    <ShortTextInput 
+                    <GlobalNameInput 
                         control={control} 
-                        name="student_name" 
-                        defaultValue={initialData?.student_name}
+                        name="name_glb" 
+                        availableLanguages={["en", "kr", "jp"]}
+                        defaultValue={initialData?.name_glb}
                     />
                 </Box>
                 <Grid container spacing={4}>

@@ -11,7 +11,6 @@ import commonjs from "@rollup/plugin-commonjs";
 const External = [
     "react",
     "react-dom",
-    "@radix-ui/themes",
     "@toss/react",
     "@mui/joy",
     "@mui/material",

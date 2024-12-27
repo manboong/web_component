@@ -1,17 +1,18 @@
-export { default as StudentCard } from "./StudentCard";
-export { default as AcademicHistoryCard } from "./AcademicHistoryCard";
-export { default as LanguageCard } from "./LanguageCard";
+export { default as StudentCard } from "./student/StudentCard";
+export { default as AcademicHistoryCard } from "./student/AcademicHistoryCard";
+export { default as LanguageCard } from "./student/LanguageCard";
 export { default as NavigationButton } from "./NavigationButton";
 
-export { default as CorpProfileCard } from "./CorpProfileCard";
-export { default as StudentProfileCard } from "./StudentProfileCard";
-export { default as RequestCard } from "./RequestCard";
-export { default as RequestDataCard } from "./RequestDataCard";
-export { default as RequestSideCard } from "./RequestSideCard";
-export { default as IndexCard } from "./IndexCard";
-export { default as ReviewOfCorpCard } from "./ReviewOfCorpCard";
-export { default as ReviewOfStudentCard } from "./ReviewOfStudentCard";
-export { default as StudentStepperCard } from "./StudentStepperCard";
+export { default as CorpProfileCard } from "./corporation/CorpProfileCard";
+export { default as StudentProfileCard } from "./student/StudentProfileCard";
+export { default as RequestCard } from "./request/RequestCard";
+export { default as RequestDataCard } from "./request/RequestDataCard";
+export { default as RequestSideCard } from "./request/RequestSideCard";
+export { default as StudentIndexCard } from "./student/StudentIndexCard";
+export { default as CorpIndexCard } from "./corporation/CorpIndexCard";
+export { default as ReviewOfCorpCard } from "./corporation/ReviewOfCorpCard";
+export { default as ReviewOfStudentCard } from "./student/ReviewOfStudentCard";
+export { default as StudentStepperCard } from "./student/StudentStepperCard";
 export { default as BarNavigationCard } from "./BarNavigationCard";
 
 export { default as ChatRoom } from "./chat/ChatRoom";
