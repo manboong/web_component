@@ -59,6 +59,7 @@ const Template: StoryFn = (args) => {
                 disabled={args.disabled}
                 selected={args.selected}
                 checkBoxMode={checkBoxMode}
+                onClick={() => alert("Clicked in normal state")}
                 onCheckboxToggle={handleCheckboxToggle}
                 onLongPress={() => setCheckBoxMode((prev) => !prev)}
             />
