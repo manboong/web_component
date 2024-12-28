@@ -18,6 +18,11 @@ interface IChatRoom {
     onClick?: React.MouseEventHandler;
     onContextMenu?: React.MouseEventHandler;
     onLongPress?: React.MouseEventHandler;
+    onCheckboxToggle?: (
+        event: React.ChangeEvent | React.MouseEvent,
+        checked: boolean,
+    ) => void;
+    defaultValue?: boolean;
     checkBoxMode?: boolean;
     selected?: boolean;
     image?: string;
@@ -26,14 +31,10 @@ interface IChatRoom {
     lastMessage?: string;
     lastSentAt?: Date;
     unreadCount?: number;
-    onCheckboxToggle?: (
-        event: React.ChangeEvent | React.MouseEvent,
-        checked: boolean,
-    ) => void;
 }
 
 const ChatRoom = (props: IChatRoom) => {
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(props.defaultValue ?? false);
 
     const handleClick = (e: React.MouseEvent) => {
         if (props.checkBoxMode === true) {
@@ -53,7 +54,7 @@ const ChatRoom = (props: IChatRoom) => {
             onLongPress={props.onLongPress}
             doPropagate={!props.disabled && props.checkBoxMode === true}
         >
-            <ListItem disablePadding>
+            <ListItem disablePadding divider>
                 <ListItemButton
                     onClick={handleClick}
                     onContextMenu={props.onContextMenu}
@@ -62,6 +63,7 @@ const ChatRoom = (props: IChatRoom) => {
                     sx={{
                         minWidth: "300px",
                         flexShrink: 1,
+                        gap: "3px",
                         background:
                             props.checkBoxMode === false
                                 ? undefined
@@ -69,7 +71,6 @@ const ChatRoom = (props: IChatRoom) => {
                                   ? "rgb(102, 157, 100)"
                                   : "rgb(102, 157, 246)",
                         padding: "12px",
-                        borderBottom: "1px solid #ccc",
                         "&:hover": {
                             backgroundColor: "rgba(0, 0, 0, 0.08)",
                         },
@@ -91,7 +92,7 @@ const ChatRoom = (props: IChatRoom) => {
                         </Badge>
                     </ListItemAvatar>
                     <ListItemText
-                        sx={{ flexGrow: 1, flexShrink: 1 }}
+                        sx={{ flexGrow: 1, flexShrink: 1, flexBasis: "100%" }}
                         primary={
                             <Typography
                                 variant="body1"
@@ -121,7 +122,7 @@ const ChatRoom = (props: IChatRoom) => {
                         />
                     ) : (
                         <ListItemText
-                            sx={{ flexShrink: 1 }}
+                            sx={{ flexShrink: 1, paddingRight: "7px" }}
                             primary={
                                 <Typography
                                     variant="body2"

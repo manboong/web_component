@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 interface LongPressEnablerProps {
     doPropagate: boolean;
     children: React.ReactElement;
@@ -7,6 +7,7 @@ interface LongPressEnablerProps {
 
 const LongPress = (props: LongPressEnablerProps) => {
     const [pressTimer, setPressTimer] = useState<NodeJS.Timeout | null>(null);
+    const id = useId();
     const [eventCaptureHandler, setEventCaptureHandler] =
         useState<
             React.EventHandler<
@@ -52,11 +53,11 @@ const LongPress = (props: LongPressEnablerProps) => {
                 onTouchEnd={eventCaptureHandler}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
-                htmlFor="long-press"
+                htmlFor={id}
             >
                 {props.children}
             </label>
-            <input id="long-press" type="hidden" />
+            <input id={id} type="hidden" />
         </>
     );
 };
