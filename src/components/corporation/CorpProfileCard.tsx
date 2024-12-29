@@ -17,8 +17,9 @@ export interface CorpProfileCardProps {
     phone_number?: string;
     corp_num?: number;
     biz_num?: number;
-    corp_status?: string;
+    corp_status?: number;
     onEditClick?: () => void;
+    onClick?: () => void;
 }
 
 const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
@@ -37,6 +38,7 @@ const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
     biz_num,
     corp_status,
     onEditClick,
+    onClick,
 }) => {
     return (
         <Card
@@ -52,6 +54,7 @@ const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
                 '&:hover': isMypage ? { backgroundColor: '#e0e0e0' } : undefined,
                 position: 'relative',
             }}
+            onClick={onClick}
         >
             {isMypage && (
                 <IconButton

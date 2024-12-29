@@ -12,18 +12,10 @@ import StarHalfIcon from "@mui/icons-material/StarHalf";
 import "@fontsource/noto-sans-kr";
 
 export interface ReviewOfCorpCardProps {
-  id: number;
-  consumer_id: number;
-  student_id: number;
-  corp_id: number;
-  request_id: number;
-  request_url: string;
   review_text: string;
   prep_requirement: string;
   work_atmosphere: string;
   sense_of_achive: number;
-  created_at?: Date;
-  updated_at?: Date;
 }
 
 // 별점 렌더링 함수
