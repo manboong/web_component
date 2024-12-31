@@ -14,7 +14,7 @@ export interface AcademicHistoryCardProps {
   school_name: string;
   start_date: string;
   end_date: string;
-  status: 'Graduated' | 'In Progress' | 'Withdrawn';
+  status: number;
   logo?: string;
 }
 
@@ -68,7 +68,12 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
       </Typography>
     </CardContent>
     <Chip
-      label={status}
+      label={status === 0
+              ? 'In Progress'
+              : status === 1
+              ? 'Graduated'
+              : 'Leave of Absence'
+      }
       sx={{
         position: 'absolute',
         top: 1,
@@ -77,9 +82,9 @@ const AcademicHistoryCard: React.FC<AcademicHistoryCardProps> = ({
         fontWeight: 'bold',
         backgroundColor: '#ecf0f1',
         color:
-          status === 'Graduated'
+          status === 1
             ? 'indigo'
-            : status === 'In Progress'
+            : status === 0
             ? 'green'
             : 'tomato',
       }}

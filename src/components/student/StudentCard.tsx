@@ -24,7 +24,6 @@ export interface StudentCardProps {
   major: string;
   languageWithLevel: langWithLevelProps[];
   imageUrl: string;
-  link: string;
   isBookmarked: boolean;
   onBookmarkClick: (newState: boolean) => void;
 }

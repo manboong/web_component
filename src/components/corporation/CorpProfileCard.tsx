@@ -140,14 +140,6 @@ const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
                     )}
                     <Grid size={3}>
                         <Typography variant="body2" fontWeight="bold" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>
-                            설립일자
-                        </Typography>
-                    </Grid>
-                    <Grid size={9}>
-                        <Typography variant="body2" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>{biz_started_at}</Typography>
-                    </Grid>
-                    <Grid size={3}>
-                        <Typography variant="body2" fontWeight="bold" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>
                             업종
                         </Typography>
                     </Grid>
