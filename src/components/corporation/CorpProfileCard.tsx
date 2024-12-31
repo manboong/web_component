@@ -17,8 +17,9 @@ export interface CorpProfileCardProps {
     phone_number?: string;
     corp_num?: number;
     biz_num?: number;
-    corp_status?: string;
+    corp_status?: number;
     onEditClick?: () => void;
+    onClick?: () => void;
 }
 
 const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
@@ -37,6 +38,7 @@ const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
     biz_num,
     corp_status,
     onEditClick,
+    onClick,
 }) => {
     return (
         <Card
@@ -52,6 +54,7 @@ const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
                 '&:hover': isMypage ? { backgroundColor: '#e0e0e0' } : undefined,
                 position: 'relative',
             }}
+            onClick={onClick}
         >
             {isMypage && (
                 <IconButton
@@ -135,14 +138,6 @@ const CorpProfileCard: React.FC<CorpProfileCardProps> = ({
                             </Grid>
                         </>
                     )}
-                    <Grid size={3}>
-                        <Typography variant="body2" fontWeight="bold" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>
-                            설립일자
-                        </Typography>
-                    </Grid>
-                    <Grid size={9}>
-                        <Typography variant="body2" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>{biz_started_at}</Typography>
-                    </Grid>
                     <Grid size={3}>
                         <Typography variant="body2" fontWeight="bold" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>
                             업종

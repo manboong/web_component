@@ -16,13 +16,13 @@ export interface RequestData {
   content: string;
   are_needed?: string[];
   are_required?: string[];
-  address: string;
-  address_coordinate: {
+  address?: string;
+  address_coordinate?: {
     type: "Point";
     coordinates: [lat: number, lng: number];
   };
   prep_material: string[];
-  request_status: number;
+  request_status?: number;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -49,7 +49,8 @@ const RequestDataCard: React.FC<RequestDataCardProps> = ({ requestData, corpCard
   const [activeTab, setActiveTab] = useState(0);
 
   const googleMapsKey = "AIzaSyB8_1BXxTpvEJHABsLs2EXXNZ1MqS5Kz0c";
-  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${googleMapsKey}&q=${requestData.address_coordinate.coordinates[0]},${requestData.address_coordinate.coordinates[1]}`;
+  const mapUrl = requestData.address_coordinate ? 
+    `https://www.google.com/maps/embed/v1/place?key=${googleMapsKey}&q=${requestData.address_coordinate.coordinates[0]},${requestData.address_coordinate.coordinates[1]}`: undefined;
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);

@@ -11,9 +11,9 @@ import {
 export interface RequestCardProps {
   title: string;
   reward_price: number;
-  currency: "USD" | "KRW" | "JPY" | "";
+  currency: string;
   address: string;
-  start_date: Date;
+  start_date: string;
   renderLogo: boolean;
   request_status: number;
   logo_image?: string;
@@ -123,6 +123,8 @@ const RequestCard = ({
             <Typography
               variant="h5"
               component="div"
+              noWrap
+              flex={1}
               sx={{ fontWeight: "bold", fontFamily: "Noto Sans KR" }}
             >
               {title}
@@ -133,7 +135,7 @@ const RequestCard = ({
               variant="body2"
               sx={{ fontFamily: "Noto Sans KR", color: "rgba(0, 0, 0, 0.7)" }}
             >
-              {start_date.toDateString()}
+              {start_date}
             </Typography>
           </Grid>
           <Grid size={10.5}>

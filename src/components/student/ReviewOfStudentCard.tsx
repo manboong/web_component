@@ -31,20 +31,16 @@ export interface ReviewOfStudentCardProps {
   corp_id?: number;
   orgn_id?: number;
   consumer_id: number;
-  student_id: number;
   request_id: number;
-  request_url: string;
-  was_late: 0 | 1 | 2;
-  was_proactive: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  was_diligent: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  commu_ability: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  lang_fluent: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  goal_fulfillment: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  want_cowork: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  was_late: number;
+  was_proactive: number;
+  was_diligent: number;
+  commu_ability: number;
+  lang_fluent: number;
+  goal_fulfillment: number;
+  want_cowork: number;
   praise?: string;
   need_improve?: string;
-  created_at?: Date;
-  updated_at?: Date;
   onClick?: () => void;
 }
 
