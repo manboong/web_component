@@ -6,7 +6,7 @@ import '@fontsource/noto-sans-kr';
 export interface StudentAttributes {
     student_name: string;
     nationality: string;
-    birth_date: Date;
+    birth_date: string;
     phone_number?: string;
     emergency_contact?: string;
     gender: number;
@@ -117,7 +117,7 @@ const StudentProfileCard: React.FC<StudentAttributes> = ({
                             variant="body2"
                             sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
                         >
-                            {birth_date.toISOString()}
+                            {birth_date}
                         </Typography>
                     </Grid>
 

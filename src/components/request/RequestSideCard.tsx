@@ -6,8 +6,8 @@ export interface Request {
     head_count?: number;
     reward_price: number;
     currency: string;
-    start_date?: Date;
-    end_date?: Date;
+    start_date?: string;
+    end_date?: string;
     provide_food?: boolean;
     provide_trans_exp?: boolean;
     start_time?: string;
@@ -45,7 +45,7 @@ const RequestSideCard: React.FC<RequestSideCardProps> = ({ request }) => {
           <ListItem sx={{padding: '0'}}>
             <ListItemText
               primary="시작 날짜"
-              secondary={request.start_date?.toDateString()}
+              secondary={request.start_date}
             />
           </ListItem>
           <ListItem sx={{padding: '0'}}>

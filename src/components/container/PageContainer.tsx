@@ -14,14 +14,15 @@ const PageContainer: React.FC<PageContainerProps> = ({ main, side, sideBar }) =>
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: '24px',
-        maxWidth: '1080px',
-        margin: 'auto',
-        padding: '16px',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        gap: "24px",
+        maxWidth: "1080px",
+        margin: "auto",
+        padding: "16px",
+        minHeight: "100vh",
       }}
     >
       <Container 
