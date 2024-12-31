@@ -35,4 +35,6 @@ export { default as StudentProfileInput } from "./input/StudentProfileInput";
 export { default as UserTypeInput } from "./input/UserTypeInput";
 export { default as EmailTokenInput } from "./input/EmailTokenInput";
 
+export * as MenuButton from "./chat/MenuButton";
+
 export { default as PageContainer } from "./container/PageContainer";

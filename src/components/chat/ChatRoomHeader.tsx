@@ -1,56 +1,48 @@
-import React, { useState } from 'react';
-import { 
-    useTheme,     
-    AppBar,
-    Toolbar,
-    IconButton,
-    Typography,
-    useMediaQuery
-} from '@mui/material';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import MenuIcon from "@mui/icons-material/Menu"
-
-import * as MenuButton from './MenuButton'
+import React from "react";
+import { AppBar, Toolbar, IconButton, Typography, Box } from "@mui/material";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 export interface ChatRoomHeaderProps {
     title: string;
     menuItemList: React.ReactElement[];
-    onBackClick: () => void;
+    onBackClick: React.MouseEventHandler;
 }
 
-const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ title, menuItemList, onBackClick }) => {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-
+const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({
+    title,
+    menuItemList,
+    onBackClick,
+}) => {
     return (
-        <>
-            <AppBar position="static" >
+        <Box flexGrow={1}>
+            <AppBar position="static">
                 <Toolbar>
-                    {!isMobile && (
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="back"
-                            onClick={onBackClick}
-                        >
-                            <NavigateBeforeIcon />
-                        </IconButton>
-                    )}
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    <IconButton
+                        color="inherit"
+                        aria-label="back"
+                        onClick={onBackClick}
+                        sx={{
+                            display: {
+                                xs: "none",
+                                sm: "block",
+                            },
+                        }}
+                    >
+                        <NavigateBeforeIcon />
+                    </IconButton>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        flex={1}
+                        noWrap={true}
+                        style={{ fontWeight: "bold" }}
+                    >
                         {title}
                     </Typography>
-                    
-                    <MenuButton.MenuButton trigger={<MenuIcon />}>
-                            {menuItemList.map((val, idx) => (
-                                <MenuButton.Item>
-                                    {val}
-                                </MenuButton.Item>
-                            ))} 
-                    </MenuButton.MenuButton>
+                    {menuItemList.map((item) => item)}
                 </Toolbar>
             </AppBar>
-        </>
+        </Box>
     );
 };
 

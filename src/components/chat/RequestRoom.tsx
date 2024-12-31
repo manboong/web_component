@@ -1,25 +1,33 @@
-import React from 'react';
-import { ListItem, ListItemButton, ListItemAvatar, Avatar, Tooltip } from "@mui/material";
+import React from "react";
+import {
+    ListItem,
+    ListItemButton,
+    ListItemAvatar,
+    Avatar,
+    Tooltip,
+} from "@mui/material";
 
 export interface RequestRoomProps {
     title: string;
-    logo_image?: string;
+    image?: string;
+    selected?: boolean;
     onClick: () => void;
 }
 
 const RequestRoom = (props: RequestRoomProps) => {
     return (
-        <ListItem
-            disablePadding
-        >
-            <Tooltip title={props.title}>
-                <ListItemButton onClick={props.onClick}>
-                    <ListItemAvatar>
-                        <Avatar src={props.logo_image} />
-                    </ListItemAvatar>
+        <Tooltip title={props.title}>
+            <ListItem divider disablePadding>
+                <ListItemButton
+                    onClick={props.onClick}
+                    disableGutters
+                    dense
+                    selected={props.selected}
+                >
+                    <Avatar src={props.image} />
                 </ListItemButton>
-            </Tooltip>
-        </ListItem>
+            </ListItem>
+        </Tooltip>
     );
 };
 
