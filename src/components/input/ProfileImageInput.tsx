@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Controller } from "react-hook-form";
 import blockies from "ethereum-blockies";
 import { TextField, Box, Typography, Container } from "@mui/material";
-import NavigationButton from "../NavigationButton";
 
 export interface ProfileImageInputProps {
     control: any;

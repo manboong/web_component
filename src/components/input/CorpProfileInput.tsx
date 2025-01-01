@@ -3,37 +3,25 @@ import { Card, CardContent, CardMedia, Typography, Grid2 as Grid, Box } from '@m
 import { Control } from 'react-hook-form';
 import '@fontsource/noto-sans-kr';
 import ShortTextInput from './ShortTextInput';
-import NavigationButton from '../NavigationButton';
 
 export interface CorpProfileData {
     corp_name: string;
     nationality: string;
     ceo_name?: string;
     corp_address?: string;
-    biz_started_at?: string;
     biz_type?: string;
     logo_image?: string;
     site_url?: string;
-    isMypage?: boolean;
-    corp_domain?: string;
-    phone_number?: string;
-    corp_num?: number;
-    biz_num?: number;
-    corp_status?: string;
 }
 
 interface CorpProfileInputProps {
     initialData?: CorpProfileData;
     control: Control<any>;
-    onNext: () => void;
-    onPrevious: () => void;
 }
 
-const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
+const CorpProfileInput: React.FC<CorpProfileInputProps> = ({
     initialData,
     control,
-    onNext,
-    onPrevious,
 }) => {
     return (
         <Card
@@ -88,23 +76,6 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         />
                     </Grid>
 
-                    {initialData?.isMypage && (
-                        <>
-                            <Grid size={3}>
-                                <Typography variant="body2" fontWeight="bold" sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}>
-                                    도메인
-                                </Typography>
-                            </Grid>
-                            <Grid size={9}>
-                                <ShortTextInput 
-                                    control={control} 
-                                    name="corp_domain" 
-                                    defaultValue={initialData?.corp_domain}
-                                />
-                            </Grid>
-                        </>
-                    )}
-
                     <Grid size={3}>
                         <Typography
                             variant="body2"
@@ -139,43 +110,6 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         />
                     </Grid>
 
-                    {initialData?.isMypage && (
-                        <>
-                            <Grid size={3}>
-                                <Typography
-                                    variant="body2"
-                                    fontWeight="bold"
-                                    sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
-                                >
-                                    전화번호
-                                </Typography>
-                            </Grid>
-                            <Grid size={9}>
-                                <ShortTextInput 
-                                    control={control} 
-                                    name="phone_number" 
-                                    defaultValue={initialData?.phone_number}
-                                />
-                            </Grid>
-                        </>
-                    )}
-                            
-                    <Grid size={3}>
-                        <Typography
-                            variant="body2"
-                            fontWeight="bold"
-                            sx={{ fontFamily: 'Noto Sans KR', fontSize: '1rem', color: 'rgba(0, 0, 0, 0.7)' }}
-                        >
-                            설립일자
-                        </Typography>
-                    </Grid>
-                    <Grid size={9}>
-                        <ShortTextInput 
-                            control={control} 
-                            name="biz_started_at" 
-                            defaultValue={initialData?.biz_started_at}
-                        />
-                    </Grid>
 
                     <Grid size={3}>
                         <Typography
@@ -194,13 +128,9 @@ const StudentProfileInput: React.FC<CorpProfileInputProps> = ({
                         />
                     </Grid>
                 </Grid>
-                <Box display="flex" justifyContent="space-between" mt={3}>
-                    <NavigationButton label="previous" onClick={onPrevious} />
-                    <NavigationButton label="next" onClick={onNext} />
-                </Box>
             </CardContent>
         </Card>
     );
 };
 
-export default StudentProfileInput;
+export default CorpProfileInput;

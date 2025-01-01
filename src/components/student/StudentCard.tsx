@@ -72,14 +72,9 @@ const StudentCard = ({
   major,
   languageWithLevel,
   imageUrl,
-  link,
   isBookmarked,
   onBookmarkClick,
 }: StudentCardProps) => {
-  const handleCardClick = () => {
-    window.location.href = link;
-  };
-
   const handleBookmarkClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onBookmarkClick(!isBookmarked);
@@ -98,7 +93,6 @@ const StudentCard = ({
         position: "relative",
         padding: 2,
       }}
-      onClick={handleCardClick}
     >
       <CardContent
         sx={{

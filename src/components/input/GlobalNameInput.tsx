@@ -36,7 +36,7 @@ const GlobalNameInput: React.FC<GlobalNameInputProps> = ({
                                         fullWidth
                                         variant="outlined"
                                     >
-                                        {availableLanguages.map((lang) => (
+                                        {availableLanguages?.map((lang) => (
                                             <MenuItem key={lang} value={lang}>
                                                 {lang}
                                             </MenuItem>
