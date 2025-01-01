@@ -3,7 +3,6 @@ import { Card, CardContent, CardMedia, Typography, Grid2 as Grid, Box } from '@m
 import { Control } from 'react-hook-form';
 import '@fontsource/noto-sans-kr';
 import ShortTextInput from './ShortTextInput';
-import NavigationButton from '../NavigationButton';
 
 export interface CorpProfileData {
     corp_name: string;
