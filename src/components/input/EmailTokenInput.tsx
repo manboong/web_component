@@ -2,28 +2,29 @@ import React, { useState } from "react";
 import NavigationButton from "../NavigationButton";
 import ShortTextInput from "./ShortTextInput"
 import { Box, Typography, Grid2 as Grid, Card, CardContent, Button } from "@mui/material";
-import { Control } from "react-hook-form";
+import { Control, useWatch } from "react-hook-form";
 
 export interface EmailTokenInputProps {
     control: Control<any>; 
-    onSend: () => void;
-    onSubmit: () => void;
-    onPrevious: () => void;
+    onSend: (verifyEmail: string, userType: string) => void;
     userType: "student" | "corp" | "orgn";
 }
 
 const EmailTokenInput: React.FC<EmailTokenInputProps> = ({
     control,
     onSend,
-    onSubmit,
-    onPrevious,
     userType,
 }) => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const [timer, setTimer] = useState(0);
 
+    const email = useWatch({
+        control,
+        name: "mail_address"
+    })
+
     const handleSendEmail = () => {
-        onSend();
+        onSend(email, userType);
         setIsButtonDisabled(true);
         setTimer(30);
 
@@ -95,15 +96,11 @@ const EmailTokenInput: React.FC<EmailTokenInputProps> = ({
                         <Grid size={6}>
                             <ShortTextInput
                                 control={control}
-                                name="mail_address"
-                                label="Email"
+                                name="token"
+                                label="Token"
                             />
                         </Grid>
                     </Grid>
-                    <Box display="flex" justifyContent="space-between" mt={3}>
-                        <NavigationButton label="previous" onClick={onPrevious} />
-                        <NavigationButton label="next" onClick={onSubmit} />
-                    </Box>
                 </Box>
             </CardContent>
         </Card>
