@@ -1,51 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import ChatRoom from './ChatRoom';
-import { List, Checkbox } from '@mui/material';
-import { Meta, StoryFn } from '@storybook/react';
+import React, { useEffect, useState } from "react";
+import ChatRoom from "./ChatRoom";
+import { List, Checkbox } from "@mui/material";
+import { Meta, StoryFn } from "@storybook/react";
 
 export default {
-    title: 'Components/ChatRoom',
+    title: "Components/ChatRoom",
     component: ChatRoom,
     argTypes: {
-        title: {type: "string"},
-        lastSentMessage: {type: "string"},
-        unreadCount: {type: "number"},
-        disalbed: {type: 'boolean'},
-        selected: {type: 'boolean'},
-        checkBoxMode: {type: 'boolean'},
-        lastSentAt: {type: Date},
-        onClick: { action: 'clicked' },
-        onContextMenu: { action: 'context menu' },
-        onLongPress: { action: 'long press' },
-        onCheckboxToggle: { action: 'checkbox toggled' },
+        title: { type: "string" },
+        lastSentMessage: { type: "string" },
+        unreadCount: { type: "number" },
+        disalbed: { type: "boolean" },
+        selected: { type: "boolean" },
+        checfkBoxMode: { type: "boolean" },
+        lastSentAt: { type: Date },
+        onClick: { action: "clicked" },
+        onContextMenu: { action: "context menu" },
+        onLongPress: { action: "long press" },
+        onCheckboxToggle: { action: "checkbox toggled" },
     },
 } as Meta;
 
 const Template: StoryFn = (args) => {
-    const [checkBoxMode, setCheckBoxMode] = useState(args.checkBoxMode as boolean ?? false);
+    const [checkBoxMode, setCheckBoxMode] = useState(
+        (args.checkBoxMode as boolean) ?? false,
+    );
     const [checked, setChecked] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         const preventBack = () => {
             // save state when checkbox mode on
-            if(checkBoxMode === true){
-                window.history.pushState(null, '', window.location.href);
+            if (checkBoxMode === true) {
+                window.history.pushState(null, "", window.location.href);
                 setCheckBoxMode((prev) => !prev);
             }
-        }
-            window.addEventListener('popstate', preventBack)
+        };
+        window.addEventListener("popstate", preventBack);
         return () => {
-            window.removeEventListener('popstate', preventBack)
-        }
-    }, [])
-    
-    const handleCheckboxToggle = (newChecked: any) => {
+            window.removeEventListener("popstate", preventBack);
+        };
+    }, []);
+
+    const handleCheckboxToggle = (event: any, newChecked: any) => {
+        console.log("REcent", newChecked);
         setChecked(newChecked);
         args.onCheckboxToggle(newChecked);
     };
-    
+
     return (
-        <List dense sx={{width: "100%", maxWidth: '500px'}}>
+        <List dense sx={{ width: "100%", maxWidth: "500px" }}>
             <ChatRoom
                 key={args.chatRoomId}
                 title={args.title}
@@ -55,8 +58,8 @@ const Template: StoryFn = (args) => {
                 image={args.image}
                 disabled={args.disabled}
                 selected={args.selected}
-                disabled={args.disabled}
                 checkBoxMode={checkBoxMode}
+                onClick={() => alert("Clicked in normal state")}
                 onCheckboxToggle={handleCheckboxToggle}
                 onLongPress={() => setCheckBoxMode((prev) => !prev)}
             />
@@ -64,23 +67,22 @@ const Template: StoryFn = (args) => {
     );
 };
 
-
 export const Default = Template.bind({});
 Default.args = {
-    title: 'Chat Room Title',
-    lastMessage: 'This is the last message in the chat room.',
+    title: "Chat Room Title",
+    lastMessage: "This is the last message in the chat room.",
     lastSentAt: new Date(),
     unreadCount: 3,
-    chatRoomId: '123',
+    chatRoomId: "123",
     checkBoxMode: false,
     disabled: false,
-    image: '',
+    image: "",
 };
 
 export const WithAvatar = Template.bind({});
 WithAvatar.args = {
     ...Default.args,
-    image: 'https://via.placeholder.com/40',
+    image: "https://via.placeholder.com/40",
 };
 
 export const Disabled = Template.bind({});
