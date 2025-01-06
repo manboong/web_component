@@ -12,6 +12,7 @@ export { default as CorpIndexCard } from "./corporation/CorpIndexCard";
 export { default as ReviewOfCorpCard } from "./corporation/ReviewOfCorpCard";
 export { default as ReviewOfStudentCard } from "./student/ReviewOfStudentCard";
 export { default as StudentStepperCard } from "./student/StudentStepperCard";
+export { default as UserProfileCard } from "./user/UserProfileCard";
 export { default as BarNavigationCard } from "./BarNavigationCard";
 
 export { default as ChatRoom } from "./chat/ChatRoom";
@@ -35,6 +36,7 @@ export { default as UserTypeInput } from "./input/UserTypeInput";
 export { default as EmailTokenInput } from "./input/EmailTokenInput";
 export { default as ReviewOfCorpInput } from "./input/ReviewOfCorpInput";
 export { default as ReviewOfStudentInput } from "./input/ReviewOfStudentInput";
+export { default as ChipInput } from "./input/ChipInput";
 
 export * as MenuButton from "./chat/MenuButton";
 

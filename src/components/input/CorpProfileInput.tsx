@@ -3,6 +3,7 @@ import { Card, CardContent, CardMedia, Typography, Grid2 as Grid, Box } from '@m
 import { Control } from 'react-hook-form';
 import '@fontsource/noto-sans-kr';
 import ShortTextInput from './ShortTextInput';
+import TimeInput from './TimeInput';
 
 export interface CorpProfileData {
     corp_name: string;
